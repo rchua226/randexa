@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>randexa — AI & Business Systems</title>
+  <meta name="description" content="AI automation and business systems for SMEs. Strategy, setup, execution." />
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #0b0b0c;
+      color: #eaeaea;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      padding: 80px 24px;
+      margin: auto;
+    }
+    h1, h2 {
+      line-height: 1.2;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+    h2 {
+      margin-top: 64px;
+      margin-bottom: 16px;
+      font-size: 1.6rem;
+    }
+    p {
+      max-width: 700px;
+    }
+    ul {
+      padding-left: 18px;
+    }
+    a {
+      color: #6cf;
+      text-decoration: none;
+    }
+    .cta {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 12px 20px;
+      border: 1px solid #6cf;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+    footer {
+      margin-top: 80px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AI & Business Systems.<br>Executed properly.</h1>
+    <p>
+      We design and implement AI automations and internal systems that remove manual work,
+      reduce errors, and save time — without breaking your operations.
+    </p>
+    <a class="cta" href="mailto:hello@randexa.com">Talk to us</a>
+
+    <h2>What We Do</h2>
+    <ul>
+      <li><strong>AI Automation</strong> — Replace repetitive work with practical AI workflows.</li>
+      <li><strong>Business Systems</strong> — Clean internal systems for ops, sales, and admin.</li>
+      <li><strong>Implementation + Training</strong> — We build it, set it up, and train your team.</li>
+    </ul>
+
+    <h2>Who It’s For</h2>
+    <ul>
+      <li>SMEs</li>
+      <li>Ops-heavy teams</li>
+    </ul>
+
+    <h2>How We Work</h2>
+    <p>
+      One point of responsibility.<br>
+      Strategy → Setup → Execution.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Email: <a href="mailto:hello@randexa.com">hello@randexa.com</a><br>
+      Calendly: <em>optional</em>
+    </p>
+
+    <footer>
+      © randexa
+    </footer>
+  </div>
+</body>
+</html>
