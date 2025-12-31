@@ -12,7 +12,7 @@
 
   <style>
     :root {
-      --bg: #fdf5ec;
+      --bg: #fdf5ec;           /* warm beige */
       --bg-soft: #fff7ed;
       --card: #ffffff;
       --text: #1a1a1a;
@@ -22,7 +22,6 @@
       --glow: rgba(79, 70, 229, 0.15);
       --shadow: rgba(0,0,0,0.08);
       --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     [data-theme="dark"] {
@@ -52,57 +51,7 @@
       transition: all 0.5s var(--transition-smooth);
     }
 
-    /* Background */
-    .bg-gradient {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      z-index: -2;
-      pointer-events: none;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(79, 70, 229, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
-        var(--bg);
-      animation: subtle-pulse 15s infinite alternate var(--transition-smooth);
-    }
-
-    @keyframes subtle-pulse {
-      0% { opacity: 1; }
-      100% { opacity: 0.8; }
-    }
-
-    .bg-particles {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .particle {
-      position: absolute;
-      background: var(--accent);
-      border-radius: 50%;
-      opacity: 0.08;
-      animation: float-particle 25s infinite ease-in-out, rotate-particle 10s infinite linear;
-      box-shadow: 0 0 8px var(--glow);
-    }
-
-    @keyframes float-particle {
-      0% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-500px) scale(1.2); }
-      100% { transform: translateY(-1000px) scale(1); }
-    }
-
-    @keyframes rotate-particle {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Hamburger & Mode Toggle (unchanged but kept premium) */
+    /* Hamburger Menu Button */
     .menu-toggle {
       position: fixed;
       top: 40px;
@@ -121,12 +70,13 @@
       cursor: pointer;
       transition: all 0.4s var(--transition-smooth);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
     }
 
     .menu-toggle:hover {
       transform: scale(1.05) translateY(-2px);
-      box-shadow: 0 15px 40px var(--shadow), 0 0 20px var(--glow);
+      box-shadow: 0 15px 40px var(--shadow);
       border-color: var(--accent);
     }
 
@@ -134,21 +84,314 @@
       width: 22px;
       height: 2px;
       background: var(--text);
-      transition: all 0.4s var(--transition-bounce);
+      transition: all 0.4s var(--transition-smooth);
       border-radius: 1px;
+      transform-origin: center;
     }
 
     .menu-toggle.active {
       background: var(--accent);
       border-color: var(--accent);
-      box-shadow: 0 0 20px var(--glow);
     }
 
-    .menu-toggle.active span { background: white; }
-    .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .menu-toggle.active span:nth-child(2) { opacity: 0; transform: scale(0); }
-    .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .menu-toggle.active span {
+      background: white;
+    }
 
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Navigation Panel */
+    .nav-panel {
+      position: fixed;
+      top: 0;
+      left: -340px;
+      width: 320px;
+      height: 100vh;
+      background: rgba(253, 245, 236, 0.95);
+      border-right: 1px solid var(--border);
+      padding: 140px 32px 60px;
+      z-index: 999;
+      transition: all 0.6s var(--transition-smooth);
+      overflow-y: auto;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 20px 0 60px rgba(0, 0, 0, 0.08);
+    }
+
+    [data-theme="dark"] .nav-panel {
+      background: rgba(26, 26, 26, 0.95);
+    }
+
+    .nav-panel.open {
+      left: 0;
+    }
+
+    .nav-logo {
+      width: 160px;
+      margin-bottom: 48px;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .nav-link {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 500;
+      padding: 16px 20px;
+      border-radius: 12px;
+      transition: all 0.4s var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid transparent;
+    }
+
+    .nav-link:hover {
+      background: var(--bg);
+      border-color: var(--border);
+      transform: translateX(8px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-link.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      transform: translateX(8px);
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.2);
+    }
+
+    .nav-number {
+      font-size: 14px;
+      font-weight: 600;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+      transition: all 0.4s var(--transition-smooth);
+    }
+
+    .nav-link.active .nav-number {
+      background: white;
+      color: var(--accent);
+      border-color: white;
+    }
+
+    /* FIXED: Main container - 1/4 left, 3/4 right layout */
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 3fr; /* Changed from 1.2fr 1fr to 1fr 3fr */
+      gap: 80px;
+      max-width: 1600px; /* Increased max-width */
+      margin: 0 auto;
+      padding: 160px 60px 120px 180px;
+      min-height: 100vh;
+    }
+
+    /* Left column - Brand & Intro (1/4 width) */
+    .main-content {
+      position: sticky;
+      top: 160px;
+      height: fit-content;
+      max-width: 380px; /* Limit width for better readability */
+    }
+
+    .logo {
+      width: 180px;
+      margin-bottom: 40px;
+      display: block;
+    }
+
+    h1 {
+      font-size: clamp(44px, 5vw, 64px); /* Slightly smaller */
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 28px;
+      letter-spacing: -0.03em;
+    }
+
+    .tagline {
+      font-size: 20px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .intro-text {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    /* FIXED: Removed the line cutting through the highlight box */
+    .highlight {
+      background: linear-gradient(135deg, var(--bg-soft) 0%, transparent 100%);
+      padding: 28px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      margin: 32px 0; /* Reduced margin */
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Remove the vertical line that was cutting through */
+    .highlight::before {
+      content: none; /* Removed the vertical line */
+    }
+
+    .highlight p {
+      font-size: 16px;
+      color: var(--text);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-radius: 999px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      margin-bottom: 36px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    /* FIXED: Location tag - prevent overlap with footer */
+    .location-tag {
+      display: block; /* Changed from inline-block to block */
+      margin-top: 40px;
+      padding: 16px 24px;
+      background: var(--bg-soft);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    .location-tag p {
+      font-size: 16px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Right column - Content Sections (3/4 width) */
+    .sections-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 120px;
+    }
+
+    .section-block {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: all 0.8s var(--transition-smooth);
+      scroll-margin-top: 140px;
+    }
+
+    .section-block.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-number {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--bg-soft);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    /* Cards */
+    .cards-grid {
+      display: grid;
+      gap: 32px;
+    }
+
+    .cards-grid-2 { grid-template-columns: 1fr; }
+    .cards-grid-4 { grid-template-columns: repeat(2, 1fr); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
+      transition: all 0.5s var(--transition-smooth);
+      box-shadow: 0 12px 32px var(--shadow);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px var(--shadow);
+      border-color: var(--accent);
+    }
+
+    .card p {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+
+    /* Dark/light mode toggle */
     .mode-toggle {
       position: fixed;
       top: 40px;
@@ -164,13 +407,14 @@
       justify-content: center;
       cursor: pointer;
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       transition: all 0.4s var(--transition-smooth);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
     }
 
     .mode-toggle:hover {
-      transform: scale(1.1) rotate(15deg);
-      box-shadow: 0 15px 40px var(--shadow), 0 0 20px var(--glow);
+      transform: scale(1.1);
+      box-shadow: 0 15px 40px var(--shadow);
       border-color: var(--accent);
     }
 
@@ -181,200 +425,43 @@
       transition: all 0.6s var(--transition-smooth);
     }
 
-    .moon-icon { display: none; }
-    [data-theme="dark"] .sun-icon { display: none; }
-    [data-theme="dark"] .moon-icon { display: block; }
-
-    /* Navigation Panel (unchanged) */
-    .nav-panel {
-      position: fixed;
-      top: 0;
-      left: -340px;
-      width: 320px;
-      height: 100vh;
-      background: rgba(253, 245, 236, 0.95);
-      border-right: 1px solid var(--border);
-      padding: 140px 32px 60px;
-      z-index: 999;
-      transition: all 0.6s var(--transition-smooth);
-      backdrop-filter: blur(20px);
-      box-shadow: 20px 0 60px rgba(0, 0, 0, 0.08);
-      transform: scale(0.95);
+    .mode-toggle.active svg {
+      transform: rotate(360deg);
     }
 
-    [data-theme="dark"] .nav-panel { background: rgba(26, 26, 26, 0.95); }
-    .nav-panel.open { left: 0; transform: scale(1); }
-
-    /* NEW LAYOUT: 1/5 left (sticky intro) + 4/5 right (scrolling sections) */
-    .container {
-      display: grid;
-      grid-template-columns: 1fr 4fr; /* left 1/5, right 4/5 */
-      gap: 80px;
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 160px 80px 200px 80px; /* extra bottom padding to prevent footer overlap */
-    }
-
-    /* Left column - sticky intro */
-    .main-content {
-      position: sticky;
-      top: 140px;
-      height: fit-content;
-      align-self: start;
-      opacity: 0;
-      transform: translateY(30px) scale(0.98);
-      animation: fadeUpScale 1.2s var(--transition-smooth) 0.3s forwards;
-    }
-
-    @keyframes fadeUpScale {
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .logo {
-      width: 180px;
-      margin-bottom: 40px;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.05));
-      transition: all 0.6s var(--transition-smooth);
-    }
-
-    .logo:hover { transform: rotate(5deg) scale(1.05); }
-
-    h1 {
-      font-size: clamp(40px, 4vw, 60px);
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 32px;
-      letter-spacing: -0.03em;
-      background: linear-gradient(135deg, var(--text) 0%, var(--muted) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .tagline {
-      font-size: 20px;
-      color: var(--muted);
-      margin-bottom: 40px;
-      line-height: 1.6;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUpScale 1s var(--transition-smooth) 0.6s forwards;
-    }
-
-    .intro-text, .highlight, .location-tag {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUpScale 1s var(--transition-smooth) forwards;
-    }
-
-    .intro-text { animation-delay: 0.8s; }
-    .highlight { animation-delay: 1s; }
-    .location-tag { animation-delay: 1.2s; }
-
-    .highlight {
-      background: linear-gradient(135deg, var(--bg-soft) 0%, transparent 100%);
-      padding: 32px;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      margin: 48px 0;
-    }
-
-    .highlight::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 4px; height: 100%;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      box-shadow: 0 0 12px var(--glow);
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 10px 24px;
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 999px;
-      background: var(--bg-soft);
-      border: 1px solid var(--border);
-      color: var(--accent);
-      margin-bottom: 40px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      transition: all 0.4s var(--transition-smooth);
-    }
-
-    .badge:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 8px 24px var(--shadow), 0 0 12px var(--glow);
-    }
-
-    /* Right column - scrolling sections */
-    .sections-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 160px;
-    }
-
-    .section-block {
-      opacity: 0;
-      transform: translateX(40px) scale(0.98);
-      transition: all 0.8s var(--transition-smooth);
-    }
-
-    .section-block.show {
-      opacity: 1;
-      transform: translateX(0) scale(1);
-    }
-
-    /* Cards */
-    .cards-grid-4 { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-    .cards-grid-2 { grid-template-columns: 1fr; gap: 40px; }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 40px;
-      transition: all 0.5s var(--transition-smooth);
-      box-shadow: 0 12px 32px var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card:hover {
-      transform: translateY(-12px) scale(1.01);
-      box-shadow: 0 40px 80px var(--shadow), 0 0 24px var(--glow);
-      border-color: var(--accent);
-    }
-
-    /* Footer - moved inside container and given more space */
+    /* FIXED: Footer - prevent overlapping */
     footer {
       grid-column: 1 / -1;
-      margin-top: 200px;
-      padding-top: 100px;
-      border-top: 1px solid var(--border);
       text-align: center;
+      padding-top: 100px;
+      margin-top: 120px; /* Increased margin to prevent overlap */
+      border-top: 1px solid var(--border);
       color: var(--muted);
       font-size: 14px;
+      line-height: 1.6;
+      clear: both; /* Ensure footer clears any floating content */
     }
 
     .footer-content {
-      max-width: 800px;
+      max-width: 600px;
       margin: 0 auto;
     }
 
     .footer-links {
       display: flex;
       justify-content: center;
-      gap: 32px;
-      margin-bottom: 24px;
+      gap: 24px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
     }
 
     .footer-links a {
       color: var(--muted);
       text-decoration: none;
+      font-size: 14px;
+      transition: all 0.3s var(--transition-smooth);
       padding: 8px 16px;
       border-radius: 8px;
-      transition: all 0.3s var(--transition-smooth);
     }
 
     .footer-links a:hover {
@@ -382,75 +469,151 @@
       background: var(--bg-soft);
     }
 
-    /* Responsive fixes */
+    /* Responsive design */
     @media (max-width: 1200px) {
       .container {
-        grid-template-columns: 1fr 3fr;
-        padding: 160px 60px 200px;
+        gap: 60px;
+        padding: 160px 40px 100px 160px;
       }
-      .cards-grid-4 { grid-template-columns: 1fr; }
+      
+      .cards-grid-4 {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 992px) {
       .container {
-        grid-template-columns: 1fr;
-        padding: 140px 40px 180px;
+        grid-template-columns: 1fr; /* Stack on mobile */
         gap: 80px;
+        padding: 160px 40px 100px;
       }
+      
       .main-content {
         position: static;
+        max-width: 100%;
       }
-      .sections-grid { gap: 120px; }
+      
+      .sections-grid {
+        gap: 100px;
+      }
+      
+      .nav-panel {
+        left: -100%;
+        width: 100%;
+        max-width: 400px;
+      }
+      
+      /* FIXED: On mobile, ensure enough space between location tag and footer */
+      footer {
+        margin-top: 140px; /* More space on mobile */
+      }
     }
 
     @media (max-width: 768px) {
-      .container { padding: 120px 24px 160px; }
-      .menu-toggle, .mode-toggle { top: 24px; }
-      .menu-toggle { left: 24px; }
-      .mode-toggle { right: 24px; }
-      h1 { font-size: 42px; }
+      .container {
+        padding: 140px 24px 80px;
+      }
+      
+      .menu-toggle {
+        top: 24px;
+        left: 24px;
+        width: 48px;
+        height: 48px;
+      }
+      
+      .mode-toggle {
+        top: 24px;
+        right: 24px;
+        width: 52px;
+        height: 52px;
+      }
+      
+      h1 {
+        font-size: 42px;
+      }
+      
+      h2 {
+        font-size: 32px;
+      }
+      
+      h3 {
+        font-size: 20px;
+      }
+      
+      .card {
+        padding: 28px;
+      }
+      
+      .footer-links {
+        gap: 16px;
+      }
+      
+      .footer-links a {
+        padding: 6px 12px;
+      }
+      
+      /* More space on mobile */
+      footer {
+        margin-top: 160px;
+        padding-top: 80px;
+      }
     }
 
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; }
+    /* FIXED: Add a clearfix to prevent any potential overlaps */
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
     }
   </style>
 </head>
 <body>
 
-  <div class="bg-gradient"></div>
-  <div class="bg-particles" id="particles"></div>
-
-  <!-- Controls -->
-  <div class="menu-toggle interactive" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
-
-  <div class="mode-toggle interactive" onclick="toggleTheme()">
-    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-    </svg>
-    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-    </svg>
+  <!-- Hamburger Menu Button -->
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 
   <!-- Navigation Panel -->
   <div class="nav-panel" id="navPanel">
     <img src="logo.jpeg" alt="Randexa Logo" class="nav-logo">
     <div class="nav-links">
-      <a href="#overview" class="nav-link interactive" onclick="scrollToSection('overview')"><div class="nav-number">00</div>Overview</a>
-      <a href="#what" class="nav-link interactive" onclick="scrollToSection('what')"><div class="nav-number">01</div>What We Do</a>
-      <a href="#who" class="nav-link interactive" onclick="scrollToSection('who')"><div class="nav-number">02</div>Who It's For</a>
-      <a href="#how" class="nav-link interactive" onclick="scrollToSection('how')"><div class="nav-number">03</div>How We Work</a>
-      <a href="#contact" class="nav-link interactive" onclick="scrollToSection('contact')"><div class="nav-number">04</div>Contact</a>
+      <a href="#overview" class="nav-link" onclick="scrollToSection('overview')">
+        <div class="nav-number">00</div>
+        Overview
+      </a>
+      <a href="#what" class="nav-link" onclick="scrollToSection('what')">
+        <div class="nav-number">01</div>
+        What We Do
+      </a>
+      <a href="#who" class="nav-link" onclick="scrollToSection('who')">
+        <div class="nav-number">02</div>
+        Who It's For
+      </a>
+      <a href="#how" class="nav-link" onclick="scrollToSection('how')">
+        <div class="nav-number">03</div>
+        How We Work
+      </a>
+      <a href="#contact" class="nav-link" onclick="scrollToSection('contact')">
+        <div class="nav-number">04</div>
+        Contact
+      </a>
     </div>
   </div>
 
-  <div class="container">
+  <!-- Dark/Light Mode Toggle -->
+  <div class="mode-toggle" onclick="toggleTheme()">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+    </svg>
+  </div>
+
+  <div class="container clearfix">
     
-    <!-- Left 1/5 - Sticky Intro -->
+    <!-- Left Column: Brand & Intro (1/4 width) -->
     <div class="main-content" id="overview">
       <img src="logo.jpeg" alt="Randexa Logo" class="logo">
       <span class="badge">AI & Business Systems</span>
@@ -460,12 +623,25 @@
       </p>
       
       <div class="intro-text">
-        <p>Every day, businesses waste valuable time on manual processes that could be automated, struggle with disconnected software tools, and face growing pains as they scale. The solution isn't just more technology—it's the right technology, implemented properly.</p>
-        <p>At Randexa, we specialize in identifying these operational bottlenecks and replacing them with intelligent, automated systems that scale with your business. We don't just deliver software—we ensure it gets adopted by your team and delivers measurable results.</p>
+        <p>
+          Every day, businesses waste valuable time on manual processes that could be automated, 
+          struggle with disconnected software tools, and face growing pains as they scale. 
+          The solution isn't just more technology—it's the right technology, implemented properly.
+        </p>
+        
+        <p>
+          At Randexa, we specialize in identifying these operational bottlenecks and replacing them 
+          with intelligent, automated systems that scale with your business. We don't just deliver 
+          software—we ensure it gets adopted by your team and delivers measurable results.
+        </p>
       </div>
       
       <div class="highlight">
-        <p><strong>Our approach is different:</strong> We become your single point of accountability for the entire process—from initial audit through implementation, training, and ongoing optimization. No handoffs, no confusion, just results.</p>
+        <p>
+          <strong>Our approach is different:</strong> We become your single point of accountability 
+          for the entire process—from initial audit through implementation, training, and ongoing optimization. 
+          No handoffs, no confusion, just results.
+        </p>
       </div>
       
       <div class="location-tag">
@@ -473,19 +649,117 @@
       </div>
     </div>
 
-    <!-- Right 4/5 - Scrolling Sections -->
+    <!-- Right Column: Content Sections (3/4 width) -->
     <div class="sections-grid">
+      
       <!-- What We Do -->
-      <div class="section-block" id="what"> <!-- similar content as before --> </div>
+      <div class="section-block" id="what">
+        <div class="section-header">
+          <div class="section-number">01</div>
+          <h2>What we do</h2>
+        </div>
+        <p class="intro-text" style="margin-bottom: 32px;">
+          We provide end-to-end solutions that transform how you operate. From initial assessment 
+          to full implementation and training, we handle every aspect of your digital transformation.
+        </p>
+        <div class="cards-grid cards-grid-4">
+          <div class="card">
+            <h3>AI Automation & Agents</h3>
+            <p>Design and deployment of intelligent chatbots, WhatsApp automation, AI-powered receptionists, and workflow automation that integrates seamlessly with your existing team. We focus on solutions that reduce manual workload while maintaining human oversight where it matters.</p>
+          </div>
+          <div class="card">
+            <h3>Business Systems Consulting</h3>
+            <p>Strategic assessment of your current tech stack and processes. We recommend, configure, and implement CRM systems, recruitment platforms like Zoho Recruit, internal communication tools, and workflow management systems tailored to your specific operational needs.</p>
+          </div>
+          <div class="card">
+            <h3>Full System Implementation</h3>
+            <p>Comprehensive setup of chosen solutions including data migration, custom workflow configuration, API integrations, and system testing. We ensure everything works together before any handover to your team.</p>
+          </div>
+          <div class="card">
+            <h3>Training & Sustainable Adoption</h3>
+            <p>Structured training programs, detailed SOP documentation, and ongoing support to ensure your team not only understands but actively uses new systems. We measure success by adoption rates, not just installation.</p>
+          </div>
+        </div>
+      </div>
+
       <!-- Who It's For -->
-      <div class="section-block" id="who"> <!-- ... --> </div>
+      <div class="section-block" id="who">
+        <div class="section-header">
+          <div class="section-number">02</div>
+          <h2>Who it's for</h2>
+        </div>
+        <p class="intro-text" style="margin-bottom: 32px;">
+          Our solutions are designed for businesses that recognize technology as a force multiplier, 
+          not just an expense. Here's who benefits most from our approach:
+        </p>
+        <div class="cards-grid cards-grid-2">
+          <div class="card">
+            <h3>SMEs at Scaling Stage</h3>
+            <p>Companies with 10–200 employees experiencing the pain points of growth: manual processes becoming unsustainable, increasing errors, and the realization that hiring more staff isn't a scalable solution. You're ready to invest in systems that will grow with you, not hold you back.</p>
+          </div>
+          <div class="card">
+            <h3>Operations-Intensive Departments</h3>
+            <p>Teams managing repetitive, time-consuming tasks: customer support handling similar inquiries, recruitment teams screening countless applications, finance departments processing invoices, logistics coordinating deliveries. If your team spends more time on process than on meaningful work, we can help.</p>
+          </div>
+        </div>
+        <div class="highlight" style="margin-top: 32px;">
+          <p>
+            <strong>Typical results:</strong> Clients experience significant reductions in manual workload, 
+            faster process completion times, and dramatic drops in error rates across all operations.
+          </p>
+        </div>
+      </div>
+
       <!-- How We Work -->
-      <div class="section-block" id="how"> <!-- ... --> </div>
+      <div class="section-block" id="how">
+        <div class="section-header">
+          <div class="section-number">03</div>
+          <h2>How we work</h2>
+        </div>
+        <p class="intro-text" style="margin-bottom: 32px;">
+          Our methodology is built around clarity, accountability, and results. Here's the process 
+          that ensures every project delivers on its promises:
+        </p>
+        <div class="cards-grid cards-grid-2">
+          <div class="card">
+            <h3>Single Point of Accountability</h3>
+            <p>One dedicated team handles your project from start to finish. No handoffs between departments, no confusing chains of communication. Your primary contact understands both your business needs and the technical implementation, ensuring consistent understanding and execution.</p>
+          </div>
+          <div class="card">
+            <h3>Strategy → Build → Deploy Framework</h3>
+            <p>We begin with deep discovery to understand not just what you do, but why you do it that way. Then we build solutions that fit your actual workflow, not theoretical models. Finally, we deploy with comprehensive training and support, ensuring successful adoption from day one.</p>
+          </div>
+        </div>
+        <p class="intro-text" style="margin-top: 32px;">
+          Each phase includes clear milestones, regular progress updates, and opportunities for your feedback. 
+          You're involved throughout the process, not just at the beginning and end.
+        </p>
+      </div>
+
       <!-- Contact -->
-      <div class="section-block" id="contact"> <!-- ... --> </div>
+      <div class="section-block" id="contact">
+        <div class="section-header">
+          <div class="section-number">04</div>
+          <h2>Contact</h2>
+        </div>
+        <div class="intro-text" style="margin-bottom: 32px;">
+          <p>
+            We prefer direct, meaningful conversations over formal proposals. Let's start with understanding 
+            your specific challenges before discussing solutions.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Start a Conversation</h3>
+          <p><strong>Email:</strong> <a href="mailto:randexa@gmail.com" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.3s var(--transition-smooth);" onmouseover="this.style.borderBottomColor='var(--accent)'" onmouseout="this.style.borderBottomColor='transparent'">randexa@gmail.com</a></p>
+          <p><strong>Phone (Singapore):</strong> <a href="tel:+6593629022" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.3s var(--transition-smooth);" onmouseover="this.style.borderBottomColor='var(--accent)'" onmouseout="this.style.borderBottomColor='transparent'">+65 9362 9022</a> or <a href="tel:+6590696022" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.3s var(--transition-smooth);" onmouseover="this.style.borderBottomColor='var(--accent)'" onmouseout="this.style.borderBottomColor='transparent'">+65 9069 6022</a></p>
+          <p><strong>Typical Response Time:</strong> Within 4 business hours during Singapore working hours (GMT+8)</p>
+          <p><strong>Initial Engagement:</strong> We usually begin with a 60-minute discovery call to understand your current processes, pain points, and goals. This helps us determine if and how we can help before any commitment.</p>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Footer now safely inside container with extra top margin -->
+    <!-- Footer - Fixed overlapping issue -->
     <footer>
       <div class="footer-content">
         <div class="footer-links">
@@ -494,8 +768,8 @@
           <a href="#how" onclick="scrollToSection('how')">Methodology</a>
           <a href="#contact" onclick="scrollToSection('contact')">Contact</a>
         </div>
-        <p>© 2026 Randexa. All rights reserved.</p>
-        <p style="margin-top: 12px; font-size: 13px; opacity: 0.8;">
+        <p>© 2025 Randexa. All rights reserved.</p>
+        <p style="margin-top: 12px; font-size: 13px; color: var(--muted); opacity: 0.8;">
           AI & Business Systems Implementation | Singapore-based | Global Delivery
         </p>
       </div>
@@ -503,10 +777,142 @@
 
   </div>
 
-  <!-- Script remains the same as previous premium version (particles, theme, scroll reveal, etc.) -->
   <script>
-    // (Same script as in the previous response - particles, menu, theme toggle, scroll reveal, active nav, etc.)
-    // Only change: updated copyright year to 2026
+    // Menu toggle functionality
+    function toggleMenu() {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navPanel = document.getElementById('navPanel');
+      
+      menuToggle.classList.toggle('active');
+      navPanel.classList.toggle('open');
+      
+      // Close menu when clicking a link on mobile
+      if (window.innerWidth <= 992) {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navPanel.classList.remove('open');
+          });
+        });
+      }
+    }
+
+    // Dark/Light mode toggle
+    function toggleTheme() {
+      const body = document.body;
+      const toggle = document.querySelector('.mode-toggle');
+      
+      if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      
+      toggle.classList.add('active');
+      setTimeout(() => toggle.classList.remove('active'), 600);
+    }
+
+    // Smooth scroll to section
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const offset = 120;
+        const elementPosition = section.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        
+        // Update active nav link
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    }
+
+    // Load saved theme and setup
+    document.addEventListener('DOMContentLoaded', () => {
+      // Load saved theme
+      if (localStorage.getItem('theme') === 'dark') {
+        document.body.setAttribute('data-theme', 'dark');
+      }
+
+      // Set up nav link click handlers
+      document.querySelectorAll('.nav-link, .footer-links a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const href = this.getAttribute('href');
+          if (href.startsWith('#')) {
+            const sectionId = href.substring(1);
+            scrollToSection(sectionId);
+            
+            // Close menu on mobile after click
+            if (window.innerWidth <= 992) {
+              const menuToggle = document.querySelector('.menu-toggle');
+              const navPanel = document.getElementById('navPanel');
+              menuToggle.classList.remove('active');
+              navPanel.classList.remove('open');
+            }
+          }
+        });
+      });
+
+      // Scroll reveal animation
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      }, { 
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      });
+
+      document.querySelectorAll('.section-block').forEach(section => {
+        observer.observe(section);
+      });
+
+      // Update active nav link based on scroll position
+      const sections = document.querySelectorAll('.section-block');
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      let scrollTimeout;
+      window.addEventListener('scroll', () => {
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+        
+        scrollTimeout = setTimeout(() => {
+          let current = '';
+          
+          sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= (sectionTop - 200)) {
+              current = section.getAttribute('id');
+            }
+          });
+
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === current) {
+              link.classList.add('active');
+            }
+          });
+        }, 100);
+      });
+    });
   </script>
+
 </body>
 </html>
