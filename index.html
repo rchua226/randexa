@@ -51,45 +51,7 @@
       transition: all 0.5s var(--transition-smooth);
     }
 
-    /* Premium gradient background with parallax */
-    .bg-gradient {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      z-index: -2;
-      pointer-events: none;
-      background: 
-        radial-gradient(circle at 20% 80%, rgba(79, 70, 229, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
-        var(--bg);
-      will-change: transform;
-    }
-
-    .bg-particles {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .particle {
-      position: absolute;
-      background: var(--accent);
-      border-radius: 50%;
-      opacity: 0.1;
-      animation: float-particle 20s infinite linear;
-    }
-
-    @keyframes float-particle {
-      0% { transform: translateY(0) rotate(0deg); }
-      100% { transform: translateY(-1000px) rotate(720deg); }
-    }
-
-    /* Hamburger Menu Button with micro-interactions */
+    /* Hamburger Menu Button */
     .menu-toggle {
       position: fixed;
       top: 40px;
@@ -149,7 +111,7 @@
       transform: translateY(-8px) rotate(-45deg);
     }
 
-    /* Navigation Panel - Premium slide animation */
+    /* Navigation Panel */
     .nav-panel {
       position: fixed;
       top: 0;
@@ -175,29 +137,10 @@
       left: 0;
     }
 
-    .nav-panel::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 120px;
-      background: linear-gradient(to bottom, var(--bg-soft), transparent);
-      pointer-events: none;
-    }
-
     .nav-logo {
       width: 160px;
       margin-bottom: 48px;
       display: block;
-      opacity: 0;
-      transform: translateX(-20px);
-      transition: all 0.8s var(--transition-smooth) 0.1s;
-    }
-
-    .nav-panel.open .nav-logo {
-      opacity: 1;
-      transform: translateX(0);
     }
 
     .nav-links {
@@ -218,14 +161,6 @@
       align-items: center;
       gap: 16px;
       border: 1px solid transparent;
-      opacity: 0;
-      transform: translateX(-20px);
-      will-change: transform, opacity;
-    }
-
-    .nav-panel.open .nav-link {
-      opacity: 1;
-      transform: translateX(0);
     }
 
     .nav-link:hover {
@@ -264,103 +199,68 @@
       border-color: white;
     }
 
-    /* Main container with enhanced spacing */
+    /* FIXED: Main container - 1/4 left, 3/4 right layout */
     .container {
       display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 100px;
-      max-width: 1400px;
+      grid-template-columns: 1fr 3fr; /* Changed from 1.2fr 1fr to 1fr 3fr */
+      gap: 80px;
+      max-width: 1600px; /* Increased max-width */
       margin: 0 auto;
       padding: 160px 60px 120px 180px;
       min-height: 100vh;
-      will-change: transform;
     }
 
-    /* Left column - Main content with subtle animations */
+    /* Left column - Brand & Intro (1/4 width) */
     .main-content {
       position: sticky;
       top: 160px;
       height: fit-content;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeUp 1s var(--transition-smooth) 0.3s forwards;
-    }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      max-width: 380px; /* Limit width for better readability */
     }
 
     .logo {
       width: 180px;
       margin-bottom: 40px;
       display: block;
-      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.05));
     }
 
     h1 {
-      font-size: clamp(44px, 5vw, 72px);
+      font-size: clamp(44px, 5vw, 64px); /* Slightly smaller */
       font-weight: 700;
       line-height: 1.1;
       margin-bottom: 28px;
       letter-spacing: -0.03em;
-      background: linear-gradient(135deg, var(--text) 0%, var(--muted) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    [data-theme="dark"] h1 {
-      background: linear-gradient(135deg, #ffffff 0%, var(--muted) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
     .tagline {
-      font-size: 21px;
+      font-size: 20px;
       color: var(--muted);
-      margin-bottom: 36px;
+      margin-bottom: 32px;
       font-weight: 400;
       line-height: 1.6;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1s var(--transition-smooth) 0.5s forwards;
     }
 
     .intro-text {
       font-size: 17px;
       color: var(--muted);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       line-height: 1.7;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1s var(--transition-smooth) 0.7s forwards;
     }
 
+    /* FIXED: Removed the line cutting through the highlight box */
     .highlight {
       background: linear-gradient(135deg, var(--bg-soft) 0%, transparent 100%);
       padding: 28px;
       border-radius: 20px;
       border: 1px solid var(--border);
-      margin: 40px 0;
+      margin: 32px 0; /* Reduced margin */
       position: relative;
       overflow: hidden;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1s var(--transition-smooth) 0.9s forwards;
     }
 
+    /* Remove the vertical line that was cutting through */
     .highlight::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(to bottom, var(--accent), transparent);
+      content: none; /* Removed the vertical line */
     }
 
     .highlight p {
@@ -368,8 +268,6 @@
       color: var(--text);
       margin: 0;
       line-height: 1.6;
-      position: relative;
-      z-index: 1;
     }
 
     .badge {
@@ -383,22 +281,17 @@
       border: 1px solid var(--border);
       color: var(--accent);
       margin-bottom: 36px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1s var(--transition-smooth) 0.1s forwards;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
     }
 
+    /* FIXED: Location tag - prevent overlap with footer */
     .location-tag {
-      display: inline-block;
-      margin-top: 48px;
+      display: block; /* Changed from inline-block to block */
+      margin-top: 40px;
       padding: 16px 24px;
       background: var(--bg-soft);
       border-radius: 14px;
       border: 1px solid var(--border);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1s var(--transition-smooth) 1.1s forwards;
     }
 
     .location-tag p {
@@ -408,7 +301,7 @@
       line-height: 1.5;
     }
 
-    /* Right column - Content Sections */
+    /* Right column - Content Sections (3/4 width) */
     .sections-grid {
       display: flex;
       flex-direction: column;
@@ -420,7 +313,6 @@
       transform: translateX(40px);
       transition: all 0.8s var(--transition-smooth);
       scroll-margin-top: 140px;
-      will-change: transform, opacity;
     }
 
     .section-block.show {
@@ -435,22 +327,6 @@
       margin-bottom: 40px;
       padding-bottom: 20px;
       border-bottom: 2px solid var(--border);
-      position: relative;
-    }
-
-    .section-header::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 60px;
-      height: 2px;
-      background: var(--accent);
-      transition: width 0.6s var(--transition-smooth);
-    }
-
-    .section-block.show .section-header::after {
-      width: 100px;
     }
 
     .section-number {
@@ -484,7 +360,7 @@
       letter-spacing: -0.01em;
     }
 
-    /* Cards with premium hover effects */
+    /* Cards */
     .cards-grid {
       display: grid;
       gap: 32px;
@@ -500,31 +376,12 @@
       padding: 36px;
       transition: all 0.5s var(--transition-smooth);
       box-shadow: 0 12px 32px var(--shadow);
-      position: relative;
-      overflow: hidden;
-      will-change: transform, box-shadow;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, transparent 0%, rgba(79, 70, 229, 0.03) 100%);
-      opacity: 0;
-      transition: opacity 0.5s var(--transition-smooth);
     }
 
     .card:hover {
-      transform: translateY(-12px) scale(1.01);
-      box-shadow: 0 40px 80px var(--shadow);
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px var(--shadow);
       border-color: var(--accent);
-    }
-
-    .card:hover::before {
-      opacity: 1;
     }
 
     .card p {
@@ -532,11 +389,9 @@
       color: var(--muted);
       line-height: 1.7;
       margin-bottom: 0;
-      position: relative;
-      z-index: 1;
     }
 
-    /* Dark/light mode toggle with glow */
+    /* Dark/light mode toggle */
     .mode-toggle {
       position: fixed;
       top: 40px;
@@ -558,7 +413,7 @@
     }
 
     .mode-toggle:hover {
-      transform: scale(1.1) rotate(15deg);
+      transform: scale(1.1);
       box-shadow: 0 15px 40px var(--shadow);
       border-color: var(--accent);
     }
@@ -574,19 +429,17 @@
       transform: rotate(360deg);
     }
 
-    /* Footer - fixed overlapping issue */
+    /* FIXED: Footer - prevent overlapping */
     footer {
       grid-column: 1 / -1;
       text-align: center;
       padding-top: 100px;
-      margin-top: 100px;
+      margin-top: 120px; /* Increased margin to prevent overlap */
       border-top: 1px solid var(--border);
       color: var(--muted);
       font-size: 14px;
       line-height: 1.6;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1s var(--transition-smooth) 1.3s forwards;
+      clear: both; /* Ensure footer clears any floating content */
     }
 
     .footer-content {
@@ -619,7 +472,7 @@
     /* Responsive design */
     @media (max-width: 1200px) {
       .container {
-        gap: 80px;
+        gap: 60px;
         padding: 160px 40px 100px 160px;
       }
       
@@ -630,13 +483,14 @@
 
     @media (max-width: 992px) {
       .container {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack on mobile */
         gap: 80px;
         padding: 160px 40px 100px;
       }
       
       .main-content {
         position: static;
+        max-width: 100%;
       }
       
       .sections-grid {
@@ -647,6 +501,11 @@
         left: -100%;
         width: 100%;
         max-width: 400px;
+      }
+      
+      /* FIXED: On mobile, ensure enough space between location tag and footer */
+      footer {
+        margin-top: 140px; /* More space on mobile */
       }
     }
 
@@ -692,32 +551,26 @@
       .footer-links a {
         padding: 6px 12px;
       }
+      
+      /* More space on mobile */
+      footer {
+        margin-top: 160px;
+        padding-top: 80px;
+      }
     }
 
-    /* Smooth scrolling enhancement */
-    .smooth-scroll {
-      scroll-behavior: smooth;
-    }
-
-    /* Enhanced cursor for interactive elements */
-    .interactive {
-      cursor: pointer;
-      transition: transform 0.3s var(--transition-smooth);
-    }
-
-    .interactive:hover {
-      transform: scale(1.05);
+    /* FIXED: Add a clearfix to prevent any potential overlaps */
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
     }
   </style>
 </head>
 <body>
 
-  <!-- Animated background elements -->
-  <div class="bg-gradient"></div>
-  <div class="bg-particles" id="particles"></div>
-
   <!-- Hamburger Menu Button -->
-  <div class="menu-toggle interactive" onclick="toggleMenu()">
+  <div class="menu-toggle" onclick="toggleMenu()">
     <span></span>
     <span></span>
     <span></span>
@@ -727,23 +580,23 @@
   <div class="nav-panel" id="navPanel">
     <img src="logo.jpeg" alt="Randexa Logo" class="nav-logo">
     <div class="nav-links">
-      <a href="#overview" class="nav-link interactive" onclick="scrollToSection('overview')">
+      <a href="#overview" class="nav-link" onclick="scrollToSection('overview')">
         <div class="nav-number">00</div>
         Overview
       </a>
-      <a href="#what" class="nav-link interactive" onclick="scrollToSection('what')">
+      <a href="#what" class="nav-link" onclick="scrollToSection('what')">
         <div class="nav-number">01</div>
         What We Do
       </a>
-      <a href="#who" class="nav-link interactive" onclick="scrollToSection('who')">
+      <a href="#who" class="nav-link" onclick="scrollToSection('who')">
         <div class="nav-number">02</div>
         Who It's For
       </a>
-      <a href="#how" class="nav-link interactive" onclick="scrollToSection('how')">
+      <a href="#how" class="nav-link" onclick="scrollToSection('how')">
         <div class="nav-number">03</div>
         How We Work
       </a>
-      <a href="#contact" class="nav-link interactive" onclick="scrollToSection('contact')">
+      <a href="#contact" class="nav-link" onclick="scrollToSection('contact')">
         <div class="nav-number">04</div>
         Contact
       </a>
@@ -751,16 +604,16 @@
   </div>
 
   <!-- Dark/Light Mode Toggle -->
-  <div class="mode-toggle interactive" onclick="toggleTheme()">
+  <div class="mode-toggle" onclick="toggleTheme()">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
             d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
     </svg>
   </div>
 
-  <div class="container">
+  <div class="container clearfix">
     
-    <!-- Left Column: Brand & Intro -->
+    <!-- Left Column: Brand & Intro (1/4 width) -->
     <div class="main-content" id="overview">
       <img src="logo.jpeg" alt="Randexa Logo" class="logo">
       <span class="badge">AI & Business Systems</span>
@@ -796,7 +649,7 @@
       </div>
     </div>
 
-    <!-- Right Column: Content Sections -->
+    <!-- Right Column: Content Sections (3/4 width) -->
     <div class="sections-grid">
       
       <!-- What We Do -->
@@ -810,19 +663,19 @@
           to full implementation and training, we handle every aspect of your digital transformation.
         </p>
         <div class="cards-grid cards-grid-4">
-          <div class="card interactive">
+          <div class="card">
             <h3>AI Automation & Agents</h3>
             <p>Design and deployment of intelligent chatbots, WhatsApp automation, AI-powered receptionists, and workflow automation that integrates seamlessly with your existing team. We focus on solutions that reduce manual workload while maintaining human oversight where it matters.</p>
           </div>
-          <div class="card interactive">
+          <div class="card">
             <h3>Business Systems Consulting</h3>
             <p>Strategic assessment of your current tech stack and processes. We recommend, configure, and implement CRM systems, recruitment platforms like Zoho Recruit, internal communication tools, and workflow management systems tailored to your specific operational needs.</p>
           </div>
-          <div class="card interactive">
+          <div class="card">
             <h3>Full System Implementation</h3>
             <p>Comprehensive setup of chosen solutions including data migration, custom workflow configuration, API integrations, and system testing. We ensure everything works together before any handover to your team.</p>
           </div>
-          <div class="card interactive">
+          <div class="card">
             <h3>Training & Sustainable Adoption</h3>
             <p>Structured training programs, detailed SOP documentation, and ongoing support to ensure your team not only understands but actively uses new systems. We measure success by adoption rates, not just installation.</p>
           </div>
@@ -840,11 +693,11 @@
           not just an expense. Here's who benefits most from our approach:
         </p>
         <div class="cards-grid cards-grid-2">
-          <div class="card interactive">
+          <div class="card">
             <h3>SMEs at Scaling Stage</h3>
             <p>Companies with 10–200 employees experiencing the pain points of growth: manual processes becoming unsustainable, increasing errors, and the realization that hiring more staff isn't a scalable solution. You're ready to invest in systems that will grow with you, not hold you back.</p>
           </div>
-          <div class="card interactive">
+          <div class="card">
             <h3>Operations-Intensive Departments</h3>
             <p>Teams managing repetitive, time-consuming tasks: customer support handling similar inquiries, recruitment teams screening countless applications, finance departments processing invoices, logistics coordinating deliveries. If your team spends more time on process than on meaningful work, we can help.</p>
           </div>
@@ -868,11 +721,11 @@
           that ensures every project delivers on its promises:
         </p>
         <div class="cards-grid cards-grid-2">
-          <div class="card interactive">
+          <div class="card">
             <h3>Single Point of Accountability</h3>
             <p>One dedicated team handles your project from start to finish. No handoffs between departments, no confusing chains of communication. Your primary contact understands both your business needs and the technical implementation, ensuring consistent understanding and execution.</p>
           </div>
-          <div class="card interactive">
+          <div class="card">
             <h3>Strategy → Build → Deploy Framework</h3>
             <p>We begin with deep discovery to understand not just what you do, but why you do it that way. Then we build solutions that fit your actual workflow, not theoretical models. Finally, we deploy with comprehensive training and support, ensuring successful adoption from day one.</p>
           </div>
@@ -895,7 +748,7 @@
             your specific challenges before discussing solutions.
           </p>
         </div>
-        <div class="card interactive">
+        <div class="card">
           <h3>Start a Conversation</h3>
           <p><strong>Email:</strong> <a href="mailto:randexa@gmail.com" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.3s var(--transition-smooth);" onmouseover="this.style.borderBottomColor='var(--accent)'" onmouseout="this.style.borderBottomColor='transparent'">randexa@gmail.com</a></p>
           <p><strong>Phone (Singapore):</strong> <a href="tel:+6593629022" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.3s var(--transition-smooth);" onmouseover="this.style.borderBottomColor='var(--accent)'" onmouseout="this.style.borderBottomColor='transparent'">+65 9362 9022</a> or <a href="tel:+6590696022" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.3s var(--transition-smooth);" onmouseover="this.style.borderBottomColor='var(--accent)'" onmouseout="this.style.borderBottomColor='transparent'">+65 9069 6022</a></p>
@@ -910,10 +763,10 @@
     <footer>
       <div class="footer-content">
         <div class="footer-links">
-          <a href="#overview" class="interactive" onclick="scrollToSection('overview')">Overview</a>
-          <a href="#what" class="interactive" onclick="scrollToSection('what')">Services</a>
-          <a href="#how" class="interactive" onclick="scrollToSection('how')">Methodology</a>
-          <a href="#contact" class="interactive" onclick="scrollToSection('contact')">Contact</a>
+          <a href="#overview" onclick="scrollToSection('overview')">Overview</a>
+          <a href="#what" onclick="scrollToSection('what')">Services</a>
+          <a href="#how" onclick="scrollToSection('how')">Methodology</a>
+          <a href="#contact" onclick="scrollToSection('contact')">Contact</a>
         </div>
         <p>© 2025 Randexa. All rights reserved.</p>
         <p style="margin-top: 12px; font-size: 13px; color: var(--muted); opacity: 0.8;">
@@ -925,51 +778,13 @@
   </div>
 
   <script>
-    // Create animated particles
-    function createParticles() {
-      const particlesContainer = document.getElementById('particles');
-      const particleCount = 30;
-      
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        
-        // Random properties
-        const size = Math.random() * 4 + 1;
-        const left = Math.random() * 100;
-        const duration = Math.random() * 20 + 15;
-        const delay = Math.random() * 10;
-        
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${left}%`;
-        particle.style.animationDuration = `${duration}s`;
-        particle.style.animationDelay = `${delay}s`;
-        
-        particlesContainer.appendChild(particle);
-      }
-    }
-
-    // Menu toggle functionality with enhanced animation
+    // Menu toggle functionality
     function toggleMenu() {
       const menuToggle = document.querySelector('.menu-toggle');
       const navPanel = document.getElementById('navPanel');
       
       menuToggle.classList.toggle('active');
       navPanel.classList.toggle('open');
-      
-      // Stagger animation for nav links when opening
-      if (navPanel.classList.contains('open')) {
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach((link, index) => {
-          link.style.transitionDelay = `${index * 0.1}s`;
-        });
-      } else {
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach((link, index) => {
-          link.style.transitionDelay = '0s';
-        });
-      }
       
       // Close menu when clicking a link on mobile
       if (window.innerWidth <= 992) {
@@ -983,32 +798,24 @@
       }
     }
 
-    // Dark/Light mode toggle with enhanced animation
+    // Dark/Light mode toggle
     function toggleTheme() {
       const body = document.body;
       const toggle = document.querySelector('.mode-toggle');
       
-      // Add transition class for smooth theme change
-      body.classList.add('theme-transitioning');
+      if (body.getAttribute('data-theme') === 'dark') {
+        body.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+      } else {
+        body.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
       
-      setTimeout(() => {
-        if (body.getAttribute('data-theme') === 'dark') {
-          body.removeAttribute('data-theme');
-          localStorage.setItem('theme', 'light');
-        } else {
-          body.setAttribute('data-theme', 'dark');
-          localStorage.setItem('theme', 'dark');
-        }
-        
-        toggle.classList.add('active');
-        setTimeout(() => {
-          toggle.classList.remove('active');
-          body.classList.remove('theme-transitioning');
-        }, 600);
-      }, 50);
+      toggle.classList.add('active');
+      setTimeout(() => toggle.classList.remove('active'), 600);
     }
 
-    // Enhanced smooth scroll to section with offset
+    // Smooth scroll to section
     function scrollToSection(sectionId) {
       const section = document.getElementById(sectionId);
       if (section) {
@@ -1032,17 +839,14 @@
       }
     }
 
-    // Initialize particles and setup
+    // Load saved theme and setup
     document.addEventListener('DOMContentLoaded', () => {
-      // Create background particles
-      createParticles();
-      
       // Load saved theme
       if (localStorage.getItem('theme') === 'dark') {
         document.body.setAttribute('data-theme', 'dark');
       }
 
-      // Set up nav link click handlers with smooth scroll
+      // Set up nav link click handlers
       document.querySelectorAll('.nav-link, .footer-links a').forEach(link => {
         link.addEventListener('click', function(e) {
           e.preventDefault();
@@ -1062,7 +866,7 @@
         });
       });
 
-      // Enhanced scroll reveal animation
+      // Scroll reveal animation
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -1078,7 +882,7 @@
         observer.observe(section);
       });
 
-      // Update active nav link based on scroll position with debounce
+      // Update active nav link based on scroll position
       const sections = document.querySelectorAll('.section-block');
       const navLinks = document.querySelectorAll('.nav-link');
       
@@ -1107,30 +911,7 @@
           });
         }, 100);
       });
-
-      // Add parallax effect to background
-      window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const bgGradient = document.querySelector('.bg-gradient');
-        if (bgGradient) {
-          bgGradient.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
-      });
-
-      // Add interactive hover effects to all interactive elements
-      document.querySelectorAll('.interactive').forEach(element => {
-        element.addEventListener('mouseenter', function() {
-          this.style.transform = this.style.transform.replace('scale(1.05)', 'scale(1.08)');
-        });
-        
-        element.addEventListener('mouseleave', function() {
-          this.style.transform = this.style.transform.replace('scale(1.08)', 'scale(1.05)');
-        });
-      });
     });
-
-    // Enhanced smooth scrolling for the entire page
-    document.documentElement.style.scrollBehavior = 'smooth';
   </script>
 
 </body>
