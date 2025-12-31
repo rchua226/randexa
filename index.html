@@ -64,6 +64,130 @@
       50% { transform: translate(-50%, 50px); }
     }
 
+    /* Hamburger Menu Button */
+    .menu-toggle {
+      position: fixed;
+      top: 40px;
+      left: 40px;
+      z-index: 1000;
+      width: 48px;
+      height: 48px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .menu-toggle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px var(--shadow);
+    }
+
+    .menu-toggle span {
+      width: 20px;
+      height: 2px;
+      background: var(--text);
+      transition: all 0.3s ease;
+      border-radius: 1px;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Navigation Panel - Slides from left */
+    .nav-panel {
+      position: fixed;
+      top: 0;
+      left: -320px;
+      width: 300px;
+      height: 100vh;
+      background: var(--bg-soft);
+      border-right: 1px solid var(--border);
+      padding: 120px 32px 40px;
+      z-index: 999;
+      transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-panel.open {
+      left: 0;
+    }
+
+    .nav-logo {
+      width: 160px;
+      margin-bottom: 40px;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .nav-link {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 500;
+      padding: 12px 16px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid transparent;
+    }
+
+    .nav-link:hover {
+      background: var(--bg);
+      border-color: var(--border);
+      transform: translateX(4px);
+    }
+
+    .nav-link.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .nav-number {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      border-radius: 50%;
+      border: 1px solid var(--border);
+    }
+
+    .nav-link.active .nav-number {
+      background: white;
+      color: var(--accent);
+      border-color: white;
+    }
+
     /* Main container - side-by-side layout */
     .container {
       display: grid;
@@ -71,7 +195,7 @@
       gap: 80px;
       max-width: 1400px;
       margin: 0 auto;
-      padding: 140px 60px 100px;
+      padding: 140px 60px 100px 160px;
       min-height: 100vh;
     }
 
@@ -99,8 +223,30 @@
     .tagline {
       font-size: 20px;
       color: var(--muted);
-      margin-bottom: 40px;
+      margin-bottom: 32px;
       font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .intro-text {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .highlight {
+      background: linear-gradient(120deg, var(--glow) 0%, transparent 100%);
+      padding: 24px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      margin: 32px 0;
+    }
+
+    .highlight p {
+      font-size: 16px;
+      color: var(--text);
+      margin: 0;
       line-height: 1.6;
     }
 
@@ -116,7 +262,7 @@
       margin-bottom: 32px;
     }
 
-    /* Right column - Cards grid */
+    /* Right column - Content Sections */
     .sections-grid {
       display: flex;
       flex-direction: column;
@@ -127,6 +273,7 @@
       opacity: 0;
       transform: translateX(40px);
       transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      scroll-margin-top: 120px;
     }
 
     .section-block.show {
@@ -164,6 +311,13 @@
       letter-spacing: -0.01em;
     }
 
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
     /* Cards layout within sections */
     .cards-grid {
       display: grid;
@@ -188,47 +342,11 @@
       border-color: transparent;
     }
 
-    .card h3 {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: var(--text);
-    }
-
     .card p {
       font-size: 16px;
       color: var(--muted);
       line-height: 1.6;
       margin-bottom: 0;
-    }
-
-    /* Contact section specific */
-    .contact-info {
-      background: var(--bg-soft);
-      border-radius: 18px;
-      padding: 32px;
-      border: 1px solid var(--border);
-    }
-
-    .contact-info p {
-      font-size: 17px;
-      color: var(--text);
-      margin-bottom: 16px;
-    }
-
-    .contact-info a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      display: inline-block;
-      padding: 4px 0;
-      border-bottom: 1px solid transparent;
-    }
-
-    .contact-info a:hover {
-      border-bottom-color: var(--accent);
-      text-decoration: none;
     }
 
     /* Dark/light mode toggle */
@@ -282,7 +400,7 @@
       .container {
         grid-template-columns: 1fr;
         gap: 60px;
-        padding: 120px 40px 80px;
+        padding: 140px 40px 80px;
       }
       
       .main-content {
@@ -296,11 +414,23 @@
       .cards-grid-4 {
         grid-template-columns: 1fr;
       }
+      
+      .nav-panel {
+        left: -100%;
+        width: 100%;
+      }
     }
 
     @media (max-width: 768px) {
       .container {
-        padding: 100px 24px 60px;
+        padding: 120px 24px 60px;
+      }
+      
+      .menu-toggle {
+        top: 24px;
+        left: 24px;
+        width: 44px;
+        height: 44px;
       }
       
       .mode-toggle {
@@ -328,6 +458,40 @@
 
   <div class="bg-glow"></div>
 
+  <!-- Hamburger Menu Button (3 lines) -->
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Navigation Panel -->
+  <div class="nav-panel" id="navPanel">
+    <img src="logo.jpeg" alt="Randexa Logo" class="nav-logo">
+    <div class="nav-links">
+      <a href="#overview" class="nav-link" onclick="scrollToSection('overview')">
+        <div class="nav-number">00</div>
+        Overview
+      </a>
+      <a href="#what" class="nav-link" onclick="scrollToSection('what')">
+        <div class="nav-number">01</div>
+        What We Do
+      </a>
+      <a href="#who" class="nav-link" onclick="scrollToSection('who')">
+        <div class="nav-number">02</div>
+        Who It's For
+      </a>
+      <a href="#how" class="nav-link" onclick="scrollToSection('how')">
+        <div class="nav-number">03</div>
+        How We Work
+      </a>
+      <a href="#contact" class="nav-link" onclick="scrollToSection('contact')">
+        <div class="nav-number">04</div>
+        Contact
+      </a>
+    </div>
+  </div>
+
   <!-- Dark/Light Mode Toggle -->
   <div class="mode-toggle" onclick="toggleTheme()">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -339,18 +503,39 @@
   <div class="container">
     
     <!-- Left Column: Brand & Intro -->
-    <div class="main-content">
+    <div class="main-content" id="overview">
       <img src="logo.jpeg" alt="Randexa Logo" class="logo">
       <span class="badge">AI & Business Systems</span>
-      <h1>Executed properly.</h1>
+      <h1>Transforming Operations with Intelligent Execution</h1>
       <p class="tagline">
-        We transform manual, inefficient workflows into AI-powered systems that actually work. 
-        From strategy to implementation and training—delivered by one accountable team.
+        We bridge the gap between AI potential and real business impact. Our focus is on systems that don't just exist on paper—they work seamlessly in your daily operations.
       </p>
       
-      <div style="margin-top: 60px;">
-        <p style="font-size: 17px; color: var(--muted);">
-          Singapore-based • SMEs & Operations Teams • 30–50% Efficiency Gains
+      <div class="intro-text">
+        <p>
+          Every day, businesses waste valuable time on manual processes that could be automated, 
+          struggle with disconnected software tools, and face growing pains as they scale. 
+          The solution isn't just more technology—it's the right technology, implemented properly.
+        </p>
+        
+        <p>
+          At Randexa, we specialize in identifying these operational bottlenecks and replacing them 
+          with intelligent, automated systems that scale with your business. We don't just deliver 
+          software—we ensure it gets adopted by your team and delivers measurable results.
+        </p>
+      </div>
+      
+      <div class="highlight">
+        <p>
+          <strong>Our approach is different:</strong> We become your single point of accountability 
+          for the entire process—from initial audit through implementation, training, and ongoing optimization. 
+          No handoffs, no confusion, just results.
+        </p>
+      </div>
+      
+      <div style="margin-top: 40px;">
+        <p style="font-size: 16px; color: var(--muted);">
+          Based in Singapore • Specializing in SMEs • 30–50% typical efficiency gains
         </p>
       </div>
     </div>
@@ -364,22 +549,26 @@
           <div class="section-number">01</div>
           <h2>What we do</h2>
         </div>
+        <p class="intro-text" style="margin-bottom: 32px;">
+          We provide end-to-end solutions that transform how you operate. From initial assessment 
+          to full implementation and training, we handle every aspect of your digital transformation.
+        </p>
         <div class="cards-grid cards-grid-4">
           <div class="card">
-            <h3>AI Automation</h3>
-            <p>Chatbots, WhatsApp automation, AI receptionists, and task automation that works seamlessly with your team.</p>
+            <h3>AI Automation & Agents</h3>
+            <p>Design and deployment of intelligent chatbots, WhatsApp automation, AI-powered receptionists, and workflow automation that integrates seamlessly with your existing team. We focus on solutions that reduce manual workload while maintaining human oversight where it matters.</p>
           </div>
           <div class="card">
-            <h3>System Consulting</h3>
-            <p>CRM setups, recruitment platforms, internal tools selection and architecture for modern businesses.</p>
+            <h3>Business Systems Consulting</h3>
+            <p>Strategic assessment of your current tech stack and processes. We recommend, configure, and implement CRM systems, recruitment platforms like Zoho Recruit, internal communication tools, and workflow management systems tailored to your specific operational needs.</p>
           </div>
           <div class="card">
-            <h3>Implementation</h3>
-            <p>Full system setup, custom workflows, data migration, and integration with your existing stack.</p>
+            <h3>Full System Implementation</h3>
+            <p>Comprehensive setup of chosen solutions including data migration, custom workflow configuration, API integrations, and system testing. We ensure everything works together before any handover to your team.</p>
           </div>
           <div class="card">
-            <h3>Training & Handover</h3>
-            <p>On-site training, SOPs, and continued support ensuring your team adopts and benefits from new systems.</p>
+            <h3>Training & Sustainable Adoption</h3>
+            <p>Structured training programs, detailed SOP documentation, and ongoing support to ensure your team not only understands but actively uses new systems. We measure success by adoption rates, not just installation.</p>
           </div>
         </div>
       </div>
@@ -390,15 +579,25 @@
           <div class="section-number">02</div>
           <h2>Who it's for</h2>
         </div>
+        <p class="intro-text" style="margin-bottom: 32px;">
+          Our solutions are designed for businesses that recognize technology as a force multiplier, 
+          not just an expense. Here's who benefits most from our approach:
+        </p>
         <div class="cards-grid cards-grid-2">
           <div class="card">
-            <h3>SMEs Scaling Operations</h3>
-            <p>Businesses with 10–200 employees experiencing growing pains, where manual processes are slowing growth and adding headcount isn't sustainable.</p>
+            <h3>SMEs at Scaling Stage</h3>
+            <p>Companies with 10–200 employees experiencing the pain points of growth: manual processes becoming unsustainable, increasing errors, and the realization that hiring more staff isn't a scalable solution. You're ready to invest in systems that will grow with you, not hold you back.</p>
           </div>
           <div class="card">
-            <h3>Operations-Heavy Teams</h3>
-            <p>Customer support, HR/recruitment, finance, logistics, and revenue operations teams drowning in repetitive admin work.</p>
+            <h3>Operations-Intensive Departments</h3>
+            <p>Teams managing repetitive, time-consuming tasks: customer support handling similar inquiries, recruitment teams screening countless applications, finance departments processing invoices, logistics coordinating deliveries. If your team spends more time on process than on meaningful work, we can help.</p>
           </div>
+        </div>
+        <div class="highlight" style="margin-top: 32px;">
+          <p>
+            <strong>Typical results:</strong> Clients typically see 15–25 hours of manual work eliminated per role each week, 
+            process completion times reduced by 40–60%, and error rates dropping by 70% or more.
+          </p>
         </div>
       </div>
 
@@ -408,16 +607,24 @@
           <div class="section-number">03</div>
           <h2>How we work</h2>
         </div>
+        <p class="intro-text" style="margin-bottom: 32px;">
+          Our methodology is built around clarity, accountability, and results. Here's the process 
+          that ensures every project delivers on its promises:
+        </p>
         <div class="cards-grid cards-grid-2">
           <div class="card">
-            <h3>Single Point of Ownership</h3>
-            <p>One dedicated team fully accountable for strategy, implementation, and delivery—no handoffs or confusion.</p>
+            <h3>Single Point of Accountability</h3>
+            <p>One dedicated team handles your project from start to finish. No handoffs between departments, no confusing chains of communication. Your primary contact understands both your business needs and the technical implementation, ensuring consistent understanding and execution.</p>
           </div>
           <div class="card">
-            <h3>Strategy → Build → Deploy</h3>
-            <p>We deeply understand your workflow, implement the right solutions, and ensure smooth adoption by your team.</p>
+            <h3>Strategy → Build → Deploy Framework</h3>
+            <p>We begin with deep discovery to understand not just what you do, but why you do it that way. Then we build solutions that fit your actual workflow, not theoretical models. Finally, we deploy with comprehensive training and support, ensuring successful adoption from day one.</p>
           </div>
         </div>
+        <p class="intro-text" style="margin-top: 32px;">
+          Each phase includes clear milestones, regular progress updates, and opportunities for your feedback. 
+          You're involved throughout the process, not just at the beginning and end.
+        </p>
       </div>
 
       <!-- Contact -->
@@ -426,17 +633,18 @@
           <div class="section-number">04</div>
           <h2>Contact</h2>
         </div>
-        <div class="contact-info">
-          <p><strong>Email:</strong><br>
-            <a href="mailto:randexa@gmail.com">randexa@gmail.com</a>
+        <div class="intro-text" style="margin-bottom: 32px;">
+          <p>
+            We prefer direct, meaningful conversations over formal proposals. Let's start with understanding 
+            your specific challenges before discussing solutions.
           </p>
-          <p><strong>Phone (Singapore):</strong><br>
-            <a href="tel:+6593629022">+65 9362 9022</a><br>
-            <a href="tel:+6590696022">+65 9069 6022</a>
-          </p>
-          <p><strong>Response time:</strong><br>
-            Within 4 business hours
-          </p>
+        </div>
+        <div class="card">
+          <h3>Start a Conversation</h3>
+          <p><strong>Email:</strong> <a href="mailto:randexa@gmail.com" style="color: var(--accent);">randexa@gmail.com</a></p>
+          <p><strong>Phone (Singapore):</strong> <a href="tel:+6593629022" style="color: var(--accent);">+65 9362 9022</a> or <a href="tel:+6590696022" style="color: var(--accent);">+65 9069 6022</a></p>
+          <p><strong>Typical Response Time:</strong> Within 4 business hours during Singapore working hours (GMT+8)</p>
+          <p><strong>Initial Engagement:</strong> We usually begin with a 60-minute discovery call to understand your current processes, pain points, and goals. This helps us determine if and how we can help before any commitment.</p>
         </div>
       </div>
 
@@ -445,12 +653,32 @@
     <!-- Footer -->
     <footer>
       © 2025 Randexa. All rights reserved.<br>
-      AI & Business Systems Implementation
+      AI & Business Systems Implementation | Singapore-based | Global Delivery
     </footer>
 
   </div>
 
   <script>
+    // Menu toggle functionality
+    function toggleMenu() {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navPanel = document.getElementById('navPanel');
+      
+      menuToggle.classList.toggle('active');
+      navPanel.classList.toggle('open');
+      
+      // Close menu when clicking a link on mobile
+      if (window.innerWidth <= 1100) {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navPanel.classList.remove('open');
+          });
+        });
+      }
+    }
+
     // Dark/Light mode toggle
     function toggleTheme() {
       const body = document.body;
@@ -468,11 +696,46 @@
       setTimeout(() => toggle.classList.remove('active'), 600);
     }
 
-    // Load saved theme
+    // Smooth scroll to section and update active nav link
+    function scrollToSection(sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        
+        // Update active nav link
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${sectionId}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    }
+
+    // Load saved theme and set up scroll behavior
     document.addEventListener('DOMContentLoaded', () => {
+      // Load saved theme
       if (localStorage.getItem('theme') === 'dark') {
         document.body.setAttribute('data-theme', 'dark');
       }
+
+      // Set up nav link click handlers
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const sectionId = this.getAttribute('href').substring(1);
+          scrollToSection(sectionId);
+          
+          // Close menu on mobile after click
+          if (window.innerWidth <= 1100) {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navPanel = document.getElementById('navPanel');
+            menuToggle.classList.remove('active');
+            navPanel.classList.remove('open');
+          }
+        });
+      });
 
       // Scroll reveal animation for section blocks
       const observer = new IntersectionObserver((entries) => {
@@ -490,19 +753,25 @@
         observer.observe(section);
       });
 
-      // Smooth scroll for anchor links (if added in future)
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          const href = this.getAttribute('href');
-          if (href === '#') return;
-          
-          e.preventDefault();
-          const targetElement = document.querySelector(href);
-          if (targetElement) {
-            window.scrollTo({
-              top: targetElement.offsetTop - 100,
-              behavior: 'smooth'
-            });
+      // Update active nav link based on scroll position
+      const sections = document.querySelectorAll('.section-block');
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (scrollY >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href').substring(1) === current) {
+            link.classList.add('active');
           }
         });
       });
