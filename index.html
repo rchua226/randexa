@@ -1,103 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Randexa — AI & Business Systems</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* Reset & base */
-    * { box-sizing: border-box; margin:0; padding:0; }
+    :root {
+      --bg: #fafafa;
+      --bg-soft: #f4f4f5;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e5e7eb;
+      --accent: #4f46e5;
+      --glow: rgba(79,70,229,0.12);
+    }
+
+    [data-theme="dark"] {
+      --bg: #1a1a1c;
+      --bg-soft: #232326;
+      --card: #1f1f23;
+      --text: #f4f4f5;
+      --muted: #a1a1aa;
+      --border: #2f2f34;
+      --accent: #818cf8;
+      --glow: rgba(129,140,248,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
       font-family: 'Inter', sans-serif;
-      background: #f8f9fa;
-      color: #111;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
+      transition: background .3s ease, color .3s ease;
     }
-    a { text-decoration:none; color:#0077ff; }
-    a:hover { text-decoration:underline; }
 
-    /* Container */
-    .container { max-width:900px; margin:auto; padding:80px 20px; }
-
-    /* Hero */
-    .hero { text-align:left; padding-top:100px; padding-bottom:100px; }
-    .hero .logo { height:60px; margin-bottom:30px; }
-    .hero h1 { font-size: clamp(36px, 6vw, 56px); font-weight:700; margin-bottom:24px; line-height:1.1; }
-    .hero p { font-size:18px; color:#555; max-width:700px; }
-    .hero .cta { display:inline-block; margin-top:30px; padding:14px 28px; background:#0077ff; color:#fff; border-radius:8px; font-weight:600; transition: transform 0.15s ease; }
-    .hero .cta:hover { transform: translateY(-2px); }
-
-    /* Sections */
-    h2 { font-size:28px; margin-top:80px; margin-bottom:16px; font-weight:600; }
-    p.section-text { font-size:18px; color:#555; margin-bottom:24px; }
-
-    /* Contact links */
-    .contact a.cta-contact {
-      display:inline-block;
-      margin-top:10px;
-      margin-right:15px;
-      padding:10px 20px;
-      background:#0077ff;
-      color:#fff;
-      border-radius:6px;
-      font-weight:500;
-      transition: transform 0.15s ease;
+    /* Subtle glow */
+    .bg-glow {
+      position: fixed;
+      top: -220px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1200px;
+      height: 600px;
+      background: radial-gradient(circle, var(--glow), transparent 65%);
+      animation: float 14s ease-in-out infinite;
+      z-index: -1;
+      pointer-events: none;
     }
-    .contact a.cta-contact:hover { transform: translateY(-2px); }
 
-    /* Responsive tweaks */
-    @media(max-width:600px){
-      .hero h1 { font-size:36px; }
-      .hero p { font-size:16px; }
+    @keyframes float {
+      0% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, 40px); }
+      100% { transform: translate(-50%, 0); }
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      z-index: 10;
+    }
+
+    .logo {
+      height: 28px;
+      width: auto;
+    }
+
+    .theme-toggle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 160px 24px 120px;
+    }
+
+    section {
+      margin-bottom: 160px;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all .7s ease;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1 {
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      font-size: 14px;
+      border-radius: 999px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: transform .25s ease, border-color .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      padding-bottom: 60px;
+      font-size: 14px;
+      color: var(--muted);
     }
   </style>
 </head>
 <body>
 
-  <!-- HERO -->
-  <div class="container hero">
-    <img src="logo.jpeg" alt="Randexa Logo" class="logo"/>
-    <h1>AI & Business Systems.<br/>Executed properly.</h1>
-    <p>
-      We design and implement practical AI automations and internal systems
-      that actually work inside real businesses.
-    </p>
-    <a href="mailto:randexa.sg@gmail.com" class="cta">Talk to us</a>
-  </div>
+  <div class="bg-glow"></div>
 
-  <!-- WHAT WE DO -->
-  <div class="container">
-    <h2>What we do</h2>
-    <p class="section-text">
-      <strong>AI Automation:</strong> Reduce repetitive manual work with practical AI workflows.<br/>
-      <strong>Business Systems:</strong> Internal systems that scale with your team.<br/>
-      <strong>Implementation & Training:</strong> End-to-end setup and team onboarding.
-    </p>
+  <header>
+    <img src="logo.jpeg" alt="Randexa logo" class="logo">
+    <div class="theme-toggle" onclick="toggleTheme()">◐</div>
+  </header>
 
-    <!-- WHO IT'S FOR -->
-    <h2>Who it’s for</h2>
-    <p class="section-text">
-      SMEs<br/>
-      Ops-heavy teams<br/>
-      Founders who want systems, not experiments
-    </p>
+  <main class="container">
 
-    <!-- HOW WE WORK -->
-    <h2>How we work</h2>
-    <p class="section-text">
-      One point of responsibility.<br/>
-      Strategy → Setup → Execution
-    </p>
+    <!-- HERO -->
+    <section>
+      <span class="badge">Randexa</span>
+      <h1>
+        AI & business systems.<br>
+        Executed properly.
+      </h1>
+      <p>
+        Randexa helps SMEs replace inefficient, manual workflows with AI-powered
+        automation and modern software systems — then trains teams so everything
+        works in real operations.
+      </p>
+    </section>
+
+    <!-- WHAT -->
+    <section>
+      <h2>What we do</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>AI automation & assistants</h3>
+          <p>
+            Chatbots, AI receptionists, WhatsApp automation,
+            and custom workflows that reduce manual work.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Business systems & tools</h3>
+          <p>
+            CRM, recruitment systems, internal tools,
+            and software chosen around real operations.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Implementation & training</h3>
+          <p>
+            Full setup, customisation, data migration,
+            and structured handover to your staff.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO -->
+    <section>
+      <h2>Who it’s for</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>SMEs</h3>
+          <p>
+            Businesses looking to save time,
+            reduce manpower costs, and scale efficiently.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Operations-heavy teams</h3>
+          <p>
+            Admin, customer support, recruitment,
+            finance, logistics, and internal ops.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section>
+      <h2>How we work</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>One point of responsibility</h3>
+          <p>
+            Strategy, setup, execution, and handover —
+            handled by a single team.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Strategy → build → deploy</h3>
+          <p>
+            Clear thinking first.
+            Practical execution second.
+            No fluff.
+          </p>
+        </div>
+      </div>
+    </section>
 
     <!-- CONTACT -->
-    <h2>Contact</h2>
-    <div class="contact">
-      <a href="mailto:randexa.sg@gmail.com" class="cta-contact">Email Us</a>
-      <a href="tel:+6593629022" class="cta-contact">+65 9362 9022</a>
-      <a href="tel:+6590696022" class="cta-contact">+65 9069 6022</a>
-    </div>
-  </div>
+    <section>
+      <h2>Contact</h2>
+      <p>
+        Email: <a href="mailto:randexa@gmail.com">randexa@gmail.com</a><br>
+        Phone: +65 9362 9022 / +65 9069 6022
+      </p>
+    </section>
+
+  </main>
+
+  <footer>© 2025 Randexa</footer>
+
+  <script>
+    function toggleTheme() {
+      document.body.toggleAttribute('data-theme');
+      localStorage.setItem(
+        'theme',
+        document.body.hasAttribute('data-theme') ? 'dark' : 'light'
+      );
+    }
+
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.setAttribute('data-theme', '');
+    }
+
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('show')),
+      { threshold: 0.15 }
+    );
+    document.querySelectorAll('section').forEach(s => observer.observe(s));
+  </script>
 
 </body>
 </html>
