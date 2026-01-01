@@ -55,7 +55,6 @@
       background-color: var(--bg); 
       color: var(--text); 
       line-height: 1.6;
-      /* Optimized for non-choppy transitions */
       transition: background-color var(--transition-speed) var(--transition-curve), 
                   color var(--transition-speed) var(--transition-curve);
       overflow-x: hidden;
@@ -66,9 +65,9 @@
       position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       z-index: 9999; background: var(--bg);
-      transition: opacity 0.8s var(--transition-curve), transform 0.8s var(--transition-curve);
+      transition: opacity 0.8s var(--transition-curve);
     }
-    .hero-logo-section.hidden { opacity: 0; pointer-events: none; transform: scale(1.05); }
+    .hero-logo-section.hidden { opacity: 0; pointer-events: none; }
 
     .splash-logo { width: 100px; border-radius: 24px; margin-bottom: 24px; box-shadow: var(--shadow-md); }
     .splash-text { letter-spacing: 4px; font-weight: 300; color: var(--text); margin-bottom: 12px; text-transform: uppercase; }
@@ -93,7 +92,7 @@
     .menu-toggle span { 
       width: 22px; height: 2px; background: var(--text); 
       border-radius: 2px; transition: all 0.3s var(--transition-curve); 
-      position: absolute;
+      position: absolute; transform-origin: center;
     }
     .menu-toggle span:nth-child(1) { transform: translateY(-7px); }
     .menu-toggle span:nth-child(2) { transform: translateY(0); opacity: 1; }
@@ -122,7 +121,7 @@
     .nav-link:hover { color: var(--accent); transform: translateX(5px); }
     .nav-num { font-size: 12px; color: var(--accent); border: 1px solid var(--border); border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
 
-    /* --- Theme Toggle --- */
+    /* --- Theme Toggle (Sun/Moon) --- */
     .mode-toggle {
       position: fixed; top: 40px; right: 40px; z-index: 1000;
       width: 56px; height: 56px; border-radius: 14px; background: var(--card);
@@ -130,7 +129,14 @@
       cursor: pointer; transition: 0.3s; backdrop-filter: blur(10px);
       box-shadow: var(--shadow-sm);
     }
-    .mode-toggle:hover { border-color: var(--accent); transform: rotate(15deg); }
+    .mode-toggle:hover { border-color: var(--accent); transform: scale(1.05); }
+
+    /* Icon Logic: Show Moon in Light Mode, Sun in Dark Mode */
+    .sun-icon { display: none; }
+    .moon-icon { display: block; }
+
+    [data-theme="dark"] .sun-icon { display: block; }
+    [data-theme="dark"] .moon-icon { display: none; }
 
     /* --- Main Layout --- */
     .container {
@@ -139,7 +145,7 @@
       padding: 140px 60px; position: relative; z-index: 2;
     }
 
-    /* --- Left Sidebar (Sticky Brand Area) --- */
+    /* --- Left Sidebar (Sticky) --- */
     .sidebar { position: sticky; top: 140px; height: fit-content; }
     
     .sidebar-logo { 
@@ -182,9 +188,9 @@
     .section-block { opacity: 0; transform: translateY(30px); transition: 1s var(--transition-curve); }
     .section-block.show { opacity: 1; transform: translateY(0); }
 
-    .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+    .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 40px; }
     .section-num { font-size: 14px; font-weight: 800; color: var(--accent); font-family: monospace; }
-    h2 { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; }
+    h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
 
     /* Cards */
     .cards-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -196,27 +202,38 @@
     }
     .card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: var(--shadow-md); }
 
+    /* Style based on Image 1 (What We Do) */
+    .service-badge {
+      display: inline-block; padding: 8px 12px; background: var(--bg-soft); 
+      color: var(--accent); font-weight: 600; font-size: 12px; border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
     .card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
-    .card p { font-size: 15px; color: var(--muted); line-height: 1.6; }
-
-    /* Contact Buttons */
-    .contact-button {
-      display: flex; align-items: center; gap: 16px; padding: 20px;
-      background: var(--bg-soft); border: 1px solid var(--border);
-      border-radius: 16px; text-decoration: none; color: var(--text);
-      transition: all 0.3s; margin-bottom: 12px;
+    .card p { font-size: 15px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+    
+    .card ul { list-style: none; padding: 0; }
+    .card ul li {
+      font-size: 14px; color: var(--muted); margin-bottom: 8px;
+      padding-left: 14px; position: relative;
     }
-    .contact-button:hover { 
-      border-color: var(--accent); background: var(--card); 
-      transform: translateX(6px); box-shadow: var(--shadow-sm);
-    }
-    .icon-box { 
-      width: 44px; height: 44px; background: var(--card); border-radius: 12px; 
-      display: flex; align-items: center; justify-content: center; 
-      font-size: 20px; border: 1px solid var(--border); 
+    .card ul li::before {
+      content: "•"; color: var(--accent); position: absolute; left: 0; font-weight: bold;
     }
 
-    /* Ambient Orb (Performance optimized) */
+    /* Style based on Image 2 (Contact) */
+    .contact-card-layout {
+      display: flex; flex-direction: column; gap: 24px;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 12px; 
+      font-size: 16px; color: var(--text); font-weight: 500;
+      text-decoration: none; transition: 0.2s;
+    }
+    .contact-item:hover { color: var(--accent); }
+    .contact-icon { color: var(--muted); font-size: 18px; }
+
+    /* Ambient Orb */
     .orb {
       position: fixed; border-radius: 50%; filter: blur(140px);
       opacity: 0.08; pointer-events: none; z-index: 0;
@@ -265,7 +282,20 @@
   </div>
 
   <div class="mode-toggle" onclick="toggleTheme()">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
   </div>
 
   <div class="container">
@@ -295,34 +325,60 @@
       
       <section id="what" class="section-block">
         <div class="section-header">
-          <span class="section-num">01/</span>
+          <span class="section-num">01</span>
           <h2>What We Do</h2>
         </div>
-        <p style="color:var(--muted); margin-bottom:32px;">We provide end-to-end solutions that transform how you operate.</p>
         
         <div class="cards-grid-2">
           <div class="card">
-            <h3>AI Automation & Agents</h3>
-            <p>Intelligent chatbots, AI receptionists, and WhatsApp automation that integrate with your team. We reduce manual workload while maintaining human oversight.</p>
+            <span class="service-badge">AI</span>
+            <h3>Intelligent Automation</h3>
+            <p>We deploy AI agents that work alongside your team.</p>
+            <ul>
+              <li>Smart Chatbots (Customer Support)</li>
+              <li>AI Receptionists & Phone Agents</li>
+              <li>WhatsApp & Email Automation</li>
+            </ul>
           </div>
+          
           <div class="card">
-            <h3>Business Systems</h3>
-            <p>Strategic setup of CRM systems, recruitment platforms, and internal tools like Zoho Recruit. We build the backend so you can focus on the front end.</p>
+            <span class="service-badge">⚡</span>
+            <h3>Backend Workflows</h3>
+            <p>Invisible systems that keep your business running smoothly.</p>
+            <ul>
+              <li>API Integrations (Zapier, Make, Custom)</li>
+              <li>CRM Setup & Data Migration</li>
+              <li>Automated Recruitment Pipelines</li>
+            </ul>
           </div>
+          
           <div class="card">
-            <h3>Full Implementation</h3>
-            <p>Comprehensive setup including data migration, API integrations, and system testing. We ensure everything works together before handover.</p>
+            <span class="service-badge">Web</span>
+            <h3>Web & Internal Tools</h3>
+            <p>Digital real estate for clients and employees.</p>
+            <ul>
+              <li>Website Setup & Deployment</li>
+              <li>Internal Operational Dashboards</li>
+              <li>Client Portals</li>
+            </ul>
           </div>
+          
           <div class="card">
-            <h3>Training & Adoption</h3>
-            <p>Structured training and SOP documentation. We measure success by how well your team adopts the new systems, not just installation.</p>
+            <span class="service-badge">⚙️</span>
+            <h3>Systems Consulting</h3>
+            <p>We don't just code; we solve operational problems.</p>
+            <ul>
+              <li>Tech Stack Audits</li>
+              <li>Process Optimization</li>
+              <li>Vendor & Project Management</li>
+            </ul>
           </div>
         </div>
       </section>
 
       <section id="who" class="section-block">
         <div class="section-header">
-          <span class="section-num">02/</span>
+          <span class="section-num">02</span>
           <h2>Who It's For</h2>
         </div>
         
@@ -340,7 +396,7 @@
 
       <section id="how" class="section-block">
         <div class="section-header">
-          <span class="section-num">03/</span>
+          <span class="section-num">03</span>
           <h2>How We Work</h2>
         </div>
         
@@ -358,37 +414,24 @@
 
       <section id="contact" class="section-block">
         <div class="section-header">
-            <span class="section-num">04/</span>
-            <h2>Start Executing</h2>
+            <span class="section-num">04</span>
+            <h2>Get Started</h2>
         </div>
         <div class="card">
-            <p style="margin-bottom:24px; color:var(--muted); font-size: 16px;">
-              We prefer direct conversations over formal proposals. Let's discuss your bottlenecks.
-            </p>
+            <h3 style="margin-bottom: 8px;">Ready to automate?</h3>
+            <p style="margin-bottom: 24px; color: var(--muted);">Let's discuss your current bottlenecks and how we can remove them.</p>
             
-            <a href="mailto:randexa.sg@gmail.com" class="contact-button">
-                <div class="icon-box">✉️</div>
-                <div>
-                    <div style="font-size:12px; color:var(--muted); margin-bottom:2px;">Email</div>
-                    <div style="font-weight:700;">randexa.sg@gmail.com</div>
-                </div>
-            </a>
-
-            <a href="tel:+6593629022" class="contact-button">
-                <div class="icon-box">📞</div>
-                <div>
-                    <div style="font-size:12px; color:var(--muted); margin-bottom:2px;">Primary Line</div>
-                    <div style="font-weight:700;">+65 9362 9022</div>
-                </div>
-            </a>
-
-            <a href="tel:+6590696022" class="contact-button">
-                <div class="icon-box">📱</div>
-                <div>
-                    <div style="font-size:12px; color:var(--muted); margin-bottom:2px;">Alternative Line</div>
-                    <div style="font-weight:700;">+65 9069 6022</div>
-                </div>
-            </a>
+            <div class="contact-card-layout">
+              <a href="mailto:randexa.sg@gmail.com" class="contact-item">
+                <span class="contact-icon">✉️</span> randexa.sg@gmail.com
+              </a>
+              <a href="tel:+6593629022" class="contact-item">
+                <span class="contact-icon">📞</span> +65 9362 9022
+              </a>
+              <a href="tel:+6590696022" class="contact-item">
+                <span class="contact-icon">📞</span> +65 9069 6022
+              </a>
+            </div>
         </div>
       </section>
 
@@ -400,9 +443,13 @@
   </div>
 
   <script>
-    // Reveal content after splash
+    // Reveal content after splash & Remove element to prevent blocking clicks
     setTimeout(() => {
-      document.getElementById('heroLogo').classList.add('hidden');
+      const splash = document.getElementById('heroLogo');
+      splash.classList.add('hidden');
+      setTimeout(() => {
+        splash.style.display = 'none'; // Critical fix for hamburger button
+      }, 800);
     }, 2500);
 
     function toggleMenu() {
