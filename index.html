@@ -11,7 +11,7 @@
 
   <style>
     :root {
-      /* Premium Color Palette */
+      /* --- Premium Palette --- */
       --bg: #fdfbf8;
       --bg-soft: #faf7f2;
       --card: #ffffff;
@@ -25,12 +25,11 @@
       --accent-hover: #4338ca;
       --accent-light: #eef2ff;
       
-      /* Shadows */
+      /* Elevation */
       --shadow-sm: 0 2px 8px rgba(0,0,0,0.04);
       --shadow-md: 0 12px 30px rgba(0,0,0,0.06);
-      --shadow-lg: 0 20px 60px rgba(0,0,0,0.08);
       
-      /* The Secret to Smooth Transitions */
+      /* Smooth Transition Engine */
       --transition-speed: 0.6s;
       --transition-curve: cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -55,21 +54,12 @@
       font-family: 'Inter', sans-serif; 
       background-color: var(--bg); 
       color: var(--text); 
-      line-height: 1.6; 
-      /* Optimized transitions for specific properties to prevent choppiness */
+      line-height: 1.6;
+      /* Optimized for non-choppy transitions */
       transition: background-color var(--transition-speed) var(--transition-curve), 
                   color var(--transition-speed) var(--transition-curve);
       overflow-x: hidden;
     }
-
-    /* Ambient Background Orbs (Subtle Depth) */
-    .orb {
-      position: fixed; border-radius: 50%; filter: blur(120px);
-      opacity: 0.1; pointer-events: none; z-index: 0;
-      transition: background-color var(--transition-speed) var(--transition-curve);
-    }
-    .orb-1 { width: 500px; height: 500px; background: var(--accent); top: -100px; right: -100px; }
-    .orb-2 { width: 400px; height: 400px; background: #d4af37; bottom: -100px; left: -100px; }
 
     /* --- Loading Splash Screen --- */
     .hero-logo-section {
@@ -81,7 +71,7 @@
     .hero-logo-section.hidden { opacity: 0; pointer-events: none; transform: scale(1.05); }
 
     .splash-logo { width: 100px; border-radius: 24px; margin-bottom: 24px; box-shadow: var(--shadow-md); }
-    .splash-text { letter-spacing: 4px; font-weight: 300; color: var(--text); margin-bottom: 12px; }
+    .splash-text { letter-spacing: 4px; font-weight: 300; color: var(--text); margin-bottom: 12px; text-transform: uppercase; }
     .splash-tagline { font-size: 14px; color: var(--accent); font-weight: 600; letter-spacing: 1px; opacity: 0; animation: fadeUp 0.8s ease-out 0.5s forwards; }
 
     @keyframes fadeUp {
@@ -89,7 +79,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* --- Navigation --- */
+    /* --- Navigation Menu --- */
     .menu-toggle {
       position: fixed; top: 40px; left: 40px; z-index: 1000;
       width: 56px; height: 56px; background: var(--card); border: 1px solid var(--border);
@@ -105,9 +95,9 @@
       border-radius: 2px; transition: all 0.3s var(--transition-curve); 
       position: absolute;
     }
-    .menu-toggle span:nth-child(1) { transform: translateY(-8px); }
-    .menu-toggle span:nth-child(2) { transform: translateY(0); }
-    .menu-toggle span:nth-child(3) { transform: translateY(8px); }
+    .menu-toggle span:nth-child(1) { transform: translateY(-7px); }
+    .menu-toggle span:nth-child(2) { transform: translateY(0); opacity: 1; }
+    .menu-toggle span:nth-child(3) { transform: translateY(7px); }
 
     .menu-toggle.active { background: var(--accent); border-color: var(--accent); }
     .menu-toggle.active span { background: #fff; }
@@ -123,14 +113,33 @@
     }
     .nav-panel.open { transform: translateX(100%); }
 
-    /* --- Layout --- */
+    .nav-link {
+      display: flex; align-items: center; gap: 16px;
+      color: var(--text); text-decoration: none;
+      font-size: 18px; font-weight: 600; margin-bottom: 24px;
+      transition: 0.3s;
+    }
+    .nav-link:hover { color: var(--accent); transform: translateX(5px); }
+    .nav-num { font-size: 12px; color: var(--accent); border: 1px solid var(--border); border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+
+    /* --- Theme Toggle --- */
+    .mode-toggle {
+      position: fixed; top: 40px; right: 40px; z-index: 1000;
+      width: 56px; height: 56px; border-radius: 14px; background: var(--card);
+      border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: 0.3s; backdrop-filter: blur(10px);
+      box-shadow: var(--shadow-sm);
+    }
+    .mode-toggle:hover { border-color: var(--accent); transform: rotate(15deg); }
+
+    /* --- Main Layout --- */
     .container {
       display: grid; grid-template-columns: 340px 1fr; gap: 100px;
       max-width: 1400px; margin: 0 auto;
       padding: 140px 60px; position: relative; z-index: 2;
     }
 
-    /* --- Sidebar (Sticky) --- */
+    /* --- Left Sidebar (Sticky Brand Area) --- */
     .sidebar { position: sticky; top: 140px; height: fit-content; }
     
     .sidebar-logo { 
@@ -149,7 +158,7 @@
     .badge {
       display: inline-flex; padding: 8px 16px; font-size: 11px; font-weight: 700;
       border-radius: 8px; background: var(--accent-light); color: var(--accent);
-      border: 1px solid var(--border); margin-bottom: 24px; text-transform: uppercase;
+      border: 1px solid var(--border); margin-bottom: 32px; text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
@@ -158,29 +167,39 @@
       letter-spacing: -0.04em; margin-bottom: 24px;
     }
 
-    .cta-box {
-        margin-top: 32px; padding: 24px; background: var(--bg-soft); 
-        border-radius: 16px; border: 1px solid var(--border);
+    .intro-text p {
+      font-size: 16px; color: var(--muted); line-height: 1.7; margin-bottom: 20px;
     }
 
-    /* --- Content Sections --- */
-    .sections-grid { display: flex; flex-direction: column; gap: 140px; }
-    
-    .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 30px; }
-    .section-num { font-size: 14px; font-weight: 800; color: var(--accent); font-family: monospace; }
-    h2 { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; }
+    .location-tag {
+      margin-top: 32px; padding: 16px; border: 1px solid var(--border);
+      border-radius: 12px; background: var(--bg-soft); font-size: 13px; color: var(--muted);
+    }
 
-    /* Premium Cards */
+    /* --- Right Content Sections --- */
+    .sections-grid { display: flex; flex-direction: column; gap: 160px; }
+    
+    .section-block { opacity: 0; transform: translateY(30px); transition: 1s var(--transition-curve); }
+    .section-block.show { opacity: 1; transform: translateY(0); }
+
+    .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+    .section-num { font-size: 14px; font-weight: 800; color: var(--accent); font-family: monospace; }
+    h2 { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; }
+
+    /* Cards */
+    .cards-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    
     .card {
-      background: var(--card); border: 1px solid var(--border); padding: 40px;
-      border-radius: 24px; transition: transform 0.4s var(--transition-curve), border-color 0.4s;
-      box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
+      background: var(--card); border: 1px solid var(--border); padding: 36px;
+      border-radius: 20px; transition: transform 0.4s var(--transition-curve), border-color 0.4s;
+      box-shadow: var(--shadow-sm); position: relative; overflow: hidden; height: 100%;
     }
     .card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: var(--shadow-md); }
 
-    .cards-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .card p { font-size: 15px; color: var(--muted); line-height: 1.6; }
 
-    /* Contact Buttons (Marketable Style) */
+    /* Contact Buttons */
     .contact-button {
       display: flex; align-items: center; gap: 16px; padding: 20px;
       background: var(--bg-soft); border: 1px solid var(--border);
@@ -197,15 +216,13 @@
       font-size: 20px; border: 1px solid var(--border); 
     }
 
-    /* Mode Toggle */
-    .mode-toggle {
-      position: fixed; top: 40px; right: 40px; z-index: 1000;
-      width: 56px; height: 56px; border-radius: 14px; background: var(--card);
-      border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: 0.3s; backdrop-filter: blur(10px);
-      box-shadow: var(--shadow-sm);
+    /* Ambient Orb (Performance optimized) */
+    .orb {
+      position: fixed; border-radius: 50%; filter: blur(140px);
+      opacity: 0.08; pointer-events: none; z-index: 0;
+      transition: background-color 0.8s;
     }
-    .mode-toggle:hover { border-color: var(--accent); transform: rotate(15deg); }
+    .orb-1 { width: 500px; height: 500px; background: var(--accent); top: -100px; right: -100px; }
 
     /* Footer */
     footer { 
@@ -229,18 +246,22 @@
   </div>
 
   <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
 
   <div class="menu-toggle" onclick="toggleMenu()">
     <span></span><span></span><span></span>
   </div>
 
   <div class="nav-panel" id="navPanel">
-    <nav style="display: flex; flex-direction: column; gap: 24px;">
-      <a href="#overview" style="text-decoration:none; color:var(--text); font-weight:700; font-size:20px;" onclick="scrollToSection('overview')">Overview</a>
-      <a href="#services" style="text-decoration:none; color:var(--text); font-weight:700; font-size:20px;" onclick="scrollToSection('services')">Services</a>
-      <a href="#contact" style="text-decoration:none; color:var(--text); font-weight:700; font-size:20px;" onclick="scrollToSection('contact')">Contact</a>
-    </nav>
+    <div style="display: flex; flex-direction: column; height: 100%;">
+      <img src="logo.jpeg" style="width: 60px; border-radius: 12px; margin-bottom: 40px;">
+      <nav>
+        <a href="#overview" class="nav-link" onclick="scrollToSection('overview')"><div class="nav-num">00</div> Overview</a>
+        <a href="#what" class="nav-link" onclick="scrollToSection('what')"><div class="nav-num">01</div> What We Do</a>
+        <a href="#who" class="nav-link" onclick="scrollToSection('who')"><div class="nav-num">02</div> Who It's For</a>
+        <a href="#how" class="nav-link" onclick="scrollToSection('how')"><div class="nav-num">03</div> How We Work</a>
+        <a href="#contact" class="nav-link" onclick="scrollToSection('contact')"><div class="nav-num">04</div> Contact</a>
+      </nav>
+    </div>
   </div>
 
   <div class="mode-toggle" onclick="toggleTheme()">
@@ -252,59 +273,98 @@
     <aside class="sidebar" id="overview">
       <img src="logo.jpeg" alt="Randexa" class="sidebar-logo">
       <span class="sidebar-tagline">Where Ideas Meet Execution</span>
-      <span class="badge">SME Automation</span>
+      <span class="badge">AI & Business Systems</span>
       
-      <h1>Systems that work. Automation that scales.</h1>
-      <p style="color: var(--muted); font-size: 17px; font-weight: 400; line-height: 1.7;">
-        We transform messy business operations into streamlined automated systems. Purpose-built for SMEs who need results, not complexity.
-      </p>
-
-      <div class="cta-box">
-        <p style="font-size: 14px; font-weight: 500; color: var(--text);">
-          "We bridge the gap between complex tech and daily operations—designing and deploying automation that just works."
+      <h1>Transforming Operations with Intelligent Execution</h1>
+      
+      <div class="intro-text">
+        <p>
+          Every day, businesses waste valuable time on manual processes that could be automated. The solution isn't just more technology—it's the right technology, implemented properly.
         </p>
+        <p>
+          At Randexa, we specialize in identifying these operational bottlenecks and replacing them with intelligent, automated systems that scale with your business.
+        </p>
+      </div>
+
+      <div class="location-tag">
+        Singapore-based • SME Specialists • Guaranteed Efficiency Gains
       </div>
     </aside>
 
     <div class="sections-grid">
       
-      <section id="services">
+      <section id="what" class="section-block">
         <div class="section-header">
           <span class="section-num">01/</span>
-          <h2>Our Expertise</h2>
+          <h2>What We Do</h2>
         </div>
+        <p style="color:var(--muted); margin-bottom:32px;">We provide end-to-end solutions that transform how you operate.</p>
         
         <div class="cards-grid-2">
           <div class="card">
-            <div style="font-size:32px; margin-bottom:20px;">🤖</div>
-            <h3 style="margin-bottom:12px;">AI Agents</h3>
-            <p style="font-size:15px; color:var(--muted);">Intelligent Voice AI and Chatbots that handle support and sales around the clock.</p>
+            <h3>AI Automation & Agents</h3>
+            <p>Intelligent chatbots, AI receptionists, and WhatsApp automation that integrate with your team. We reduce manual workload while maintaining human oversight.</p>
           </div>
           <div class="card">
-            <div style="font-size:32px; margin-bottom:20px;">⚡</div>
-            <h3 style="margin-bottom:12px;">Workflows</h3>
-            <p style="font-size:15px; color:var(--muted);">Automating the invisible manual tasks between your CRM, Email, and internal tools.</p>
+            <h3>Business Systems</h3>
+            <p>Strategic setup of CRM systems, recruitment platforms, and internal tools like Zoho Recruit. We build the backend so you can focus on the front end.</p>
           </div>
           <div class="card">
-            <div style="font-size:32px; margin-bottom:20px;">💻</div>
-            <h3 style="margin-bottom:12px;">Custom Tools</h3>
-            <p style="font-size:15px; color:var(--muted);">Dashboards, client portals, and booking systems tailored to your process.</p>
+            <h3>Full Implementation</h3>
+            <p>Comprehensive setup including data migration, API integrations, and system testing. We ensure everything works together before handover.</p>
           </div>
           <div class="card">
-            <div style="font-size:32px; margin-bottom:20px;">🔧</div>
-            <h3 style="margin-bottom:12px;">Consulting</h3>
-            <p style="font-size:15px; color:var(--muted);">Strategic tech stack audits to ensure you are paying for tools you actually need.</p>
+            <h3>Training & Adoption</h3>
+            <p>Structured training and SOP documentation. We measure success by how well your team adopts the new systems, not just installation.</p>
           </div>
         </div>
       </section>
 
-      <section id="contact">
+      <section id="who" class="section-block">
         <div class="section-header">
-            <span class="section-num">02/</span>
+          <span class="section-num">02/</span>
+          <h2>Who It's For</h2>
+        </div>
+        
+        <div class="cards-grid-2">
+          <div class="card">
+            <h3>SMEs at Scaling Stage</h3>
+            <p>Companies with 10–200 employees experiencing growing pains. If manual processes are becoming unsustainable and hiring more staff isn't the answer, you're ready for us.</p>
+          </div>
+          <div class="card">
+            <h3>Ops-Intensive Teams</h3>
+            <p>Departments drowning in repetitive tasks—recruitment screening, invoice processing, or logistics coordination. If your team spends more time on process than work, we can help.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="how" class="section-block">
+        <div class="section-header">
+          <span class="section-num">03/</span>
+          <h2>How We Work</h2>
+        </div>
+        
+        <div class="cards-grid-2">
+          <div class="card">
+            <h3>Single Point of Accountability</h3>
+            <p>One dedicated team handles your project from audit to training. No handoffs, no confusion. We are accountable for the result.</p>
+          </div>
+          <div class="card">
+            <h3>Strategy → Build → Deploy</h3>
+            <p>We discover why you do it, build what fits your workflow, and deploy with comprehensive training to ensure adoption.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section-block">
+        <div class="section-header">
+            <span class="section-num">04/</span>
             <h2>Start Executing</h2>
         </div>
         <div class="card">
-            <p style="margin-bottom:24px; color:var(--muted); font-size: 16px;">Ready to automate your operations? Reach out directly.</p>
+            <p style="margin-bottom:24px; color:var(--muted); font-size: 16px;">
+              We prefer direct conversations over formal proposals. Let's discuss your bottlenecks.
+            </p>
             
             <a href="mailto:randexa.sg@gmail.com" class="contact-button">
                 <div class="icon-box">✉️</div>
@@ -333,7 +393,7 @@
       </section>
 
       <footer>
-        © 2025 Randexa · Singapore
+        © 2025 Randexa · Singapore · Global Delivery
       </footer>
     </div>
 
@@ -364,6 +424,15 @@
         if(window.innerWidth < 1000) toggleMenu();
       }
     }
+
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section-block').forEach(s => observer.observe(s));
 
     if (localStorage.getItem('theme') === 'dark') {
       document.body.setAttribute('data-theme', 'dark');
