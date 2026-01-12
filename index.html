@@ -9,41 +9,44 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* Premium SaaS Palette - Light Mode */
+      /* --- PREMIUM COLOR PALETTE (Light Mode Default) --- */
       --bg: #ffffff;
-      --bg-alt: #f9fafb; /* Very subtle grey for alternate sections */
-      --text-main: #111827; /* Near black, sharper */
-      --text-muted: #4b5563;
-      --border: #e5e7eb;
-      --accent: #4f46e5; /* Indigo */
-      --accent-hover: #4338ca;
+      --bg-alt: #f8fafc; /* Very subtle cool grey */
+      --text-main: #0f172a; /* Deep navy/black for sharpness */
+      --text-muted: #64748b; /* Slate grey */
+      --border: #e2e8f0;
+      --accent: #0f172a; /* Accent is now black for ultra-luxury feel */
+      --accent-soft: #f1f5f9;
       
-      /* Spacing & Layout */
+      /* Spacing */
       --container-width: 1200px;
       --header-height: 80px;
       
-      /* Shadows */
-      --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-      --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+      /* Shadows (Subtle & Expensive) */
+      --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+      --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.01);
       
       /* Transitions */
       --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
-    [data-theme="dark"] {
-      --bg: #0a0a0a;
-      --bg-alt: #111111;
-      --text-main: #ffffff;
-      --text-muted: #a1a1aa;
-      --border: #27272a;
-      --accent: #6366f1;
-      --accent-hover: #818cf8;
-      --shadow-card: 0 4px 20px rgba(0,0,0,0.5);
-      --shadow-hover: 0 20px 40px rgba(0,0,0,0.6);
+    /* --- AUTO DARK MODE SUPPORT --- */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #020617; /* Rich dark navy/black */
+        --bg-alt: #0f172a;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --border: #1e293b;
+        --accent: #ffffff;
+        --accent-soft: #1e293b;
+        --shadow-card: 0 4px 20px rgba(0,0,0,0.4);
+        --shadow-hover: 0 20px 40px rgba(0,0,0,0.5);
+      }
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,113 +58,41 @@
       background-color: var(--bg);
       color: var(--text-main);
       line-height: 1.6;
-      transition: background-color 0.4s var(--ease), color 0.4s var(--ease);
       -webkit-font-smoothing: antialiased;
     }
 
     /* --- Typography --- */
-    h1, h2, h3, h4 { letter-spacing: -0.02em; line-height: 1.2; font-weight: 700; }
-    h1 { font-size: clamp(40px, 5vw, 64px); letter-spacing: -0.04em; }
+    h1, h2, h3, h4 { letter-spacing: -0.03em; line-height: 1.1; font-weight: 700; color: var(--text-main); }
+    h1 { font-size: clamp(48px, 6vw, 72px); letter-spacing: -0.04em; }
     h2 { font-size: clamp(32px, 4vw, 42px); }
-    h3 { font-size: 20px; }
-    
-    .text-gradient {
-      background: linear-gradient(135deg, var(--text-main) 0%, var(--text-muted) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+    h3 { font-size: 18px; font-weight: 600; }
+    p { font-size: 16px; color: var(--text-muted); }
 
-      /* --- FIX 1: BETTER PADDING (PREVENTS TEXT HITTING EDGES) --- */
+    /* --- Layout Utilities --- */
     .container {
       max-width: var(--container-width);
       margin: 0 auto;
-      width: 100%;
-      /* Increased padding for tablets/mobile so it doesn't touch the edge */
-      padding: 0 40px; 
+      /* FIX: Dynamic padding ensures text never hits the edge on tablets */
+      padding: 0 5%; 
     }
-
-    /* --- FIX 2: CLEANER 'HOW IT WORKS' (GRID LAYOUT) --- */
-    .process-steps {
-      display: grid;
-      /* This auto-wraps the steps. If screen is small, it stacks. If wide, it lines up. */
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px; 
-      margin-top: 60px;
-      position: relative;
-    }
-    
-    /* Remove the horizontal line connecting them (it looks messy on tablet) */
-    .process-steps::before { display: none; }
-
-    .step-item {
-      position: relative; 
-      z-index: 1; 
-      /* No padding-right needed anymore since we use Grid gap */
-      padding-right: 0; 
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start; /* Aligns text neatly to the left */
-    }
-
-    .step-num {
-      width: 56px; height: 56px; /* Bigger, clearer circles */
-      background: var(--bg); 
-      border: 1px solid var(--border); /* Thinner, sharper border */
-      color: var(--text-main); 
-      border-radius: 50%; 
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 600; font-size: 18px;
-      margin-bottom: 20px; 
-      box-shadow: var(--shadow-card); /* Adds a premium pop */
-    }
-
-    /* --- FIX 3: DARK MODE ICON (CIRCULAR BUTTON) --- */
-    .theme-toggle {
-      background: var(--bg-alt); /* Gives it a button shape */
-      border: 1px solid var(--border);
-      cursor: pointer; 
-      color: var(--text-main);
-      margin-left: 16px; 
-      width: 44px; height: 44px; /* Matches height of Book button approximately */
-      border-radius: 50%; /* Perfect Circle */
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.2s var(--ease);
-    }
-    .theme-toggle:hover {
-      border-color: var(--text-main);
-      transform: rotate(15deg); /* Playful interaction */
-    }
-
-    /* --- TABLET/MOBILE SPECIFIC FIXES --- */
-    @media (max-width: 1024px) {
-      h1 { font-size: 42px; } /* Slightly smaller header on tablet */
-      
-      /* Force header grid to respect padding */
-      .nav-container { padding: 0; } 
-      
-      /* Make logos smaller so they don't break lines awkwardly */
-      .logos-grid { gap: 30px; }
-    }
-
 
     .section {
-      padding: 100px 0;
+      padding: 120px 0; /* More breathing room = More premium */
       border-bottom: 1px solid var(--border);
     }
     
     .section:last-child { border-bottom: none; }
     .bg-alt { background-color: var(--bg-alt); }
 
-    /* --- Navigation (Top Bar) --- */
+    /* --- Navigation --- */
     header {
       position: fixed; top: 0; left: 0; right: 0;
       height: var(--header-height);
-      background: rgba(var(--bg), 0.8);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(var(--bg), 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       z-index: 1000;
-      transition: background 0.4s var(--ease);
     }
 
     .nav-container {
@@ -170,25 +101,26 @@
     }
 
     .logo {
-      font-weight: 800; font-size: 20px; letter-spacing: -0.5px;
-      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 18px; letter-spacing: -0.5px;
+      display: flex; align-items: center; gap: 12px;
       text-decoration: none; color: var(--text-main);
+      text-transform: uppercase;
     }
     .logo img { width: 32px; height: 32px; border-radius: 6px; }
 
-    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links { display: flex; gap: 40px; align-items: center; }
     
     .nav-link {
       font-size: 14px; font-weight: 500; color: var(--text-muted);
-      text-decoration: none; transition: 0.2s;
+      text-decoration: none; transition: color 0.2s;
     }
-    .nav-link:hover { color: var(--accent); }
+    .nav-link:hover { color: var(--text-main); }
 
     /* Buttons */
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
-      padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 15px;
-      transition: all 0.2s var(--ease); cursor: pointer; text-decoration: none;
+      padding: 14px 28px; border-radius: 6px; font-weight: 500; font-size: 14px;
+      transition: all 0.3s var(--ease); cursor: pointer; text-decoration: none;
     }
 
     .btn-primary {
@@ -196,125 +128,167 @@
       border: 1px solid var(--text-main);
     }
     .btn-primary:hover {
-      background: var(--accent); border-color: var(--accent); color: white;
+      background: transparent; color: var(--text-main);
       transform: translateY(-2px);
     }
-
-    [data-theme="dark"] .btn-primary { background: white; color: black; border-color: white; }
-    [data-theme="dark"] .btn-primary:hover { background: var(--accent); color: white; border-color: var(--accent); }
 
     .btn-secondary {
       background: transparent; color: var(--text-main);
       border: 1px solid var(--border);
     }
-    .btn-secondary:hover { border-color: var(--text-main); }
+    .btn-secondary:hover { border-color: var(--text-main); background: var(--bg); }
 
     /* --- Hero Section --- */
     .hero {
-      padding-top: 180px; padding-bottom: 120px;
+      padding-top: 200px; padding-bottom: 140px;
       text-align: center;
-      background: radial-gradient(circle at 50% 0%, rgba(79, 70, 229, 0.05) 0%, transparent 50%);
-    }
-
-    .badge {
-      display: inline-block; padding: 6px 12px;
-      background: var(--bg-alt); border: 1px solid var(--border);
-      border-radius: 100px; font-size: 12px; font-weight: 600;
-      color: var(--accent); margin-bottom: 32px;
-      letter-spacing: 0.5px; text-transform: uppercase;
     }
 
     .hero p {
-      font-size: 20px; color: var(--text-muted); max-width: 600px;
-      margin: 24px auto 40px;
+      font-size: 20px; max-width: 600px;
+      margin: 32px auto 48px; line-height: 1.5;
     }
 
     .hero-btns { display: flex; gap: 16px; justify-content: center; }
 
-    /* --- Tech Stack (Social Proof) --- */
-    .tech-stack {
-      padding: 40px 0; border-bottom: 1px solid var(--border);
-      background: var(--bg-alt);
-    }
-    .tech-label { text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
-    .logos-grid {
-      display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; opacity: 0.6;
-    }
-    .logo-item { font-weight: 700; font-size: 18px; color: var(--text-muted); display: flex; align-items: center; gap: 8px; }
-    
     /* --- Capabilities (Grid) --- */
     .grid-3 {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 32px; margin-top: 60px;
+      display: grid; 
+      /* Ensures minimum card width is generous */
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 32px; margin-top: 80px;
     }
 
     .feature-card {
-      background: var(--bg); border: 1px solid var(--border);
-      padding: 40px; border-radius: 16px;
-      transition: all 0.3s var(--ease);
+      background: var(--bg); 
+      border: 1px solid var(--border);
+      padding: 48px 40px; 
+      border-radius: 12px;
+      transition: all 0.4s var(--ease);
     }
     .feature-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-8px);
       box-shadow: var(--shadow-hover);
-      border-color: var(--accent);
+      border-color: var(--text-muted);
     }
 
     .icon-box {
-      width: 48px; height: 48px; background: var(--bg-alt);
-      border-radius: 10px; display: flex; align-items: center; justify-content: center;
-      color: var(--accent); margin-bottom: 24px; font-size: 20px;
+      width: 56px; height: 56px; 
+      background: var(--bg-alt);
+      border-radius: 10px; 
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-main); margin-bottom: 32px; 
+      font-size: 24px;
     }
 
-    
+    /* --- NEW "HOW IT WORKS" (Workflow Diagram Style) --- */
+    .workflow-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 80px;
+      position: relative;
+      gap: 20px;
+    }
 
-    .step-item {
-      position: relative; z-index: 1; flex: 1;
-      background: var(--bg); padding-right: 20px;
+    .workflow-step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      padding: 0 10px;
     }
-    .step-num {
-      width: 48px; height: 48px; background: var(--bg); border: 2px solid var(--border);
-      color: var(--text-muted); border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-weight: 700; margin-bottom: 24px; transition: 0.3s;
+
+    /* The visual connector line between steps */
+    .workflow-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 28px; /* Aligns with center of icon */
+      right: -50%; 
+      width: 100%;
+      height: 1px;
+      border-top: 2px dashed var(--border);
+      z-index: 0;
     }
-    .step-item:hover .step-num { border-color: var(--accent); color: var(--accent); }
+
+    /* The Icon Circle */
+    .step-icon {
+      width: 60px; height: 60px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 50%; /* Circle */
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      color: var(--text-main);
+      box-shadow: var(--shadow-card);
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1; /* Sits on top of the dashed line */
+      transition: 0.3s var(--ease);
+    }
+
+    .workflow-step:hover .step-icon {
+      transform: scale(1.1);
+      border-color: var(--text-main);
+    }
 
     /* --- Booking Section --- */
-    .booking-section {
-      text-align: center;
-    }
-    .calendly-container {
-      margin-top: 40px;
+    .booking-section { text-align: center; }
+    
+    .calendly-wrapper {
+      margin-top: 60px;
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 12px;
       overflow: hidden;
       box-shadow: var(--shadow-card);
       background: var(--bg);
+      display: inline-block; /* Centers the frame perfectly */
+      width: 100%;
+      max-width: 1000px; /* Prevents it from getting too wide on huge screens */
     }
 
-    /* --- Mobile Menu & Footer --- */
-    .hamburger { display: none; cursor: pointer; }
+    /* --- Mobile / Tablet Responsive --- */
+    .hamburger { display: none; cursor: pointer; color: var(--text-main); }
     
-    footer { padding: 60px 0; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-muted); }
-    .footer-content { display: flex; justify-content: space-between; align-items: center; }
+    @media (max-width: 1024px) {
+      .container { padding: 0 40px; /* Tablet padding fix */ }
+      
+      /* Workflow turns into a vertical stack on tablet/mobile */
+      .workflow-container { flex-direction: column; gap: 40px; align-items: flex-start; }
+      
+      .workflow-step { 
+        flex-direction: row; 
+        text-align: left; 
+        align-items: flex-start; 
+        width: 100%;
+        gap: 24px;
+      }
 
-    
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
+      /* Remove horizontal dashed line */
+      .workflow-step:not(:last-child)::after { display: none; }
+      
+      .step-icon { margin-bottom: 0; min-width: 60px; }
+      
+      h1 { font-size: 42px; }
+      .nav-links { display: none; } 
       .hamburger { display: block; }
-      
-      h1 { font-size: 36px; }
-      .process-steps { flex-direction: column; gap: 40px; }
-      .process-steps::before { content: none; } /* Remove line on mobile */
-      .step-item { background: transparent; padding: 0; text-align: center; display: flex; flex-direction: column; align-items: center; }
-      
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 0 24px; }
+      .grid-3 { grid-template-columns: 1fr; }
       .hero-btns { flex-direction: column; }
       .btn { width: 100%; }
     }
 
-    /* Animation Classes */
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease); }
+    /* Footer */
+    footer { padding: 80px 0; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-muted); }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; }
+
+    /* Animations */
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s var(--ease); }
     .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
 </head>
@@ -323,33 +297,26 @@
   <header>
     <div class="container nav-container">
       <a href="#" class="logo">
-        <img src="logo.jpeg" alt="R"> RANDEXA
+        <img src="logo.jpeg" alt="Randexa"> RANDEXA
       </a>
       
       <div class="nav-links">
         <a href="#capabilities" class="nav-link">Capabilities</a>
         <a href="#process" class="nav-link">Process</a>
-        <a href="#results" class="nav-link">Results</a>
         <a href="#book" class="btn btn-primary">Book Discovery Call</a>
-        
-        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </button>
       </div>
       
-      <div class="hamburger" onclick="alert('Mobile menu logic here')">
-        <svg width="24" height="24" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      <div class="hamburger">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </div>
     </div>
   </header>
 
   <section class="hero container reveal">
-    <div class="badge">Enterprise-Grade Automation</div>
-    <h1>Operational Excellence,<br><span class="text-gradient">Automated.</span></h1>
+    <div style="text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 24px;">Systems Architecture</div>
+    <h1>Operational Excellence,<br>Automated.</h1>
     <p>
-      We build the operating systems that scale your business. From AI agents to workflow architecture, we eliminate the manual bottlenecks holding you back.
+      We re-engineer your business logic for speed and reliability. From AI agents to workflow architecture, we eliminate the bottlenecks holding you back.
     </p>
     <div class="hero-btns">
       <a href="#book" class="btn btn-primary">Book a Free Discovery Call</a>
@@ -357,25 +324,11 @@
     </div>
   </section>
 
-  <section class="tech-stack">
-    <div class="container">
-      <div class="tech-label">We integrate with modern tools</div>
-      <div class="logos-grid">
-        <div class="logo-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 0L0 7h9v17l4.5-7h-9l9-17h-9z"/></svg> Zapier</div>
-        <div class="logo-item">HubSpot</div>
-        <div class="logo-item">Slack</div>
-        <div class="logo-item">OpenAI</div>
-        <div class="logo-item">Notion</div>
-        <div class="logo-item">Make</div>
-      </div>
-    </div>
-  </section>
-
   <section id="capabilities" class="section container">
     <div class="reveal">
       <h2>Capabilities</h2>
-      <p style="color:var(--text-muted); max-width:500px; margin-top:16px;">
-        We don't just write code. We re-engineer your business logic for speed and reliability.
+      <p style="margin-top:16px; max-width: 500px;">
+        We don't just write code. We build the infrastructure for scale.
       </p>
     </div>
 
@@ -383,36 +336,36 @@
       <div class="feature-card">
         <div class="icon-box">🤖</div>
         <h3>AI Automation</h3>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:15px;">
-          Deploy intelligent agents to handle customer support, lead qualification, and internal queries 24/7 without human oversight.
+        <p style="margin-top:12px; font-size:15px;">
+          Intelligent agents that handle customer support, lead qualification, and internal queries 24/7 without human oversight.
         </p>
       </div>
       <div class="feature-card">
         <div class="icon-box">⚡</div>
         <h3>System Integration</h3>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:15px;">
-          Connect your disparate tools (CRM, Email, ERP) into a single, cohesive ecosystem that updates in real-time.
+        <p style="margin-top:12px; font-size:15px;">
+          We connect your disparate tools (CRM, Email, ERP) into a single, cohesive ecosystem that updates in real-time.
         </p>
       </div>
       <div class="feature-card">
         <div class="icon-box">🏗️</div>
         <h3>Operational Blueprints</h3>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:15px;">
-          We map your entire business process, identify inefficiencies, and redesign the architecture for scale.
+        <p style="margin-top:12px; font-size:15px;">
+          We map your entire business process, identify inefficiencies, and redesign the architecture for maximum throughput.
         </p>
       </div>
        <div class="feature-card">
         <div class="icon-box">🔄</div>
         <h3>Workflow Optimisation</h3>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:15px;">
+        <p style="margin-top:12px; font-size:15px;">
           Turn manual data entry and repetitive admin tasks into invisible, automated background processes.
         </p>
       </div>
        <div class="feature-card">
         <div class="icon-box">📈</div>
         <h3>Ongoing Optimisation</h3>
-        <p style="margin-top:12px; color:var(--text-muted); font-size:15px;">
-          Automation isn't a one-time fix. We monitor, maintain, and improve your systems as your volume grows.
+        <p style="margin-top:12px; font-size:15px;">
+          Automation isn't a one-time fix. We monitor, maintain, and iterate on your systems as your data volume grows.
         </p>
       </div>
     </div>
@@ -422,101 +375,88 @@
     <div class="container">
       <h2 class="reveal">How It Works</h2>
       
-      <div class="process-steps reveal">
-        <div class="step-item">
-          <div class="step-num">01</div>
-          <h3>Audit</h3>
-          <p style="font-size:14px; color:var(--text-muted); margin-top:8px;">We analyze your current bottlenecks and tech stack.</p>
+      <div class="workflow-container reveal">
+        <div class="workflow-step">
+          <div class="step-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </div>
+          <div>
+            <h3>Audit</h3>
+            <p style="font-size:14px; margin-top:8px;">We analyze your current bottlenecks and tech stack.</p>
+          </div>
         </div>
-        <div class="step-item">
-          <div class="step-num">02</div>
-          <h3>Blueprint</h3>
-          <p style="font-size:14px; color:var(--text-muted); margin-top:8px;">We design a custom architecture for your approval.</p>
+
+        <div class="workflow-step">
+          <div class="step-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+          </div>
+          <div>
+            <h3>Blueprint</h3>
+            <p style="font-size:14px; margin-top:8px;">We design a custom architecture for your approval.</p>
+          </div>
         </div>
-        <div class="step-item">
-          <div class="step-num">03</div>
-          <h3>Build</h3>
-          <p style="font-size:14px; color:var(--text-muted); margin-top:8px;">Our engineers develop the automations and integrations.</p>
+
+        <div class="workflow-step">
+          <div class="step-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          </div>
+          <div>
+            <h3>Build</h3>
+            <p style="font-size:14px; margin-top:8px;">Our engineers develop the custom automations.</p>
+          </div>
         </div>
-        <div class="step-item">
-          <div class="step-num">04</div>
-          <h3>Deploy</h3>
-          <p style="font-size:14px; color:var(--text-muted); margin-top:8px;">We launch the system and train your team.</p>
+
+        <div class="workflow-step">
+          <div class="step-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="M12 15l-3-3a22 22 0 0 1 2-9.5 22.15 22.15 0 0 1 9.5 2"></path><path d="M20.5 9c.85 1.15 2 5 2 5s-3.75.5-5-2c-.75-.85-.75-2.15 0-3a2.15 2.15 0 0 1 3 0z"></path></svg>
+          </div>
+          <div>
+            <h3>Deploy</h3>
+            <p style="font-size:14px; margin-top:8px;">We launch the system and train your team.</p>
+          </div>
         </div>
-        <div class="step-item">
-          <div class="step-num">05</div>
-          <h3>Optimise</h3>
-          <p style="font-size:14px; color:var(--text-muted); margin-top:8px;">We monitor performance and iterate for efficiency.</p>
+
+        <div class="workflow-step">
+          <div class="step-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          </div>
+          <div>
+            <h3>Optimise</h3>
+            <p style="font-size:14px; margin-top:8px;">We monitor performance and iterate for efficiency.</p>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <section id="results" class="section container">
-    <h2 class="reveal">Trusted by fast-moving teams</h2>
-    <div class="grid-3 reveal">
-      <div class="feature-card" style="padding: 32px;">
-        <p style="font-size:16px; font-style:italic; margin-bottom:20px;">"Randexa transformed our recruitment process. What used to take 20 hours a week is now completely automated."</p>
-        <div style="font-weight:700;">Director</div>
-        <div style="font-size:13px; color:var(--text-muted);">Recruitment Agency, Singapore</div>
-      </div>
-      <div class="feature-card" style="padding: 32px;">
-        <p style="font-size:16px; font-style:italic; margin-bottom:20px;">"The AI agent they built handles 80% of our inbound support queries instantly. It paid for itself in month one."</p>
-        <div style="font-weight:700;">Founder</div>
-        <div style="font-size:13px; color:var(--text-muted);">E-commerce Brand</div>
-      </div>
-      <div class="feature-card" style="padding: 32px;">
-        <p style="font-size:16px; font-style:italic; margin-bottom:20px;">"Professional, technical, and fast. They understood our business logic better than we did."</p>
-        <div style="font-weight:700;">Head of Ops</div>
-        <div style="font-size:13px; color:var(--text-muted);">Logistics Firm</div>
-      </div>
-    </div>
-  </section>
-
-    <section id="book" class="section bg-alt booking-section">
+  <section id="book" class="section booking-section">
     <div class="container reveal">
       <h2>Book a Free Discovery Call</h2>
-      <p style="color:var(--text-muted); max-width:600px; margin: 16px auto;">
-        In a 20-minute call, we’ll understand your operations, identify automation opportunities, and recommend next steps. No obligation.
+      <p style="margin: 16px auto 32px; max-width:600px;">
+        In a 20-minute call, we’ll understand your operations, identify automation opportunities, and recommend next steps.
       </p>
 
-      <div class="calendly-container">
-        
-        <div class="calendly-inline-widget" data-url="https://calendly.com/randexa-sg" style="min-width:320px;height:700px;"></div>
+      <div class="calendly-wrapper">
+        <div class="calendly-inline-widget" data-url="https://calendly.com/randexa/discovery-call" style="min-width:320px;height:700px;"></div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         </div>
       
     </div>
   </section>
 
-
-
   <footer>
     <div class="container footer-content">
-      <div style="font-weight:700; display:flex; align-items:center; gap:8px;">
+      <div style="font-weight:700; display:flex; align-items:center; gap:12px; text-transform:uppercase; color: var(--text-main);">
         <img src="logo.jpeg" style="width:24px; border-radius:4px;"> RANDEXA
       </div>
       <div>
         &copy; 2026 Randexa. All rights reserved. <br>
-        <a href="mailto:randexa.sg@gmail.com" style="color:var(--text-muted); text-decoration:none;">randexa.sg@gmail.com</a>
       </div>
     </div>
   </footer>
 
   <script>
-    // Theme Toggle
-    function toggleTheme() {
-      const body = document.body;
-      const isDark = body.getAttribute('data-theme') === 'dark';
-      body.setAttribute('data-theme', isDark ? 'light' : 'dark');
-      localStorage.setItem('theme', isDark ? 'light' : 'dark');
-    }
-
-    // Initialize Theme
-    if (localStorage.getItem('theme') === 'dark') {
-      document.body.setAttribute('data-theme', 'dark');
-    }
-
     // Scroll Reveal Animation
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -527,6 +467,11 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    
+    // Simple mobile menu toggle logic
+    document.querySelector('.hamburger').addEventListener('click', () => {
+      alert('Mobile menu to be implemented or linked to sections.');
+    });
   </script>
 
 </body>
