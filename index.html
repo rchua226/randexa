@@ -71,12 +71,78 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* --- Layout Utilities --- */
+      /* --- FIX 1: BETTER PADDING (PREVENTS TEXT HITTING EDGES) --- */
     .container {
       max-width: var(--container-width);
       margin: 0 auto;
-      padding: 0 24px;
+      width: 100%;
+      /* Increased padding for tablets/mobile so it doesn't touch the edge */
+      padding: 0 40px; 
     }
+
+    /* --- FIX 2: CLEANER 'HOW IT WORKS' (GRID LAYOUT) --- */
+    .process-steps {
+      display: grid;
+      /* This auto-wraps the steps. If screen is small, it stacks. If wide, it lines up. */
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px; 
+      margin-top: 60px;
+      position: relative;
+    }
+    
+    /* Remove the horizontal line connecting them (it looks messy on tablet) */
+    .process-steps::before { display: none; }
+
+    .step-item {
+      position: relative; 
+      z-index: 1; 
+      /* No padding-right needed anymore since we use Grid gap */
+      padding-right: 0; 
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Aligns text neatly to the left */
+    }
+
+    .step-num {
+      width: 56px; height: 56px; /* Bigger, clearer circles */
+      background: var(--bg); 
+      border: 1px solid var(--border); /* Thinner, sharper border */
+      color: var(--text-main); 
+      border-radius: 50%; 
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 600; font-size: 18px;
+      margin-bottom: 20px; 
+      box-shadow: var(--shadow-card); /* Adds a premium pop */
+    }
+
+    /* --- FIX 3: DARK MODE ICON (CIRCULAR BUTTON) --- */
+    .theme-toggle {
+      background: var(--bg-alt); /* Gives it a button shape */
+      border: 1px solid var(--border);
+      cursor: pointer; 
+      color: var(--text-main);
+      margin-left: 16px; 
+      width: 44px; height: 44px; /* Matches height of Book button approximately */
+      border-radius: 50%; /* Perfect Circle */
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s var(--ease);
+    }
+    .theme-toggle:hover {
+      border-color: var(--text-main);
+      transform: rotate(15deg); /* Playful interaction */
+    }
+
+    /* --- TABLET/MOBILE SPECIFIC FIXES --- */
+    @media (max-width: 1024px) {
+      h1 { font-size: 42px; } /* Slightly smaller header on tablet */
+      
+      /* Force header grid to respect padding */
+      .nav-container { padding: 0; } 
+      
+      /* Make logos smaller so they don't break lines awkwardly */
+      .logos-grid { gap: 30px; }
+    }
+
 
     .section {
       padding: 100px 0;
@@ -199,16 +265,7 @@
       color: var(--accent); margin-bottom: 24px; font-size: 20px;
     }
 
-    /* --- Process (Steps) --- */
-    .process-steps {
-      display: flex; justify-content: space-between; gap: 20px; margin-top: 60px;
-      position: relative;
-    }
-    /* Line connector */
-    .process-steps::before {
-      content: ''; position: absolute; top: 24px; left: 0; right: 0; height: 2px;
-      background: var(--border); z-index: 0;
-    }
+    
 
     .step-item {
       position: relative; z-index: 1; flex: 1;
@@ -240,11 +297,7 @@
     footer { padding: 60px 0; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-muted); }
     .footer-content { display: flex; justify-content: space-between; align-items: center; }
 
-    /* Theme Toggle */
-    .theme-toggle {
-      background: none; border: none; cursor: pointer; color: var(--text-main);
-      margin-left: 20px; display: flex; align-items: center;
-    }
+    
 
     /* Responsive */
     @media (max-width: 768px) {
