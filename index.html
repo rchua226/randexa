@@ -5,16 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   
   <title>Randexa — Intelligent Business Systems</title>
-  <meta name="description" content="Randexa builds intelligent automation systems and autonomous agents to replace manual admin."/>
+  <meta name="description" content="Randexa builds intelligent automation systems to replace manual admin."/>
   
-  <link rel="canonical" href="https://randexa.com/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Randexa — Intelligent Business Systems" />
-  <meta property="og:image" content="https://randexa.com/og-image.jpg" />
-  
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" href="icon.svg" type="image/svg+xml">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,9 +14,9 @@
   <style>
     /* Reset & Base */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { overflow-x: hidden; scroll-behavior: smooth; }
+    html { overflow-x: hidden; }
     
-    /* Lenis Smooth Scroll (Desktop Only) */
+    /* Lenis Smooth Scroll (The "Apple Feel") */
     html.lenis, html.lenis body { height: auto; }
     .lenis.lenis-smooth { scroll-behavior: auto !important; }
     .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
@@ -42,7 +34,6 @@
       --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    /* Light Mode Support */
     @media (prefers-color-scheme: light) {
       :root {
         --bg: #ffffff;
@@ -64,7 +55,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Optimized Background */
+    /* Background Orbs (Optimized for Mac 2020) */
     .background-wrapper {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       z-index: -2; overflow: hidden; pointer-events: none;
@@ -72,15 +63,16 @@
     }
     .orb {
       position: absolute; border-radius: 50%;
-      filter: blur(120px); opacity: 0.25;
-      will-change: transform;
+      /* Reduced blur slightly to fix lag on older Macs */
+      filter: blur(80px); opacity: 0.25;
+      will-change: transform; 
       animation: float 25s infinite ease-in-out alternate;
     }
     .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #4f46e5; animation-duration: 30s; }
     .orb-2 { bottom: -10%; right: -20%; width: 40vw; height: 40vw; background: #a855f7; animation-duration: 40s; animation-delay: -5s; }
     @keyframes float { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(40px, 80px, 0); } }
 
-    /* Layout & Typography */
+    /* Layout */
     .container { max-width: 1200px; margin: 0 auto; width: 92%; }
     .section { padding: 120px 0; border-bottom: 1px solid var(--border); position: relative; }
     
@@ -103,6 +95,8 @@
     }
     @media (prefers-color-scheme: light) { header { background: rgba(255,255,255,0.8); } }
     
+    header.scrolled { background: rgba(5, 5, 5, 0.95); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
     .nav-container { height: 100%; display: flex; align-items: center; justify-content: space-between; }
     .logo { font-weight: 700; display: flex; align-items: center; gap: 12px; color: var(--text-main); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
     .logo img { width: 28px; border-radius: 6px; }
@@ -123,7 +117,7 @@
       transition: left 0.6s ease;
     }
     .btn-magnetic:hover::before { left: 100%; }
-    
+
     .btn-secondary {
       padding: 12px 28px; border-radius: 100px; border: 1px solid var(--border);
       color: var(--text-main); font-weight: 600; font-size: 14px; text-decoration: none; transition: 0.3s;
@@ -155,7 +149,7 @@
     .stat-number { font-size: 32px; font-weight: 800; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .stat-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-top: 4px; }
 
-    /* --- BENTO GRID (CAPABILITIES) --- */
+    /* --- BENTO GRID (The Original Layout) --- */
     .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; margin-top: 60px; }
     .card {
       background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 32px;
@@ -167,7 +161,10 @@
       border-color: rgba(129, 140, 248, 0.3); 
       box-shadow: 0 30px 60px rgba(129, 140, 248, 0.15); 
     }
-    
+    @media (prefers-color-scheme: light) {
+      .card:hover { border-color: rgba(0,0,0,0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+    }
+
     .bento-large { grid-column: span 7; }
     .bento-medium { grid-column: span 5; }
     .bento-small { grid-column: span 4; }
@@ -176,60 +173,86 @@
       width: 48px; height: 48px; border-radius: 12px;
       background: rgba(255,255,255,0.05); border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
-      color: var(--text-main); margin-bottom: 24px; transition: 0.3s;
+      color: var(--text-main); margin-bottom: 24px; 
+      /* Icon Physics */
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .card:hover .icon-box { background: rgba(129, 140, 248, 0.15); color: #818cf8; border-color: #818cf8; }
+    .card:hover .icon-box { 
+      background: rgba(129, 140, 248, 0.15); color: #818cf8; border-color: #818cf8; 
+      transform: scale(1.1); /* General grow */
+    }
     .icon-box svg { width: 24px; height: 24px; }
 
-    /* --- CAPABILITY ICON ANIMATIONS (Specific) --- */
+    /* --- 5 UNIQUE ICON ANIMATIONS (When Hovering Card) --- */
+    
+    /* 1. Robot: Shake Head */
     .card:hover .icon-robot svg { animation: robotShake 0.5s ease-in-out infinite alternate; }
-    @keyframes robotShake { from { transform: rotate(-10deg); } to { transform: rotate(10deg); } }
+    @keyframes robotShake { from { transform: rotate(-15deg); } to { transform: rotate(15deg); } }
 
+    /* 2. Cycle: Spin */
     .card:hover .icon-cycle svg { animation: spin 2s linear infinite; }
     @keyframes spin { 100% { transform: rotate(360deg); } }
 
-    .card:hover .icon-flash svg { animation: pulseIcon 1s infinite alternate; }
-    @keyframes pulseIcon { from { transform: scale(1); opacity: 0.7; } to { transform: scale(1.2); opacity: 1; } }
+    /* 3. Lightning: Pulse */
+    .card:hover .icon-flash svg { animation: iconPulse 0.8s infinite alternate; }
+    @keyframes iconPulse { from { transform: scale(1); opacity:0.6; } to { transform: scale(1.2); opacity:1; } }
 
+    /* 4. Chart: Bounce Bars */
     .card:hover .icon-chart svg { animation: bounce 1s infinite; }
-    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
 
-    .card:hover .icon-doc svg { animation: write 0.5s infinite alternate; }
-    @keyframes write { from { transform: translateX(0); } to { transform: translateX(2px); } }
+    /* 5. Document: Write/Wiggle */
+    .card:hover .icon-doc svg { animation: write 0.4s infinite alternate; }
+    @keyframes write { from { transform: translateX(-2px); } to { transform: translateX(2px); } }
 
 
-    /* --- INNER CONTENT ANIMATIONS --- */
+    /* --- INNER ANIMATIONS (Restored to Original) --- */
     /* Code Terminal */
     .code-terminal { margin-top: 32px; background: rgba(0,0,0,0.8); border-radius: 16px; border: 1px solid var(--border); padding: 16px; font-family: monospace; font-size: 12px; }
-    .code-line { opacity: 0.6; margin-bottom: 4px; display: block; }
-    .terminal-header { display:flex; gap:6px; margin-bottom:10px;}
+    .terminal-header { display:flex; gap:6px; margin-bottom:10px; }
     .dot { width:8px; height:8px; border-radius:50%; } .dot-red{background:#ff5f57} .dot-yellow{background:#febc2e} .dot-green{background:#28c840}
-    .hl-keyword { color: #c678dd; } .hl-string { color: #98c379; }
+    .code-line { opacity: 0.6; margin-bottom: 4px; display: block; }
+    .hl-keyword { color: #c678dd; } .hl-string { color: #98c379; } .hl-func { color: #61afef; }
 
-    /* Simultaneous Data Animation (3 Rows) */
-    .anim-simultaneous-container { margin-top: 30px; display: flex; flex-direction: column; gap: 16px; }
-    .anim-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border); }
-    .anim-row-icon { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
-    .anim-row-icon svg { width: 20px; height: 20px; }
-    .anim-track { flex: 1; height: 2px; background: var(--border); margin: 0 16px; position: relative; overflow: hidden; border-radius: 10px; }
-    .anim-dot { position: absolute; top: 0; left: 0; width: 30%; height: 100%; background: var(--text-main); box-shadow: 0 0 8px currentColor; animation: flow 2s infinite linear; }
-    @keyframes flow { 0% { left: -30%; } 100% { left: 130%; } }
-    .anim-row:nth-child(1) .anim-dot { animation-delay: 0s; }
-    .anim-row:nth-child(2) .anim-dot { animation-delay: 0.5s; }
-    .anim-row:nth-child(3) .anim-dot { animation-delay: 1s; }
+    /* 3-Cycle Data Animation (Original) */
+    .anim-cycle-container { margin-top: 40px; height: 50px; position: relative; width: 100%; }
+    .cycle-slide {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 10px; opacity: 0; animation: cycleFade 12s infinite;
+    }
+    .cycle-slide:nth-child(1) { animation-delay: 0s; }
+    .cycle-slide:nth-child(2) { animation-delay: 4s; }
+    .cycle-slide:nth-child(3) { animation-delay: 8s; }
+    @keyframes cycleFade {
+      0% { opacity: 0; transform: translateY(10px); } 5% { opacity: 1; transform: translateY(0); }
+      30% { opacity: 1; transform: translateY(0); } 35% { opacity: 0; transform: translateY(-10px); } 100% { opacity: 0; }
+    }
+    .anim-icon { width: 32px; height: 32px; }
+    .anim-arrow { flex: 1; height: 2px; background: var(--border); margin: 0 15px; position: relative; overflow: hidden; }
+    .anim-arrow::after {
+      content: ''; position: absolute; top: 0; left: -20%; width: 40%; height: 100%;
+      background: var(--text-main); box-shadow: 0 0 10px white;
+      animation: particle 1.5s infinite linear;
+    }
+    @keyframes particle { 0% { left: -20%; } 100% { left: 120%; } }
 
-    /* Pulse Graph */
+    /* Pulse Graph (Original) */
     .anim-pulse-container { margin-top: 30px; width: 100%; height: 60px; display: flex; align-items: center; gap: 4px; }
     .pulse-bar { flex: 1; background: rgba(99, 102, 241, 0.2); border-radius: 2px; animation: pulseGraph 1.5s infinite ease-in-out; }
     @keyframes pulseGraph { 0%, 100% { height: 20%; background: rgba(99, 102, 241, 0.2); } 50% { height: 80%; background: #818cf8; box-shadow: 0 0 10px #818cf8; } }
     .pulse-bar:nth-child(2) { animation-delay: 0.1s; } .pulse-bar:nth-child(3) { animation-delay: 0.2s; } .pulse-bar:nth-child(4) { animation-delay: 0.3s; } .pulse-bar:nth-child(5) { animation-delay: 0.4s; }
 
-    /* Grid Scan */
-    .anim-grid-scan { margin-top: 30px; width: 100%; height: 60px; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 20px 20px; position: relative; overflow: hidden; border-radius: 8px; }
+    /* Grid Scan (Original) */
+    .anim-grid-scan {
+      margin-top: 30px; width: 100%; height: 60px;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 20px 20px; position: relative; overflow: hidden; border-radius: 8px;
+    }
     .scan-line { width: 100%; height: 2px; background: #ec4899; box-shadow: 0 0 10px #ec4899; position: absolute; top: 0; animation: scan 3s infinite linear; }
     @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
 
-    /* Checklist */
+    /* Checklist (Original) */
     .anim-checklist { margin-top: 30px; display: flex; flex-direction: column; gap: 10px; }
     .check-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); opacity: 0.5; }
     .check-box { width: 16px; height: 16px; border: 1.5px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; }
@@ -239,7 +262,8 @@
     .check-item.checked .check-box svg { opacity: 1; transform: scale(1); }
 
 
-    /* --- PROCESS SECTION --- */
+    /* --- PROCESS & TIMELINE --- */
+    /* Process Icons Grid (Fixed for Mobile) */
     .process-container { display: flex; justify-content: space-between; gap: 20px; margin-bottom: 60px; }
     .process-card { flex: 1; text-align: center; }
     .process-icon-circle { 
@@ -283,7 +307,9 @@
     .case-study-card { background: var(--glass); border: 1px solid var(--border); border-radius: 32px; padding: 40px; margin-top: 60px; }
     .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 32px; border-top: 1px solid var(--border); padding-top: 32px; }
     .case-list li { display: flex; gap: 10px; font-size: 15px; color: var(--text-muted); margin-bottom: 12px; }
-    
+    .icon-cross { color: #ef4444; flex-shrink: 0; }
+    .icon-check { color: #10b981; flex-shrink: 0; }
+
     /* --- INTEGRATIONS --- */
     .trusted-label { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 60px; text-align: center; opacity: 0.8; }
     .logos-grid { display: flex; justify-content: center; gap: 40px 80px; flex-wrap: wrap; align-items: center; }
@@ -326,7 +352,9 @@
     .scarcity-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 100px; margin-bottom: 24px; font-size: 13px; font-weight: 600; color: #f87171; }
     .footer-stats { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
     .footer-stats strong { color: var(--text-main); }
-    
+    .booking-section { text-align: center; }
+    .calendly-wrapper { margin-top: 60px; border: 1px solid var(--border); border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4); background: var(--bg); display: inline-block; width: 100%; max-width: 1000px; }
+
     .reveal { opacity: 0; transform: translateY(30px); transition: all 1s var(--ease); }
     .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
@@ -362,6 +390,7 @@
     <a href="#process" class="mobile-link" onclick="toggleMenu()">Process</a>
     <a href="#calculator" class="mobile-link" onclick="toggleMenu()">Calculator</a>
     <a href="#testimonials" class="mobile-link" onclick="toggleMenu()">Results</a>
+    <a href="mailto:randexa.sg@gmail.com" class="mobile-link" onclick="toggleMenu()">Contact</a>
     <a href="#book" class="btn-magnetic" onclick="toggleMenu()">Book Call</a>
   </div>
 
@@ -409,21 +438,21 @@
           </div>
           <h3>Eliminate Data Entry</h3>
           <p>When data enters one system, it updates everywhere automatically.</p>
-          <div class="anim-simultaneous-container">
-            <div class="anim-row">
-              <div class="anim-row-icon"><svg viewBox="0 0 24 24" fill="#25D366"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.12.55 4.12 1.52 5.88L0 24l6.27-1.48C7.96 23.47 9.92 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></div>
-              <div class="anim-track"><div class="anim-dot"></div></div>
-              <div class="anim-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div>
+          <div class="anim-cycle-container">
+            <div class="cycle-slide">
+              <svg class="anim-icon" viewBox="0 0 24 24" fill="#25D366"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.12.55 4.12 1.52 5.88L0 24l6.27-1.48C7.96 23.47 9.92 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+              <div class="anim-arrow"></div>
+              <svg class="anim-icon" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
             </div>
-            <div class="anim-row">
-              <div class="anim-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#635BFF" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></div>
-              <div class="anim-track"><div class="anim-dot"></div></div>
-              <div class="anim-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
+            <div class="cycle-slide">
+              <svg class="anim-icon" viewBox="0 0 24 24" fill="#635BFF"><path d="M13.9 11.9c.7-.6 1.1-1.3 1.1-2.1 0-2-1.6-2.9-4.2-2.9-1.9 0-3.3.5-4.1.9l-.6-3c.9-.4 2.6-.9 4.7-.9 4.5 0 7.7 2.1 7.7 6.4 0 5-4.4 6.7-8.2 6.7-2.1 0-3.3-.4-3.9-.7l.6 3c.8.3 2.3.8 4.3.8 4.7 0 7.2-2.3 7.2-5.7 0-1.8-1-3.6-4.6-2.5z"/></svg>
+              <div class="anim-arrow"></div>
+              <svg class="anim-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
             </div>
-            <div class="anim-row">
-              <div class="anim-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#EA4335" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
-              <div class="anim-track"><div class="anim-dot"></div></div>
-              <div class="anim-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></div>
+            <div class="cycle-slide">
+              <svg class="anim-icon" viewBox="0 0 24 24" fill="none" stroke="#EA4335" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              <div class="anim-arrow"></div>
+              <svg class="anim-icon" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
             </div>
           </div>
         </div>
@@ -611,7 +640,7 @@
           <span class="logo-name">n8n</span>
         </div>
         <div class="logo-item-wrapper">
-          <svg class="logo-item" viewBox="0 0 24 24"><title>OpenAI</title><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 1.645-1.645h.0006l.0006-.0006.0006-.0005.0005-.0006.0006-.0005.0006-.0005.0005-.0005.0006-.0005.0005-.0006.0006-.0005.0005-.0005.0006-.0005.0005-.0006.0006-.0005.0005-.0005.0006-.0005.0005-.0006.0006-.0005 1.5-1.5c.0544-.0533.1063-.1093.1556-.1681a2.8236 2.8236 0 0 1 .1893-.2071l.0006-.0005a2.723 2.723 0 0 1 .3732-.352 2.6622 2.6622 0 0 1 .2326-.171l2.457-1.4172v4.529a4.5222 4.5222 0 0 1-4.4234 4.0682zm-9.406-5.833a4.4827 4.4827 0 0 1-.5279-3.0452l1.645 1.645a2.7684 2.7684 0 0 1 .1873.2082 2.628 2.628 0 0 1 .3743.522 2.6234 2.6234 0 0 1 .17.562l.0006.0005.0005.0005.0005.0005.0006.0005.0005.0005.0006.0005.0005.0005.0006.0006.0005.0005.0006.0005.0005.0005.0006.0005.0005.0006.0006.0005.0005.0006.0006.0005.0005.0005 1.0506 2.656l-3.9213-2.2647a4.5126 4.5126 0 0 1-1.6373-5.3857zm1.6934-8.8023a4.5152 4.5152 0 0 1 3.4975-.4866v4.542l-.0005.0006-.0005.0005-.0006.0006-.0005.0005-.0006.0005-.0005.0006-.0006.0005-.0005.0005-.0006.0006-.0005.0005-.0006.0005-.0005.0006-.0006.0005-.0005.0005-.0006.0006-.0005.0005-.0006.0005-.0005.0006-.0006.0005-2.656 1.0506-2.2647-3.9213a4.4731 4.4731 0 0 1 1.932-5.7386zm11.2338-1.5284a4.4731 4.4731 0 0 1 2.8764 1.0408l-1.645 1.645a2.8687 2.8687 0 0 1-.1893.2071l-.0006.0005a2.6937 2.6937 0 0 1-.3732.352 2.6468 2.6468 0 0 1-.2326.171l-2.457 1.4172V3.7915a4.5222 4.5222 0 0 1 4.4234-4.0682zM19.187 9.87l-1.645-1.645a2.7684 2.7684 0 0 1-.1873-.2082 2.628 2.628 0 0 1-.3743-.522 2.6234 2.6234 0 0 1-.17-.562l-.0006-.0005-.0005-.0005-.0005-.0005-.0006-.0005-.0005-.0005-.0006-.0005-.0005-.0005-.0006-.0006-.0005-.0005-.0006-.0005-.0005-.0005-.0006-.0005-.0005.0006-.0006.0005-.0005.0005-.0006.0005-.0005.0006-.0006.0005-1.0506-2.656 3.9213 2.2647a4.5126 4.5126 0 0 1 1.6373 5.3857zM8.3183 16.297l-2.4642-1.4215L8.3183 13.454l2.4642 1.4215zm3.6963-2.1336l-2.4642-1.4215L12.0146 11.3204l2.4642 1.4215zm0-2.8443L9.5504 9.8976 12.0146 8.4761l2.4642 1.4215zm3.6963 2.1336l-2.4642-1.4215 2.4642-1.4215 2.4642 1.4215z" fill="currentColor"/></svg>
+          <svg class="logo-item" viewBox="0 0 24 24"><title>OpenAI</title><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 1.645-1.645h.0006l.0006-.0006.0006-.0005.0005-.0006.0006-.0005.0006-.0005.0005-.0005.0006-.0005.0005-.0006.0006-.0005.0005-.0005.0006-.0005.0005-.0006.0006-.0005.0005-.0005.0006-.0005.0005-.0006.0006-.0005 1.5-1.5c.0544-.0533.1063-.1093.1556-.1681a2.8236 2.8236 0 0 1 .1893-.2071l.0006-.0005a2.723 2.723 0 0 1 .3732-.352 2.6622 2.6622 0 0 1 .2326-.171l2.457-1.4172v4.529a4.5222 4.5222 0 0 1-4.4234 4.0682zm-9.406-5.833a4.4827 4.4827 0 0 1-.5279-3.0452l1.645 1.645a2.7684 2.7684 0 0 1 .1873.2082 2.628 2.628 0 0 1 .3743.522 2.6234 2.6234 0 0 1 .17.562l.0006.0005.0005.0005.0005.0005.0006.0005.0005.0005.0006.0005.0005.0005.0006.0006.0005.0005.0006.0005.0005.0005.0006.0005.0005.0006.0006.0005.0005.0005.0006.0006.0005.0005.0005.0006.0006.0005.0005.0005 1.0506 2.656l-3.9213-2.2647a4.5126 4.5126 0 0 1-1.6373-5.3857zm1.6934-8.8023a4.5152 4.5152 0 0 1 3.4975-.4866v4.542l-.0005.0006-.0005.0005-.0006.0006-.0005.0005-.0006.0005-.0005.0006-.0006.0005-.0005.0005-.0006.0006-.0005.0005-.0006.0005-.0005.0006-.0006.0005-.0005.0005-.0006.0006-.0005.0005-.0006.0006-.0005.0005.0006-.0006.0005-2.656 1.0506-2.2647-3.9213a4.4731 4.4731 0 0 1 1.932-5.7386zm11.2338-1.5284a4.4731 4.4731 0 0 1 2.8764 1.0408l-1.645 1.645a2.8687 2.8687 0 0 1-.1893.2071l-.0006.0005a2.6937 2.6937 0 0 1-.3732.352 2.6468 2.6468 0 0 1-.2326.171l-2.457 1.4172V3.7915a4.5222 4.5222 0 0 1 4.4234-4.0682zM19.187 9.87l-1.645-1.645a2.7684 2.7684 0 0 1-.1873-.2082 2.628 2.628 0 0 1-.3743-.522 2.6234 2.6234 0 0 1-.17-.562l-.0006-.0005-.0005-.0005-.0005-.0005-.0006-.0005-.0005-.0005-.0006-.0005-.0005-.0005-.0006-.0006-.0005-.0005-.0006-.0005-.0005-.0005-.0006-.0005-.0005-.0006-.0006-.0005-.0005-.0005-.0006-.0006-.0005-.0005-.0005-1.0506-2.656 3.9213 2.2647a4.5126 4.5126 0 0 1 1.6373 5.3857zM8.3183 16.297l-2.4642-1.4215L8.3183 13.454l2.4642 1.4215zm3.6963-2.1336l-2.4642-1.4215L12.0146 11.3204l2.4642 1.4215zm0-2.8443L9.5504 9.8976 12.0146 8.4761l2.4642 1.4215zm3.6963 2.1336l-2.4642-1.4215 2.4642-1.4215 2.4642 1.4215z" fill="currentColor"/></svg>
           <span class="logo-name">OpenAI</span>
         </div>
         <div class="logo-item-wrapper">
@@ -627,7 +656,7 @@
           <span class="logo-name">Apple</span>
         </div>
         <div class="logo-item-wrapper">
-          <svg class="logo-item" viewBox="0 0 24 24"><title>GitHub</title><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.605-2.805 5.625-5.475 5.92.435.375.81 1.095.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12z" fill="currentColor"/></svg>
+          <svg class="logo-item" viewBox="0 0 24 24"><title>GitHub</title><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.605-2.805 5.625-5.475 5.92.435.375.81 1.095.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" fill="currentColor"/></svg>
           <span class="logo-name">GitHub</span>
         </div>
       </div>
@@ -656,6 +685,7 @@
         <a href="mailto:randexa.sg@gmail.com" style="color:var(--text-muted); text-decoration:none; font-size:16px;">randexa.sg@gmail.com</a>
         <div style="font-size:13px; color:var(--text-muted);">&copy; 2026 Randexa.</div>
       </div>
+      
       <div class="footer-stats">
         <div><strong>99.9%</strong> Uptime Guarantee</div>
         <div><strong>&lt;1.2s</strong> Avg Response Time</div>
@@ -667,7 +697,7 @@
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script> 
   
   <script>
-    // Initialize Lenis (Desktop Only)
+    // Initialize Lenis (Desktop Only for Performance)
     if (window.innerWidth > 768) {
       const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
       function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
@@ -686,7 +716,7 @@
       link.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('active'));
     });
 
-    // Header Scroll
+    // Header Scroll Effect
     window.addEventListener('scroll', () => {
       const header = document.getElementById('header');
       if (window.scrollY > 50) header.classList.add('scrolled');
@@ -712,7 +742,7 @@
     }, { threshold: 0.5 });
     counters.forEach(counter => statsObserver.observe(counter));
 
-    // Code Terminal
+    // Code Terminal (Inner)
     const lines = document.querySelectorAll('.code-line');
     const codeObserver = new IntersectionObserver((entries) => {
       if(entries[0].isIntersecting) {
@@ -732,7 +762,7 @@
       btn.addEventListener('mouseleave', () => btn.style.transform = 'translate(0,0)');
     });
 
-    // Checklist Animation
+    // Checklist Animation (Inner)
     const checkItems = document.querySelectorAll('.check-item');
     const checkObserver = new IntersectionObserver((entries) => {
       if(entries[0].isIntersecting) {
