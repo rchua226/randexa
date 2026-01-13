@@ -5,78 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   
   <title>Randexa — Intelligent Business Systems</title>
-  <meta name="description" content="Randexa builds intelligent automation systems and autonomous agents to replace manual admin, scale revenue, and drive profit for high-growth businesses."/>
-  <meta name="keywords" content="AI automation agency, business process automation, autonomous agents, Randexa, lead capture AI, workflow automation"/>
-  <meta name="author" content="Randexa"/>
+  <meta name="description" content="Randexa builds intelligent automation systems and autonomous agents to replace manual admin."/>
   
   <link rel="canonical" href="https://randexa.com/" />
-
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://randexa.com/" />
-  <meta property="og:title" content="Randexa — Scale Your Revenue, Not Your Headcount" />
-  <meta property="og:description" content="We build the autonomous infrastructure that replaces manual admin. Re-engineer your operations for speed, reliability, and profit." />
+  <meta property="og:title" content="Randexa — Intelligent Business Systems" />
   <meta property="og:image" content="https://randexa.com/og-image.jpg" />
-
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://randexa.com/" />
-  <meta property="twitter:title" content="Randexa — AI Automation Infrastructure" />
-  <meta property="twitter:description" content="Stop losing money to manual admin. Randexa builds intelligent systems that scale your business." />
-  <meta property="twitter:image" content="https://randexa.com/og-image.jpg" />
-
+  
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Randexa",
-    "image": "https://randexa.com/logo.jpeg",
-    "url": "https://randexa.com",
-    "email": "randexa.sg@gmail.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Singapore",
-      "addressCountry": "SG"
-    },
-    "description": "Randexa is an AI automation agency building autonomous agents and workflow infrastructure.",
-    "priceRange": "$$$"
-  }
-  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    /* Reset & Base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-x: hidden; scroll-behavior: smooth; }
+    
+    /* Lenis Smooth Scroll (Desktop Only) */
     html.lenis, html.lenis body { height: auto; }
     .lenis.lenis-smooth { scroll-behavior: auto !important; }
     .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
     .lenis.lenis-stopped { overflow: hidden; }
-    .lenis.lenis-scrolling iframe { pointer-events: none; }
-  </style>
-
-  <style>
+    
     :root {
-      /* --- MASTER LUXURY PALETTE --- */
       --bg: #050505;
       --text-main: #ffffff;
       --text-muted: #a1a1aa;
       --border: rgba(255, 255, 255, 0.1);
       --glass: rgba(255, 255, 255, 0.03);
       --glass-hover: rgba(255, 255, 255, 0.06);
-      --glass-menu: rgba(5, 5, 5, 0.9);
-      
+      --glass-menu: rgba(5, 5, 5, 0.95);
       --accent-gradient: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #e879f9 100%);
-      
-      --container-width: 1200px;
-      --header-height: 80px;
-      
       --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    /* --- LIGHT MODE OVERRIDE --- */
+    /* Light Mode Support */
     @media (prefers-color-scheme: light) {
       :root {
         --bg: #ffffff;
@@ -85,25 +51,20 @@
         --border: rgba(0, 0, 0, 0.08);
         --glass: rgba(0, 0, 0, 0.03);
         --glass-hover: rgba(0, 0, 0, 0.05);
-        --glass-menu: rgba(255, 255, 255, 0.9);
+        --glass-menu: rgba(255, 255, 255, 0.95);
       }
-      .grain { opacity: 0.03 !important; }
       .logo img { filter: brightness(0.9); }
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { overflow-x: hidden; }
-    
     body { 
       font-family: 'Inter', sans-serif;
       background-color: var(--bg);
       color: var(--text-main);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    /* --- BACKGROUND ENGINE --- */
+    /* Optimized Background */
     .background-wrapper {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       z-index: -2; overflow: hidden; pointer-events: none;
@@ -111,448 +72,343 @@
     }
     .orb {
       position: absolute; border-radius: 50%;
-      filter: blur(140px); opacity: 0.25;
+      filter: blur(120px); opacity: 0.25;
+      will-change: transform;
       animation: float 25s infinite ease-in-out alternate;
     }
-    .orb-1 { top: -10%; left: -10%; width: 60vw; height: 60vw; background: #4f46e5; animation-duration: 30s; }
-    .orb-2 { bottom: -10%; right: -20%; width: 50vw; height: 50vw; background: #a855f7; animation-duration: 40s; animation-delay: -5s; }
-    .orb-3 { top: 40%; left: 40%; width: 40vw; height: 40vw; background: #06b6d4; opacity: 0.15; animation-duration: 45s; animation-delay: -10s; }
-    @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(40px, 80px); } }
+    .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #4f46e5; animation-duration: 30s; }
+    .orb-2 { bottom: -10%; right: -20%; width: 40vw; height: 40vw; background: #a855f7; animation-duration: 40s; animation-delay: -5s; }
+    @keyframes float { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(40px, 80px, 0); } }
 
-    /* --- TYPOGRAPHY --- */
-    h1, h2, h3 { letter-spacing: -0.03em; line-height: 1.1; font-weight: 700; color: var(--text-main); }
-    h1 { font-size: clamp(42px, 6vw, 88px); letter-spacing: -0.04em; }
-    h2 { font-size: clamp(32px, 5vw, 48px); }
-    p { font-size: 17px; color: var(--text-muted); font-weight: 400; line-height: 1.6; }
+    /* Layout & Typography */
+    .container { max-width: 1200px; margin: 0 auto; width: 92%; }
+    .section { padding: 120px 0; border-bottom: 1px solid var(--border); position: relative; }
+    
+    h1 { font-size: clamp(36px, 5vw, 80px); letter-spacing: -0.04em; line-height: 1.1; font-weight: 700; margin-bottom: 24px; }
+    h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 16px; }
+    p { font-size: 17px; color: var(--text-muted); }
 
     .text-shine {
-      background: var(--accent-gradient);
-      background-size: 200% auto;
+      background: var(--accent-gradient); background-size: 200% auto;
       color: transparent; -webkit-background-clip: text; background-clip: text;
       animation: shine 8s linear infinite;
     }
-    @keyframes shine { to { background-position: 200% center; } }
+    @keyframes shine {to {background-position: 200% center;}}
 
-    /* --- LAYOUT --- */
-    .container { max-width: var(--container-width); margin: 0 auto; width: 92%; }
-    .section { padding: 140px 0; border-bottom: 1px solid var(--border); position: relative; }
-    .section:last-child { border-bottom: none; }
-
-    /* --- HEADER --- */
+    /* Header */
     header {
-      position: fixed; top: 0; left: 0; right: 0;
-      height: var(--header-height);
-      background: rgba(5, 5, 5, 0.6); 
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      z-index: 1000;
-      transition: all 0.4s var(--ease);
+      position: fixed; top: 0; left: 0; right: 0; height: 80px;
+      background: rgba(5,5,5,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); z-index: 1000; transition: 0.3s;
     }
-    @media (prefers-color-scheme: light) {
-      header { background: rgba(255, 255, 255, 0.7); }
-      header.scrolled { background: rgba(255, 255, 255, 0.95); }
-    }
-    header.scrolled {
-      background: rgba(5, 5, 5, 0.95);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
+    @media (prefers-color-scheme: light) { header { background: rgba(255,255,255,0.8); } }
+    
     .nav-container { height: 100%; display: flex; align-items: center; justify-content: space-between; }
-    .logo {
-      font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 12px;
-      text-decoration: none; color: var(--text-main); text-transform: uppercase; letter-spacing: 1px;
-    }
-    .logo img { width: 28px; height: 28px; border-radius: 6px; }
-
+    .logo { font-weight: 700; display: flex; align-items: center; gap: 12px; color: var(--text-main); text-decoration: none; text-transform: uppercase; letter-spacing: 1px; }
+    .logo img { width: 28px; border-radius: 6px; }
     .nav-links { display: flex; gap: 32px; align-items: center; }
-    .nav-link { font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: 0.2s; position: relative; }
-    .nav-link:hover, .nav-link.active { color: var(--text-main); }
-
-    /* Buttons (Base) */
+    .nav-link { font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: 0.2s; }
+    .nav-link:hover { color: var(--text-main); }
+    
+    /* Buttons */
     .btn-magnetic {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 12px 28px; border-radius: 100px;
-      font-weight: 600; font-size: 14px;
-      background: var(--text-main); color: var(--bg);
-      text-decoration: none; transition: transform 0.1s;
-      position: relative; overflow: hidden;
+      display: inline-flex; padding: 12px 28px; border-radius: 100px;
+      background: var(--text-main); color: var(--bg); font-weight: 600; font-size: 14px;
+      text-decoration: none; position: relative; overflow: hidden; transition: transform 0.2s;
     }
-    .btn-magnetic:hover { box-shadow: 0 0 40px rgba(255,255,255,0.3); }
-    @media (prefers-color-scheme: light) { .btn-magnetic:hover { box-shadow: 0 0 40px rgba(0,0,0,0.15); } }
-
-    .btn-secondary {
-      padding: 12px 28px; border-radius: 100px; font-weight: 600; font-size: 14px;
-      background: transparent; color: var(--text-main);
-      border: 1px solid var(--border); text-decoration: none; transition: 0.3s;
-    }
-    .btn-secondary:hover { border-color: var(--text-main); background: var(--glass); }
-
-    /* Mobile Menu */
-    .hamburger { display: none; cursor: pointer; color: var(--text-main); background:none; border:none; padding: 10px; }
-    .mobile-menu {
-      position: fixed; top: 80px; left: 0; width: 100%; height: calc(100vh - 80px);
-      background: var(--glass-menu); backdrop-filter: blur(20px);
-      display: flex; flex-direction: column; align-items: center; padding-top: 60px; gap: 40px;
-      transform: translateY(-150%); transition: transform 0.6s var(--ease); z-index: 999;
-    }
-    .mobile-menu.active { transform: translateY(0); }
-    .mobile-link { font-size: 20px; font-weight: 600; color: var(--text-main); text-decoration: none; }
-
-    /* --- HERO --- */
-    .hero { padding-top: 240px; padding-bottom: 120px; text-align: center; }
-    .hero h1 { margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s forwards 0.2s; }
-    .hero-statement {
-      font-size: 24px; font-weight: 700; color: var(--text-main); max-width: 800px; margin: 0 auto 24px;
-      opacity: 0; animation: fadeUp 0.8s forwards 0.4s;
-    }
-    .hero-subtext {
-      font-size: 18px; color: var(--text-muted); max-width: 600px; margin: 0 auto 48px;
-      opacity: 0; animation: fadeUp 0.8s forwards 0.6s;
-    }
-    .hero-btns { display: flex; gap: 16px; justify-content: center; margin-bottom: 80px; opacity: 0; animation: fadeUp 0.8s forwards 0.8s; }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* STATS BAR */
-    .stats-bar {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 800px; margin: 0 auto;
-      padding: 32px; background: var(--glass); border: 1px solid var(--border); border-radius: 24px;
-      opacity: 0; animation: fadeUp 0.8s forwards 1s;
-    }
-    .stat-number { font-size: 32px; font-weight: 800; display: block; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .stat-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-top: 8px; }
-
-    /* --- CAPABILITIES --- */
-    .bento-grid {
-      display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; margin-top: 60px;
-    }
-    .card {
-      background: var(--glass); border: 1px solid var(--border);
-      padding: 40px; border-radius: 32px;
-      backdrop-filter: blur(12px); position: relative; overflow: hidden;
-      /* Physics Hover (Claude Edit) */
-      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .card:hover {
-      transform: translateY(-8px) scale(1.01);
-      box-shadow: 0 30px 60px rgba(129, 140, 248, 0.15);
-      border-color: rgba(129, 140, 248, 0.3);
-    }
-    @media (prefers-color-scheme: light) {
-      .card:hover { border-color: rgba(0,0,0,0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-    }
-
-    .bento-large { grid-column: span 7; }
-    .bento-medium { grid-column: span 5; }
-    .bento-small { grid-column: span 4; }
-    
-    .icon-box {
-      width: 48px; height: 48px; 
-      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-      border-radius: 12px; display: flex; align-items: center; justify-content: center;
-      color: var(--text-main); margin-bottom: 24px; 
-      /* Icon Rotation (Claude Edit) */
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    @media (prefers-color-scheme: light) { .icon-box { background: rgba(0,0,0,0.05); } }
-    
-    .card:hover .icon-box {
-      transform: rotate(6deg) scale(1.1);
-      background: rgba(129, 140, 248, 0.15);
-      color: #818cf8;
-      border-color: #818cf8;
-    }
-    .icon-box svg { width: 24px; height: 24px; }
-
-    /* CODE TERMINAL */
-    .code-terminal {
-      margin-top: 32px; background: rgba(0,0,0,0.8); border-radius: 16px; border: 1px solid var(--border);
-      font-family: 'Monaco', monospace; font-size: 12px; overflow: hidden;
-    }
-    .terminal-header { padding: 10px 14px; background: rgba(255,255,255,0.05); display: flex; gap: 6px; }
-    .dot { width: 8px; height: 8px; border-radius: 50%; }
-    .dot-red { background: #ff5f57; } .dot-yellow { background: #febc2e; } .dot-green { background: #28c840; }
-    .terminal-body { padding: 16px; line-height: 1.6; color: #a5b3ce; text-align: left; }
-    .code-line { opacity: 0; transform: translateY(5px); transition: 0.3s; }
-    .code-line.active { opacity: 1; transform: translateY(0); }
-    .hl-keyword { color: #c678dd; } .hl-string { color: #98c379; } .hl-func { color: #61afef; }
-
-    /* SIMULTANEOUS DATA ANIMATION */
-    .anim-simultaneous-container {
-      margin-top: 30px; display: flex; flex-direction: column; gap: 16px;
-    }
-    .anim-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 8px 12px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border);
-    }
-    @media (prefers-color-scheme: light) { .anim-row { background: rgba(0,0,0,0.03); } }
-
-    .anim-row-icon { 
-      width: 24px; height: 24px; min-width: 24px; display: flex; align-items: center; justify-content: center;
-    }
-    .anim-row-icon svg { width: 100%; height: 100%; }
-    .anim-track { 
-      flex: 1; height: 2px; background: var(--border); margin: 0 16px; position: relative; overflow: hidden; border-radius: 10px;
-    }
-    .anim-dot {
-      position: absolute; top: 0; left: 0; width: 30%; height: 100%;
-      background: var(--text-main); box-shadow: 0 0 8px currentColor;
-      animation: flow 2s infinite linear;
-    }
-    @keyframes flow { 0% { left: -30%; } 100% { left: 130%; } }
-    .anim-row:nth-child(1) .anim-dot { animation-delay: 0s; }
-    .anim-row:nth-child(2) .anim-dot { animation-delay: 0.5s; }
-    .anim-row:nth-child(3) .anim-dot { animation-delay: 1s; }
-
-    /* PULSE GRAPH & GRID */
-    .anim-pulse-container {
-      margin-top: 30px; width: 100%; height: 60px; display: flex; align-items: center; gap: 4px;
-    }
-    .pulse-bar {
-      flex: 1; background: rgba(99, 102, 241, 0.2); border-radius: 2px;
-      animation: pulseGraph 1.5s infinite ease-in-out;
-    }
-    @keyframes pulseGraph {
-      0%, 100% { height: 20%; background: rgba(99, 102, 241, 0.2); }
-      50% { height: 80%; background: #818cf8; box-shadow: 0 0 10px #818cf8; }
-    }
-    .pulse-bar:nth-child(1) { animation-delay: 0s; } .pulse-bar:nth-child(2) { animation-delay: 0.1s; } .pulse-bar:nth-child(3) { animation-delay: 0.2s; } .pulse-bar:nth-child(4) { animation-delay: 0.3s; } .pulse-bar:nth-child(5) { animation-delay: 0.4s; }
-
-    .anim-grid-scan {
-      margin-top: 30px; width: 100%; height: 60px;
-      background-image: linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 20px 20px; position: relative; overflow: hidden; border-radius: 8px;
-    }
-    .scan-line {
-      width: 100%; height: 2px; background: #ec4899; box-shadow: 0 0 10px #ec4899;
-      position: absolute; top: 0; animation: scan 3s infinite linear;
-    }
-    @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
-
-    /* CHECKLIST */
-    .anim-checklist { margin-top: 30px; display: flex; flex-direction: column; gap: 10px; }
-    .check-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); opacity: 0.5; }
-    .check-box { width: 16px; height: 16px; border: 1.5px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; }
-    .check-box svg { opacity: 0; transform: scale(0.5); transition: 0.3s; }
-    .check-item.checked { opacity: 1; color: var(--text-main); }
-    .check-item.checked .check-box { border-color: #28c840; background: rgba(40, 200, 64, 0.1); }
-    .check-item.checked .check-box svg { opacity: 1; transform: scale(1); }
-
-    /* --- ROI CALCULATOR --- */
-    .calc-container {
-      background: var(--glass); border: 1px solid var(--border); border-radius: 32px; padding: 48px;
-      margin-top: 40px; text-align: center; position: relative;
-    }
-    .calc-toggle {
-      display: inline-flex; justify-content: center; gap: 4px; margin-bottom: 40px; 
-      background: rgba(255,255,255,0.05); padding: 4px; border-radius: 100px; border: 1px solid var(--border);
-    }
-    @media (prefers-color-scheme: light) { .calc-toggle { background: rgba(0,0,0,0.05); } }
-
-    .toggle-btn {
-      padding: 8px 24px; border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: 0.3s;
-    }
-    .toggle-btn.active { background: var(--glass-hover); color: var(--text-main); border: 1px solid var(--border); }
-    
-    .calc-inputs { display: flex; flex-direction: column; gap: 32px; margin-bottom: 40px; }
-    .input-group label { display: block; margin-bottom: 12px; font-weight: 600; color: var(--text-muted); }
-    .slider-container { display: flex; align-items: center; gap: 16px; }
-    
-    #contractHoursGroup { display: none; opacity: 0; transition: opacity 0.4s ease; }
-    #contractHoursGroup.visible { display: block; opacity: 1; }
-
-    input[type=range] {
-      flex: 1; -webkit-appearance: none; background: var(--border); height: 6px; border-radius: 4px; outline: none;
-    }
-    input[type=range]:focus { outline: none; }
-    input[type=range]::-webkit-slider-thumb { transition: transform 0.2s; -webkit-appearance: none; width: 24px; height: 24px; background: #6366f1; border-radius: 50%; cursor: pointer; box-shadow: 0 0 15px rgba(99, 102, 241, 0.5); }
-    /* Slider Glow (Claude Edit) */
-    input[type=range]:active::-webkit-slider-thumb {
-      transform: scale(1.3); box-shadow: 0 0 20px rgba(129, 140, 248, 0.6);
-    }
-    
-    .input-group span { color: var(--text-main) !important; }
-
-    .savings-amount {
-      font-size: clamp(32px, 5vw, 48px); 
-      font-weight: 900;
-      background: var(--accent-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      width: 100%;
-      display: block;
-      overflow-wrap: break-word;
-      line-height: 1.2;
-    }
-    .savings-label { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
-
-    /* --- PROCESS & INTEGRATIONS --- */
-    .process-container { display: flex; justify-content: space-between; gap: 20px; margin-top: 60px; }
-    .process-card { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .process-icon-circle {
-      width: 50px; height: 50px; border-radius: 50%; background: var(--glass); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--text-main); transition: 0.3s;
-    }
-    .process-card:hover .process-icon-circle { background: rgba(99, 102, 241, 0.2); border-color: #6366f1; transform: scale(1.1); }
-    .process-card h3 { font-size: 18px; margin-bottom: 8px; }
-    .process-card p { font-size: 14px; color: var(--text-muted); }
-
-    .trusted-label { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 60px; text-align: center; opacity: 0.8; }
-    .logos-grid { display: flex; justify-content: center; gap: 40px 80px; flex-wrap: wrap; align-items: center; }
-    
-    .logo-item-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; transition: transform 0.4s var(--ease); cursor: default; }
-    .logo-item { 
-      height: 32px; width: auto; 
-      max-width: 32px; /* Force uniform constraint */
-      fill: var(--text-muted); opacity: 0.5; transition: 0.4s; 
-    }
-    .logo-name { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: var(--text-main); opacity: 0; transform: translateY(10px); transition: 0.4s; }
-    .logo-item-wrapper:hover .logo-item { opacity: 1; fill: var(--text-main); transform: scale(1.1); }
-    .logo-item-wrapper:hover .logo-name { opacity: 1; transform: translateY(0); }
-
-    .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 60px; }
-    .testimonial-text { font-size: 17px; font-style: italic; opacity: 0.9; margin-bottom: 24px; }
-    .testimonial-author div:first-child { font-weight: 700; font-size: 14px; }
-    .testimonial-author div:last-child { font-size: 12px; color: var(--text-muted); }
-
-    .booking-section { text-align: center; }
-    .calendly-wrapper { margin-top: 60px; border: 1px solid var(--border); border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4); background: var(--bg); display: inline-block; width: 100%; max-width: 1000px; }
-
-    /* Button Shimmer (Claude Edit) */
+    .btn-magnetic:hover { box-shadow: 0 0 30px rgba(129, 140, 248, 0.4); }
     .btn-magnetic::before {
       content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
       transition: left 0.6s ease;
     }
     .btn-magnetic:hover::before { left: 100%; }
+    
+    .btn-secondary {
+      padding: 12px 28px; border-radius: 100px; border: 1px solid var(--border);
+      color: var(--text-main); font-weight: 600; font-size: 14px; text-decoration: none; transition: 0.3s;
+    }
+    .btn-secondary:hover { background: var(--glass-hover); border-color: var(--text-main); }
 
-    /* Scarcity Badge */
-    .scarcity-badge {
-      display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; 
-      background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); 
-      border-radius: 100px; margin-bottom: 24px; font-size: 13px; font-weight: 600; color: #f87171;
+    /* Mobile Menu */
+    .hamburger { display: none; background: none; border: none; color: var(--text-main); cursor: pointer; }
+    .mobile-menu {
+      position: fixed; top: 80px; left: 0; width: 100%; height: calc(100vh - 80px);
+      background: var(--glass-menu); backdrop-filter: blur(20px);
+      display: flex; flex-direction: column; align-items: center; padding-top: 60px; gap: 32px;
+      transform: translateY(-150%); transition: transform 0.5s var(--ease); z-index: 999;
+    }
+    .mobile-menu.active { transform: translateY(0); }
+    .mobile-link { font-size: 20px; font-weight: 600; color: var(--text-main); text-decoration: none; }
+
+    /* Hero */
+    .hero { padding-top: 220px; text-align: center; }
+    .hero-statement { font-size: 20px; font-weight: 600; color: var(--text-main); margin: 0 auto 24px; max-width: 800px; }
+    .hero-subtext { max-width: 600px; margin: 0 auto 48px; }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; margin-bottom: 80px; }
+
+    /* Stats Bar */
+    .stats-bar {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 800px; margin: 0 auto;
+      padding: 32px; background: var(--glass); border: 1px solid var(--border); border-radius: 24px;
+    }
+    .stat-number { font-size: 32px; font-weight: 800; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-top: 4px; }
+
+    /* --- BENTO GRID (CAPABILITIES) --- */
+    .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; margin-top: 60px; }
+    .card {
+      background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 32px;
+      backdrop-filter: blur(12px); position: relative; overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .card:hover { 
+      transform: translateY(-8px) scale(1.01); 
+      border-color: rgba(129, 140, 248, 0.3); 
+      box-shadow: 0 30px 60px rgba(129, 140, 248, 0.15); 
+    }
+    
+    .bento-large { grid-column: span 7; }
+    .bento-medium { grid-column: span 5; }
+    .bento-small { grid-column: span 4; }
+
+    .icon-box {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-main); margin-bottom: 24px; transition: 0.3s;
+    }
+    .card:hover .icon-box { background: rgba(129, 140, 248, 0.15); color: #818cf8; border-color: #818cf8; }
+    .icon-box svg { width: 24px; height: 24px; }
+
+    /* --- CAPABILITY ICON ANIMATIONS (Specific) --- */
+    .card:hover .icon-robot svg { animation: robotShake 0.5s ease-in-out infinite alternate; }
+    @keyframes robotShake { from { transform: rotate(-10deg); } to { transform: rotate(10deg); } }
+
+    .card:hover .icon-cycle svg { animation: spin 2s linear infinite; }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    .card:hover .icon-flash svg { animation: pulseIcon 1s infinite alternate; }
+    @keyframes pulseIcon { from { transform: scale(1); opacity: 0.7; } to { transform: scale(1.2); opacity: 1; } }
+
+    .card:hover .icon-chart svg { animation: bounce 1s infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+
+    .card:hover .icon-doc svg { animation: write 0.5s infinite alternate; }
+    @keyframes write { from { transform: translateX(0); } to { transform: translateX(2px); } }
+
+
+    /* --- INNER CONTENT ANIMATIONS --- */
+    /* Code Terminal */
+    .code-terminal { margin-top: 32px; background: rgba(0,0,0,0.8); border-radius: 16px; border: 1px solid var(--border); padding: 16px; font-family: monospace; font-size: 12px; }
+    .code-line { opacity: 0.6; margin-bottom: 4px; display: block; }
+    .terminal-header { display:flex; gap:6px; margin-bottom:10px;}
+    .dot { width:8px; height:8px; border-radius:50%; } .dot-red{background:#ff5f57} .dot-yellow{background:#febc2e} .dot-green{background:#28c840}
+    .hl-keyword { color: #c678dd; } .hl-string { color: #98c379; }
+
+    /* Simultaneous Data Animation (3 Rows) */
+    .anim-simultaneous-container { margin-top: 30px; display: flex; flex-direction: column; gap: 16px; }
+    .anim-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border); }
+    .anim-row-icon { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+    .anim-row-icon svg { width: 20px; height: 20px; }
+    .anim-track { flex: 1; height: 2px; background: var(--border); margin: 0 16px; position: relative; overflow: hidden; border-radius: 10px; }
+    .anim-dot { position: absolute; top: 0; left: 0; width: 30%; height: 100%; background: var(--text-main); box-shadow: 0 0 8px currentColor; animation: flow 2s infinite linear; }
+    @keyframes flow { 0% { left: -30%; } 100% { left: 130%; } }
+    .anim-row:nth-child(1) .anim-dot { animation-delay: 0s; }
+    .anim-row:nth-child(2) .anim-dot { animation-delay: 0.5s; }
+    .anim-row:nth-child(3) .anim-dot { animation-delay: 1s; }
+
+    /* Pulse Graph */
+    .anim-pulse-container { margin-top: 30px; width: 100%; height: 60px; display: flex; align-items: center; gap: 4px; }
+    .pulse-bar { flex: 1; background: rgba(99, 102, 241, 0.2); border-radius: 2px; animation: pulseGraph 1.5s infinite ease-in-out; }
+    @keyframes pulseGraph { 0%, 100% { height: 20%; background: rgba(99, 102, 241, 0.2); } 50% { height: 80%; background: #818cf8; box-shadow: 0 0 10px #818cf8; } }
+    .pulse-bar:nth-child(2) { animation-delay: 0.1s; } .pulse-bar:nth-child(3) { animation-delay: 0.2s; } .pulse-bar:nth-child(4) { animation-delay: 0.3s; } .pulse-bar:nth-child(5) { animation-delay: 0.4s; }
+
+    /* Grid Scan */
+    .anim-grid-scan { margin-top: 30px; width: 100%; height: 60px; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 20px 20px; position: relative; overflow: hidden; border-radius: 8px; }
+    .scan-line { width: 100%; height: 2px; background: #ec4899; box-shadow: 0 0 10px #ec4899; position: absolute; top: 0; animation: scan 3s infinite linear; }
+    @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+
+    /* Checklist */
+    .anim-checklist { margin-top: 30px; display: flex; flex-direction: column; gap: 10px; }
+    .check-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); opacity: 0.5; }
+    .check-box { width: 16px; height: 16px; border: 1.5px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; }
+    .check-box svg { opacity: 0; transform: scale(0.5); transition: 0.3s; width: 12px; height: 12px; }
+    .check-item.checked { opacity: 1; color: var(--text-main); }
+    .check-item.checked .check-box { border-color: #28c840; background: rgba(40, 200, 64, 0.1); }
+    .check-item.checked .check-box svg { opacity: 1; transform: scale(1); }
+
+
+    /* --- PROCESS SECTION --- */
+    .process-container { display: flex; justify-content: space-between; gap: 20px; margin-bottom: 60px; }
+    .process-card { flex: 1; text-align: center; }
+    .process-icon-circle { 
+      width: 60px; height: 60px; margin: 0 auto 16px; border-radius: 50%; 
+      background: var(--glass); border: 1px solid var(--border); 
+      display: flex; align-items: center; justify-content: center; transition: 0.3s; 
+    }
+    .process-card:hover .process-icon-circle { border-color: #818cf8; background: rgba(129,140,248,0.1); transform: scale(1.1); }
+
+    /* Timeline */
+    .timeline-container { max-width: 800px; margin: 0 auto; position: relative; padding-left: 20px; }
+    .timeline-container::before {
+      content: ''; position: absolute; left: 29px; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--border) 10%, #818cf8 50%, var(--border) 90%, transparent);
+      background-size: 100% 200%; animation: laser 3s linear infinite;
+    }
+    @keyframes laser { 0% { background-position: 0% 0%; } 100% { background-position: 0% 200%; } }
+
+    .timeline-phase { position: relative; padding-left: 60px; margin-bottom: 40px; }
+    .phase-dot { position: absolute; left: 0; top: 0; width: 20px; height: 20px; background: var(--bg); border: 2px solid #818cf8; border-radius: 50%; z-index: 2; }
+    .phase-tag { display: inline-block; padding: 4px 12px; border-radius: 100px; background: rgba(129, 140, 248, 0.1); color: #818cf8; font-size: 12px; font-weight: 600; margin-bottom: 12px; border: 1px solid rgba(129, 140, 248, 0.2); }
+    .phase-deliverable { margin-top: 12px; padding: 16px; background: var(--glass); border: 1px solid var(--border); border-radius: 12px; display: flex; align-items: center; gap: 12px; font-size: 14px; }
+
+
+    /* --- ROI CALCULATOR --- */
+    .calc-container { background: var(--glass); border: 1px solid var(--border); border-radius: 32px; padding: 40px; margin-top: 40px; text-align: center; }
+    .calc-toggle { display: inline-flex; gap: 4px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 100px; margin-bottom: 32px; }
+    .toggle-btn { padding: 8px 24px; border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; }
+    .toggle-btn.active { background: var(--glass-hover); color: var(--text-main); border: 1px solid var(--border); }
+    
+    input[type=range] { width: 100%; -webkit-appearance: none; background: var(--border); height: 4px; border-radius: 4px; margin-top: 10px; }
+    input[type=range]:focus { outline: none; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; background: #818cf8; border-radius: 50%; cursor: pointer; box-shadow: 0 0 15px rgba(129, 140, 248, 0.5); transition: 0.2s; }
+    input[type=range]:active::-webkit-slider-thumb { transform: scale(1.3); }
+    
+    .savings-amount { font-size: clamp(32px, 5vw, 56px); font-weight: 900; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    #contractHoursGroup { display: none; opacity: 0; transition: opacity 0.4s ease; }
+    #contractHoursGroup.visible { display: block; opacity: 1; }
+
+    /* --- USE CASES --- */
+    .case-study-card { background: var(--glass); border: 1px solid var(--border); border-radius: 32px; padding: 40px; margin-top: 60px; }
+    .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 32px; border-top: 1px solid var(--border); padding-top: 32px; }
+    .case-list li { display: flex; gap: 10px; font-size: 15px; color: var(--text-muted); margin-bottom: 12px; }
+    
+    /* --- INTEGRATIONS --- */
+    .trusted-label { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 60px; text-align: center; opacity: 0.8; }
+    .logos-grid { display: flex; justify-content: center; gap: 40px 80px; flex-wrap: wrap; align-items: center; }
+    
+    .logo-item-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; cursor: default; }
+    .logo-item { height: 32px; width: 32px; fill: var(--text-muted); opacity: 0.5; transition: 0.3s; }
+    .logo-name { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: var(--text-main); margin-top: 8px; transition: 0.3s; }
+
+    /* Desktop Hover Logic */
+    @media (hover: hover) {
+      .logo-name { opacity: 0; transform: translateY(10px); }
+      .logo-item-wrapper:hover .logo-item { opacity: 1; fill: var(--text-main); transform: scale(1.1); }
+      .logo-item-wrapper:hover .logo-name { opacity: 1; transform: translateY(0); }
+    }
+    /* Mobile Logo Logic (Always Visible) */
+    @media (hover: none) {
+      .logo-name { opacity: 1; transform: translateY(0); }
+      .logo-item { opacity: 0.8; }
     }
 
-    /* Footer Stats */
-    .footer-stats {
-      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 40px; padding-top: 40px; 
-      border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted);
-    }
-    .footer-stats strong { color: var(--text-main); font-weight: 700; }
-
+    /* --- RESPONSIVE FIXES --- */
     @media (max-width: 1024px) {
       .container { width: 90%; }
       .nav-links { display: none; } .hamburger { display: block; }
       .hero { padding-top: 180px; }
-      .stats-bar { grid-template-columns: 1fr; }
+      .stats-bar { grid-template-columns: 1fr; gap: 10px; }
+      
       .bento-large, .bento-medium, .bento-small { grid-column: span 12; }
-      .process-container { flex-direction: column; }
-    }
-    @media (max-width: 600px) {
+      
+      /* Process Icons: 2 Column Grid on Mobile */
+      .process-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .process-card:last-child { grid-column: span 2; }
+      
+      .case-grid { grid-template-columns: 1fr; gap: 32px; }
       .hero-btns { flex-direction: column; }
-      .calc-container { padding: 32px 16px; } 
+      .calc-container { padding: 32px 16px; }
     }
-    footer { padding: 80px 0; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-muted); }
-    .reveal { opacity: 0; transform: translateY(40px) scale(0.98); transition: all 1s var(--ease); }
-    .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
+
+    footer { border-top: 1px solid var(--border); padding: 80px 0; margin-top: 120px; font-size: 14px; color: var(--text-muted); }
+    .scarcity-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 100px; margin-bottom: 24px; font-size: 13px; font-weight: 600; color: #f87171; }
+    .footer-stats { display: flex; justify-content: center; gap: 30px; margin-top: 40px; flex-wrap: wrap; }
+    .footer-stats strong { color: var(--text-main); }
+    
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 1s var(--ease); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-  <div class="grain"></div>
   <div class="background-wrapper">
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
   </div>
 
   <header id="header">
     <div class="container nav-container">
       <a href="#" class="logo">
-        <img src="logo.jpeg" alt="Randexa"> 
-        RANDEXA
+        <img src="logo.jpeg" alt="Randexa"> RANDEXA
       </a>
       <div class="nav-links">
         <a href="#capabilities" class="nav-link">Capabilities</a>
-        <a href="#calculator" class="nav-link">Calculator</a>
         <a href="#process" class="nav-link">Process</a>
+        <a href="#calculator" class="nav-link">Calculator</a>
         <a href="#testimonials" class="nav-link">Results</a>
         <a href="mailto:randexa.sg@gmail.com" class="nav-link">Contact</a>
         <a href="#book" class="btn-magnetic">Book Call</a>
       </div>
-      <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle Menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
     </div>
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="#capabilities" class="mobile-link" onclick="toggleMenu()">Capabilities</a>
-    <a href="#calculator" class="mobile-link" onclick="toggleMenu()">Calculator</a>
     <a href="#process" class="mobile-link" onclick="toggleMenu()">Process</a>
+    <a href="#calculator" class="mobile-link" onclick="toggleMenu()">Calculator</a>
     <a href="#testimonials" class="mobile-link" onclick="toggleMenu()">Results</a>
-    <a href="mailto:randexa.sg@gmail.com" class="mobile-link" onclick="toggleMenu()">Contact</a>
     <a href="#book" class="btn-magnetic" onclick="toggleMenu()">Book Call</a>
   </div>
 
   <section class="hero container">
     <div class="hero-content">
-      <div class="hero-statement">
-        Randexa is a startup that builds autonomous agents to replace manual admin and drive profit.
-      </div>
-      <h1>You don't have a people problem.<br>
-      <span class="text-shine" style="text-transform: uppercase;">YOU HAVE A SYSTEMS PROBLEM.</span></h1>
-      
-      <p class="hero-subtext">
-        We re-engineer your business logic for speed and reliability. From AI agents to workflow architecture, we eliminate the bottlenecks holding you back.
-      </p>
-      
+      <div class="hero-statement">Randexa is an intelligent automation infrastructure firm.</div>
+      <h1>You don't have a people problem.<br><span class="text-shine">YOU HAVE A SYSTEMS PROBLEM.</span></h1>
+      <p class="hero-subtext">We re-engineer your business logic for speed and reliability. From AI agents to workflow architecture, we eliminate the bottlenecks holding you back.</p>
       <div class="hero-btns">
         <a href="#book" class="btn-magnetic">Book a Free Discovery Call</a>
         <a href="#process" class="btn-secondary">How It Works</a>
       </div>
     </div>
-
     <div class="stats-bar">
-      <div class="stat-item"><div class="stat-number" data-target="20">0</div><div class="stat-label">Clients Served</div></div>
-      <div class="stat-item"><div class="stat-number" data-target="1000">0</div><div class="stat-label">Hours Saved</div></div>
-      <div class="stat-item"><div class="stat-number" data-target="50">0</div><div class="stat-label">Workflows Built</div></div>
+      <div class="stat-item"><div class="stat-number">20+</div><div class="stat-label">Clients Served</div></div>
+      <div class="stat-item"><div class="stat-number">1000+</div><div class="stat-label">Hours Saved (Est)</div></div>
+      <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">Workflows Built</div></div>
     </div>
   </section>
 
   <section id="capabilities" class="section">
     <div class="container reveal">
       <h2>Capabilities</h2>
-      <p style="margin-top:16px; max-width: 500px; font-weight:300;">We don't sell features. We sell time.</p>
-
       <div class="bento-grid">
+        
         <div class="card bento-large">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+          <div class="icon-box icon-robot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
           </div>
           <h3>24/7 Lead Capture</h3>
-          <p>Stop losing money to slow replies. Our agents handle inquiries, qualify leads, and book meetings instantly.</p>
+          <p>Our agents handle inquiries, qualify leads, and book meetings instantly.</p>
           <div class="code-terminal">
             <div class="terminal-header"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
             <div class="terminal-body">
-              <div class="code-line"><span class="hl-keyword">const</span> agent = <span class="hl-keyword">new</span> RandexaAgent();</div>
-              <div class="code-line">agent.<span class="hl-func">listen</span>(<span class="hl-string">"WhatsApp"</span>);</div>
-              <div class="code-line"><span class="hl-keyword">await</span> agent.<span class="hl-func">qualifyLead</span>({ score: <span class="hl-string">"High"</span> });</div>
-              <div class="code-line">// → Lead booked automatically.</div>
+              <span class="code-line"><span class="hl-keyword">const</span> agent = <span class="hl-keyword">new</span> RandexaAgent();</span>
+              <span class="code-line">agent.listen(<span class="hl-string">"WhatsApp"</span>);</span>
+              <span class="code-line"><span class="hl-keyword">await</span> agent.qualify(); // Booked.</span>
             </div>
           </div>
         </div>
 
         <div class="card bento-medium">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          <div class="icon-box icon-cycle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6"/><path d="M2.5 22v-6h6"/><path d="M2 11.5a10 10 0 0 1 18.8-4.3L21.5 8"/><path d="M22 12.5a10 10 0 0 1-18.8 4.2L2.5 16"/></svg>
           </div>
           <h3>Eliminate Data Entry</h3>
-          <p>When data enters one system, it updates everywhere.</p>
-          
+          <p>When data enters one system, it updates everywhere automatically.</p>
           <div class="anim-simultaneous-container">
             <div class="anim-row">
               <div class="anim-row-icon"><svg viewBox="0 0 24 24" fill="#25D366"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.12.55 4.12 1.52 5.88L0 24l6.27-1.48C7.96 23.47 9.92 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></div>
@@ -573,27 +429,92 @@
         </div>
 
         <div class="card bento-small">
-          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg></div>
+          <div class="icon-box icon-flash">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
           <h3>Ongoing Optimisation</h3>
-          <p>We monitor your systems to ensure they run faster.</p>
           <div class="anim-pulse-container"><div class="pulse-bar"></div><div class="pulse-bar"></div><div class="pulse-bar"></div><div class="pulse-bar"></div><div class="pulse-bar"></div></div>
         </div>
 
         <div class="card bento-small">
-          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+          <div class="icon-box icon-chart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
           <h3>Operational Blueprints</h3>
-          <p>We audit your process and identify inefficiencies.</p>
           <div class="anim-grid-scan"><div class="scan-line"></div></div>
         </div>
 
         <div class="card bento-small">
-          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+          <div class="icon-box icon-doc">
+             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
           <h3>Automate the Boring</h3>
-          <p>Invoicing and scheduling happen without you.</p>
           <div class="anim-checklist">
-            <div class="check-item"><div class="check-box"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span>Send Invoice #1024</span></div>
-            <div class="check-item"><div class="check-box"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span>Follow up Lead</span></div>
-            <div class="check-item"><div class="check-box"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span>Update CRM</span></div>
+            <div class="check-item"><div class="check-box"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="4"><polyline points="20 6 9 17 4 12"/></svg></div> Invoice Sent</div>
+            <div class="check-item"><div class="check-box"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="4"><polyline points="20 6 9 17 4 12"/></svg></div> CRM Updated</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="section">
+    <div class="container reveal">
+      <h2>The Process</h2>
+      <p style="margin-bottom:60px;">From audit to autonomous system in 4 weeks.</p>
+      
+      <div class="process-container">
+        <div class="process-card">
+          <div class="process-icon-circle"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+          <h3>Audit</h3>
+        </div>
+        <div class="process-card">
+          <div class="process-icon-circle"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon></svg></div>
+          <h3>Blueprint</h3>
+        </div>
+        <div class="process-card">
+          <div class="process-icon-circle"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
+          <h3>Build</h3>
+        </div>
+        <div class="process-card">
+          <div class="process-icon-circle"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="M12 15l-3-3a22 22 0 0 1 2-9.5 22.15 22.15 0 0 1 9.5 2"></path></svg></div>
+          <h3>Deploy</h3>
+        </div>
+        <div class="process-card">
+          <div class="process-icon-circle"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></div>
+          <h3>Optimise</h3>
+        </div>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-phase">
+          <div class="phase-dot"></div>
+          <span class="phase-tag">Week 1</span>
+          <h3>Deep Workflow Analysis</h3>
+          <p>We map every manual process in your business to identify high-ROI automation points.</p>
+          <div class="phase-deliverable">
+             <span style="margin-right:8px;">📄</span> <strong>Deliverable:</strong> Process Blueprint & Architecture Map
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <div class="phase-dot"></div>
+          <span class="phase-tag">Week 2-3</span>
+          <h3>Build & Integration</h3>
+          <p>Our engineers develop the automation scripts, connect APIs, and build your AI agents.</p>
+          <div class="phase-deliverable">
+             <span style="margin-right:8px;">⚙️</span> <strong>Deliverable:</strong> Fully Functional Automation System
+          </div>
+        </div>
+
+        <div class="timeline-phase">
+          <div class="phase-dot"></div>
+          <span class="phase-tag">Week 4</span>
+          <h3>Handover & Training</h3>
+          <p>We stress-test the system, document the code, and train your team.</p>
+          <div class="phase-deliverable">
+             <span style="margin-right:8px;">📚</span> <strong>Deliverable:</strong> Video Documentation & Support
           </div>
         </div>
       </div>
@@ -603,7 +524,7 @@
   <section id="calculator" class="section">
     <div class="container reveal">
       <h2>ROI Calculator</h2>
-      <p style="margin-top:16px; margin-bottom:40px; color:var(--text-muted);">See how much manual admin is costing your business.</p>
+      <p style="margin-bottom:40px;">See how much manual admin is costing your business.</p>
       
       <div class="calc-container">
         <div class="calc-toggle">
@@ -614,28 +535,60 @@
         <div class="calc-inputs">
           <div class="input-group">
             <label>Staff Members: <span id="staffVal" style="color:var(--text-main)">1</span></label>
-            <div class="slider-container"><input type="range" id="staffInput" min="1" max="50" value="1"></div>
+            <input type="range" id="staffInput" min="1" max="50" value="1">
           </div>
-          
           <div class="input-group">
             <label>Admin Hours Wasted (Per Staff/Week): <span id="hoursVal" style="color:var(--text-main)">20</span> hrs</label>
-            <div class="slider-container"><input type="range" id="hoursInput" min="0" max="60" value="20"></div>
+            <input type="range" id="hoursInput" min="0" max="60" value="20">
           </div>
-          
           <div class="input-group">
             <label id="rateLabel">Average hourly staff cost: $<span id="rateVal" style="color:var(--text-main)">25</span></label>
-            <div class="slider-container"><input type="range" id="rateInput" min="10" max="100" value="25" step="1"></div>
+            <input type="range" id="rateInput" min="10" max="100" value="25" step="1">
           </div>
-
           <div class="input-group" id="contractHoursGroup">
             <label>Staff Contract Hours (Per Week): <span id="contractVal" style="color:var(--text-main)">40</span> hrs</label>
-            <div class="slider-container"><input type="range" id="contractInput" min="20" max="60" value="40" step="1"></div>
+            <input type="range" id="contractInput" min="20" max="60" value="40" step="1">
           </div>
         </div>
         
         <div class="calc-result">
           <div class="savings-label">Total Estimated Yearly Savings</div>
           <div class="savings-amount">$<span id="totalSavings">26,000</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="section">
+    <div class="container reveal">
+      <h2>Why Automate?</h2>
+      
+      <div class="case-study-card">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px;">
+          <div>
+            <h3 style="font-size:24px; margin-bottom:8px;">Scenario: Lead Management</h3>
+            <p style="color:var(--text-muted); font-size:14px;">The difference between losing a client and closing them.</p>
+          </div>
+          <div style="font-weight:700; color:#10b981; font-size:18px;">Result: 20+ Hours Saved / Week</div>
+        </div>
+
+        <div class="case-grid">
+          <div class="case-col" style="border-left: 2px solid rgba(239, 68, 68, 0.4); padding-left: 20px;">
+            <h4 style="color:#ef4444">The Manual Way</h4>
+            <ul class="case-list">
+              <li><span style="color:#ef4444; margin-right:8px;">✕</span> Copy-pasting data between emails & CRM</li>
+              <li><span style="color:#ef4444; margin-right:8px;">✕</span> Leads wait 24+ hours for a reply</li>
+              <li><span style="color:#ef4444; margin-right:8px;">✕</span> High staff burnout from repetitive tasks</li>
+            </ul>
+          </div>
+          <div class="case-col" style="border-left: 2px solid rgba(16, 185, 129, 0.4); padding-left: 20px;">
+            <h4 style="color:#10b981">The Automated Way</h4>
+            <ul class="case-list">
+              <li><span style="color:#10b981; margin-right:8px;">✓</span> Instant data sync across all tools</li>
+              <li><span style="color:#10b981; margin-right:8px;">✓</span> Leads get personalized replies in &lt; 2 mins</li>
+              <li><span style="color:#10b981; margin-right:8px;">✓</span> Zero manual admin required</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -649,61 +602,33 @@
           <svg class="logo-item" viewBox="0 0 24 24"><title>Zapier</title><path d="M4.157 0A4.151 4.151 0 0 0 0 4.161v15.678A4.151 4.151 0 0 0 4.157 24h15.682A4.152 4.152 0 0 0 24 19.839V4.161A4.152 4.152 0 0 0 19.839 0H4.157Zm10.61 8.761h.03a.577.577 0 0 1 .23.038.585.585 0 0 1 .201.124.63.63 0 0 1 .162.431.612.612 0 0 1-.162.435.58.58 0 0 1-.201.128.58.58 0 0 1-.23.042.529.529 0 0 1-.235-.042.585.585 0 0 1-.332-.328.559.559 0 0 1-.038-.235.613.613 0 0 1 .17-.431.59.59 0 0 1 .405-.162Zm2.853 1.572c.03.004.061.004.095.004.325-.011.646.064.937.219.238.144.431.355.552.609.128.279.189.582.185.888v.193a2 2 0 0 1 0 .219h-2.498c.003.227.075.45.204.642a.78.78 0 0 0 .646.265.714.714 0 0 0 .484-.136.642.642 0 0 0 .23-.318l.915.257a1.398 1.398 0 0 1-.28.537c-.14.159-.321.284-.521.355a2.234 2.234 0 0 1-.836.136 1.923 1.923 0 0 1-1.001-.245 1.618 1.618 0 0 1-.665-.703 2.221 2.221 0 0 1-.227-1.036 1.95 1.95 0 0 1 .48-1.398 1.9 1.9 0 0 1 1.3-.488Zm-9.607.023c.162.004.325.026.48.079.207.065.4.174.563.314.26.302.393.692.366 1.088v2.276H8.53l-.109-.711h-.065c-.064.163-.155.31-.272.439a1.122 1.122 0 0 1-.374.264 1.023 1.023 0 0 1-.453.083 1.334 1.334 0 0 1-.866-.264.965.965 0 0 1-.329-.801.993.993 0 0 1 .076-.431 1.02 1.02 0 0 1 .242-.363 1.478 1.478 0 0 1 1.043-.303h.952v-.181a.696.696 0 0 0-.136-.454.553.553 0 0 0-.438-.154.695.695 0 0 0-.378.086.48.48 0 0 0-.193.254l-.99-.144a1.26 1.26 0 0 1 .257-.563c.14-.174.321-.302.533-.378.261-.091.54-.136.82-.129.053-.003.106-.007.163-.007Zm4.384.007c.174 0 .347.038.506.114.182.083.34.211.458.374.257.423.377.911.351 1.406a2.53 2.53 0 0 1-.355 1.448 1.148 1.148 0 0 1-1.009.517c-.204 0-.401-.045-.582-.136a1.052 1.052 0 0 1-.48-.457 1.298 1.298 0 0 1-.114-.234h-.045l.004 1.784h-1.059v-4.713h.904l.117.805h.057c.068-.208.177-.401.328-.56a1.129 1.129 0 0 1 .843-.344h.076v-.004Zm7.559.084h.903l.113.805h.053a1.37 1.37 0 0 1 .235-.484.813.813 0 0 1 .313-.242.82.82 0 0 1 .39-.076h.234v1.051h-.401a.662.662 0 0 0-.313.008.623.623 0 0 0-.272.155.663.663 0 0 0-.174.26.683.683 0 0 0-.027.314v1.875h-1.054v-3.666Zm-17.515.003h3.262v.896L3.73 13.104l.034.113h1.973l.042.9H2.4v-.9l1.931-1.754-.045-.117H2.441v-.896Zm11.815 0h1.055v3.659h-1.055V10.45Zm3.443.684.019.016a.69.69 0 0 0-.351.045.756.756 0 0 0-.287.204c-.11.155-.174.336-.189.522h1.545c-.034-.526-.257-.787-.74-.787h.003Zm-5.718.163c-.026 0-.057 0-.083.004a.78.78 0 0 0-.31.053.746.746 0 0 0-.257.189 1.016 1.016 0 0 0-.204.695v.064c-.015.257.057.507.204.711a.634.634 0 0 0 .253.196.638.638 0 0 0 .314.061.644.644 0 0 0 .578-.265c.14-.223.204-.48.189-.74a1.216 1.216 0 0 0-.181-.711.677.677 0 0 0-.503-.257Zm-4.509 1.266a.464.464 0 0 0-.268.102.373.373 0 0 0-.114.276c0 .053.008.106.027.155a.375.375 0 0 0 .087.132.576.576 0 0 0 .397.11v.004a.863.863 0 0 0 .563-.182.573.573 0 0 0 .211-.457v-.14h-.903Z" fill="currentColor"/></svg>
           <span class="logo-name">Zapier</span>
         </div>
-
         <div class="logo-item-wrapper">
           <svg class="logo-item" viewBox="0 0 24 24"><title>Make</title><path d="M13.38 3.498c-.27 0-.511.19-.566.465L9.85 18.986a.578.578 0 0 0 .453.678l4.095.826a.58.58 0 0 0 .682-.455l2.963-15.021a.578.578 0 0 0-.453-.678l-4.096-.826a.589.589 0 0 0-.113-.012zm-5.876.098a.576.576 0 0 0-.516.318L.062 17.697a.575.575 0 0 0 .256.774l3.733 1.877a.578.578 0 0 0 .775-.258l6.926-13.781a.577.577 0 0 0-.256-.776L7.762 3.658a.571.571 0 0 0-.258-.062zm11.74.115a.576.576 0 0 0-.576.576v15.426c0 .318.258.578.576.578h4.178a.58.58 0 0 0 .578-.578V4.287a.578.578 0 0 0-.578-.576Z" fill="currentColor"/></svg>
           <span class="logo-name">Make</span>
         </div>
-
         <div class="logo-item-wrapper">
           <svg class="logo-item" viewBox="0 0 24 24"><title>n8n</title><path d="M21.4737 5.6842c-1.1772 0-2.1663.8051-2.4468 1.8947h-2.8955c-1.235 0-2.289.893-2.492 2.111l-.1038.623a1.263 1.263 0 0 1-1.246 1.0555H11.289c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947s-2.1663.8051-2.4467 1.8947H4.973c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947C1.1311 9.4737 0 10.6047 0 12s1.131 2.5263 2.5263 2.5263c1.1772 0 2.1663-.8051 2.4468-1.8947h1.4223c.2804 1.0896 1.2696 1.8947 2.4467 1.8947 1.1772 0 2.1663-.8051 2.4468-1.8947h1.0008a1.263 1.263 0 0 1 1.2459 1.0555l.1038.623c.203 1.218 1.257 2.111 2.492 2.111h.3692c.2804 1.0895 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263c-1.1772 0-2.1664.805-2.4468 1.8947h-.3692a1.263 1.263 0 0 1-1.246-1.0555l-.1037-.623A2.52 2.52 0 0 0 13.9607 12a2.52 2.52 0 0 0 .821-1.4794l.1038-.623a1.263 1.263 0 0 1 1.2459-1.0555h2.8955c.2805 1.0896 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263m0 1.2632a1.263 1.263 0 0 1 1.2631 1.2631 1.263 1.263 0 0 1-1.2631 1.2632 1.263 1.263 0 0 1-1.2632-1.2632 1.263 1.263 0 0 1 1.2632-1.2631M2.5263 10.7368A1.263 1.263 0 0 1 3.7895 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 1.2632 12a1.263 1.263 0 0 1 1.2631-1.2632m6.3158 0A1.263 1.263 0 0 1 10.1053 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 7.579 12a1.263 1.263 0 0 1 1.2632-1.2632m10.1053 3.7895a1.263 1.263 0 0 1 1.2631 1.2632 1.263 1.263 0 0 1-1.2631 1.2631 1.263 1.263 0 0 1-1.2632-1.2631 1.263 1.263 0 0 1 1.2632-1.2632" fill="currentColor"/></svg>
           <span class="logo-name">n8n</span>
         </div>
-
         <div class="logo-item-wrapper">
-          <svg class="logo-item" viewBox="0 0 24 24"><title>OpenAI</title><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 1.645-1.645h.0006l.0006-.0006.0006-.0005.0005-.0006.0006-.0005.0006-.0005.0005-.0005.0006-.0005.0005-.0006.0006-.0005.0005-.0005.0006-.0005.0005-.0006.0006-.0005.0005-.0005.0006-.0005.0005-.0006.0006-.0005 1.5-1.5c.0544-.0533.1063-.1093.1556-.1681a2.8236 2.8236 0 0 1 .1893-.2071l.0006-.0005a2.723 2.723 0 0 1 .3732-.352 2.6622 2.6622 0 0 1 .2326-.171l2.457-1.4172v4.529a4.5222 4.5222 0 0 1-4.4234 4.0682zm-9.406-5.833a4.4827 4.4827 0 0 1-.5279-3.0452l1.645 1.645a2.7684 2.7684 0 0 1 .1873.2082 2.628 2.628 0 0 1 .3743.522 2.6234 2.6234 0 0 1 .17.562l.0006.0005.0005.0005.0005.0005.0006.0005.0005.0005.0006.0005.0005.0005.0006.0006.0005.0005.0006.0005.0005.0005.0006.0005.0005.0006.0006.0005.0005.0005.0006.0005.0005.0006.0006.0005.0005.0005 1.0506 2.656l-3.9213-2.2647a4.5126 4.5126 0 0 1-1.6373-5.3857zm1.6934-8.8023a4.5152 4.5152 0 0 1 3.4975-.4866v4.542l-.0005.0006-.0005.0005-.0006.0006-.0005.0005-.0006.0005-.0005.0006-.0006.0005-.0005.0005-.0006.0006-.0005.0005-.0006.0005-.0005.0006-.0006.0005-.0005.0005-.0006.0006-.0005.0005-.0006.0005-.0005.0006-.0006.0005-2.656 1.0506-2.2647-3.9213a4.4731 4.4731 0 0 1 1.932-5.7386zm11.2338-1.5284a4.4731 4.4731 0 0 1 2.8764 1.0408l-1.645 1.645a2.8687 2.8687 0 0 1-.1893.2071l-.0006.0005a2.6937 2.6937 0 0 1-.3732.352 2.6468 2.6468 0 0 1-.2326.171l-2.457 1.4172V3.7915a4.5222 4.5222 0 0 1 4.4234-4.0682zM19.187 9.87l-1.645-1.645a2.7684 2.7684 0 0 1-.1873-.2082 2.628 2.628 0 0 1-.3743-.522 2.6234 2.6234 0 0 1-.17-.562l-.0006-.0005-.0005-.0005-.0005-.0005-.0006-.0005-.0005-.0005-.0006-.0005-.0005-.0005-.0006-.0006-.0005-.0005-.0006-.0005-.0005-.0005-.0006-.0005-.0005-.0006-.0006-.0005-.0005-.0005-.0006-.0005-.0005-.0006-.0006-.0005-.0005-.0005-1.0506-2.656 3.9213 2.2647a4.5126 4.5126 0 0 1 1.6373 5.3857zM8.3183 16.297l-2.4642-1.4215L8.3183 13.454l2.4642 1.4215zm3.6963-2.1336l-2.4642-1.4215L12.0146 11.3204l2.4642 1.4215zm0-2.8443L9.5504 9.8976 12.0146 8.4761l2.4642 1.4215zm3.6963 2.1336l-2.4642-1.4215 2.4642-1.4215 2.4642 1.4215z" fill="currentColor"/></svg>
+          <svg class="logo-item" viewBox="0 0 24 24"><title>OpenAI</title><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 1.645-1.645h.0006l.0006-.0006.0006-.0005.0005-.0006.0006-.0005.0006-.0005.0005-.0005.0006-.0005.0005-.0006.0006-.0005.0005-.0005.0006-.0005.0005-.0006.0006-.0005.0005-.0005.0006-.0005.0005-.0006.0006-.0005 1.5-1.5c.0544-.0533.1063-.1093.1556-.1681a2.8236 2.8236 0 0 1 .1893-.2071l.0006-.0005a2.723 2.723 0 0 1 .3732-.352 2.6622 2.6622 0 0 1 .2326-.171l2.457-1.4172v4.529a4.5222 4.5222 0 0 1-4.4234 4.0682zm-9.406-5.833a4.4827 4.4827 0 0 1-.5279-3.0452l1.645 1.645a2.7684 2.7684 0 0 1 .1873.2082 2.628 2.628 0 0 1 .3743.522 2.6234 2.6234 0 0 1 .17.562l.0006.0005.0005.0005.0005.0005.0006.0005.0005.0005.0006.0005.0005.0005.0006.0006.0005.0005.0006.0005.0005.0005.0006.0005.0005.0006.0006.0005.0005.0006.0006.0005.0005.0005 1.0506 2.656l-3.9213-2.2647a4.5126 4.5126 0 0 1-1.6373-5.3857zm1.6934-8.8023a4.5152 4.5152 0 0 1 3.4975-.4866v4.542l-.0005.0006-.0005.0005-.0006.0006-.0005.0005-.0006.0005-.0005.0006-.0006.0005-.0005.0005-.0006.0006-.0005.0005-.0006.0005-.0005.0006-.0006.0005-.0005.0005-.0006.0006-.0005.0005-.0006.0005-.0005.0006-.0006.0005-2.656 1.0506-2.2647-3.9213a4.4731 4.4731 0 0 1 1.932-5.7386zm11.2338-1.5284a4.4731 4.4731 0 0 1 2.8764 1.0408l-1.645 1.645a2.8687 2.8687 0 0 1-.1893.2071l-.0006.0005a2.6937 2.6937 0 0 1-.3732.352 2.6468 2.6468 0 0 1-.2326.171l-2.457 1.4172V3.7915a4.5222 4.5222 0 0 1 4.4234-4.0682zM19.187 9.87l-1.645-1.645a2.7684 2.7684 0 0 1-.1873-.2082 2.628 2.628 0 0 1-.3743-.522 2.6234 2.6234 0 0 1-.17-.562l-.0006-.0005-.0005-.0005-.0005-.0005-.0006-.0005-.0005-.0005-.0006-.0005-.0005-.0005-.0006-.0006-.0005-.0005-.0006-.0005-.0005-.0005-.0006-.0005-.0005.0006-.0006.0005-.0005.0005-.0006.0005-.0005.0006-.0006.0005-1.0506-2.656 3.9213 2.2647a4.5126 4.5126 0 0 1 1.6373 5.3857zM8.3183 16.297l-2.4642-1.4215L8.3183 13.454l2.4642 1.4215zm3.6963-2.1336l-2.4642-1.4215L12.0146 11.3204l2.4642 1.4215zm0-2.8443L9.5504 9.8976 12.0146 8.4761l2.4642 1.4215zm3.6963 2.1336l-2.4642-1.4215 2.4642-1.4215 2.4642 1.4215z" fill="currentColor"/></svg>
           <span class="logo-name">OpenAI</span>
         </div>
-
         <div class="logo-item-wrapper">
           <svg class="logo-item" viewBox="0 0 24 24"><title>Meta</title><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z" fill="currentColor"/></svg>
           <span class="logo-name">Meta</span>
         </div>
-
         <div class="logo-item-wrapper">
           <svg class="logo-item" viewBox="0 0 24 24"><title>Google</title><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.347.533 12S5.867 24 12.48 24c3.44 0 6.013-1.133 8.027-3.227 2.053-2.027 2.667-4.96 2.667-7.333 0-.76-.067-1.48-.173-2.52H12.48z" fill="currentColor"/></svg>
           <span class="logo-name">Google</span>
         </div>
-
         <div class="logo-item-wrapper">
           <svg class="logo-item" viewBox="0 0 24 24"><title>Apple</title><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24.02-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.78 1.18-.19 2.31-.89 3.51-.84 1.54.06 2.68.79 3.49 1.92-3.03 1.86-2.46 5.92.5 7.14-.58 1.42-1.38 2.83-2.58 3.97zm-3.5-13.7c.33-1.87 1.6-3.25 3.19-3.41.34 2.05-1.92 3.63-3.19 3.41z" fill="currentColor"/></svg>
           <span class="logo-name">Apple</span>
         </div>
-
         <div class="logo-item-wrapper">
           <svg class="logo-item" viewBox="0 0 24 24"><title>GitHub</title><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.605-2.805 5.625-5.475 5.92.435.375.81 1.095.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12z" fill="currentColor"/></svg>
           <span class="logo-name">GitHub</span>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="testimonials" class="section">
-    <div class="container reveal">
-      <h2>What Clients Say</h2>
-      <div class="testimonial-grid">
-        <div class="card">
-          <div class="testimonial-text">"The automation system Randexa built saved our admin team 20 hours a week instantly. It felt like magic."</div>
-          <div class="testimonial-author"><div>Operations Director</div><div>Logistics Firm, Singapore</div></div>
-        </div>
-        <div class="card">
-          <div class="testimonial-text">"We used to miss leads on weekends. Now, the AI agent qualifies and books them automatically."</div>
-          <div class="testimonial-author"><div>Founder</div><div>Education Centre</div></div>
-        </div>
-        <div class="card">
-          <div class="testimonial-text">"Professional, technical, and incredibly fast. They understood our workflow better than we did."</div>
-          <div class="testimonial-author"><div>Head of Sales</div><div>Recruitment Agency</div></div>
         </div>
       </div>
     </div>
@@ -712,16 +637,11 @@
   <section id="book" class="section booking-section">
     <div class="container reveal">
       <h2>Book a Free Discovery Call</h2>
-
       <div class="scarcity-badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
         <span>Limited Availability: <span id="slotsLeft">3</span> slots remaining for January</span>
       </div>
-
-      <p style="margin: 16px auto 32px; max-width:600px; color:var(--text-muted);">
-        We onboard 3 partners per month to ensure quality.
-      </p>
-
+      <p style="margin: 16px auto 32px; max-width:600px; color:var(--text-muted);">We onboard 3 partners per month to ensure quality.</p>
       <div class="calendly-wrapper">
         <div class="calendly-inline-widget" data-url="https://calendly.com/randexa/discovery-call?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0f1115&text_color=ffffff&primary_color=8b5cf6" style="min-width:320px;height:700px;width:100%;"></div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
@@ -732,17 +652,10 @@
   <footer>
     <div class="container">
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; padding-bottom: 40px;">
-        <div style="font-weight:700; display:flex; align-items:center; gap:12px; text-transform:uppercase; color: var(--text-main);">
-          <img src="logo.jpeg" style="width:24px; border-radius:4px;"> RANDEXA
-        </div>
-        
-        <a href="mailto:randexa.sg@gmail.com" style="color:var(--text-muted); text-decoration:none; font-size:16px; font-weight:500;">
-          randexa.sg@gmail.com
-        </a>
-        
+        <div style="font-weight:700; display:flex; align-items:center; gap:12px; color: var(--text-main);"><img src="logo.jpeg" style="width:24px; border-radius:4px;"> RANDEXA</div>
+        <a href="mailto:randexa.sg@gmail.com" style="color:var(--text-muted); text-decoration:none; font-size:16px;">randexa.sg@gmail.com</a>
         <div style="font-size:13px; color:var(--text-muted);">&copy; 2026 Randexa.</div>
       </div>
-      
       <div class="footer-stats">
         <div><strong>99.9%</strong> Uptime Guarantee</div>
         <div><strong>&lt;1.2s</strong> Avg Response Time</div>
@@ -754,23 +667,12 @@
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script> 
   
   <script>
-    // Initialize Lenis
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
-      gestureDirection: 'vertical',
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
+    // Initialize Lenis (Desktop Only)
+    if (window.innerWidth > 768) {
+      const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
       requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
 
     // Reveal Animation
     const observer = new IntersectionObserver((entries) => {
@@ -780,30 +682,28 @@
 
     // Mobile Menu
     function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('active'));
+    });
 
-    // Header Scroll Effect
+    // Header Scroll
     window.addEventListener('scroll', () => {
       const header = document.getElementById('header');
       if (window.scrollY > 50) header.classList.add('scrolled');
       else header.classList.remove('scrolled');
     });
 
-    // Stats Counter Animation
+    // Stats Animation
     const counters = document.querySelectorAll('.stat-number');
     const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const target = +entry.target.getAttribute('data-target');
+          const target = +entry.target.innerText.replace('+','');
           let count = 0;
           const updateCount = () => {
             count += target / 50;
-            if (count < target) { 
-              entry.target.innerText = Math.ceil(count); 
-              setTimeout(updateCount, 30); 
-            }
-            else { 
-              entry.target.innerText = target + "+"; 
-            }
+            if (count < target) { entry.target.innerText = Math.ceil(count) + "+"; setTimeout(updateCount, 30); }
+            else { entry.target.innerText = target + "+"; }
           };
           updateCount();
           statsObserver.unobserve(entry.target);
@@ -812,19 +712,17 @@
     }, { threshold: 0.5 });
     counters.forEach(counter => statsObserver.observe(counter));
 
-    // Code Terminal Typing
+    // Code Terminal
     const lines = document.querySelectorAll('.code-line');
     const codeObserver = new IntersectionObserver((entries) => {
       if(entries[0].isIntersecting) {
         lines.forEach(line => line.classList.remove('active'));
-        setTimeout(() => {
-          lines.forEach((line, index) => { setTimeout(() => { line.classList.add('active'); }, index * 600); });
-        }, 100);
+        setTimeout(() => { lines.forEach((line, index) => { setTimeout(() => { line.classList.add('active'); }, index * 600); }); }, 100);
       }
     }, { threshold: 0.5 });
     codeObserver.observe(document.querySelector('.code-terminal'));
     
-    // Magnetic Buttons Script
+    // Magnetic Buttons
     const btns = document.querySelectorAll('.btn-magnetic');
     btns.forEach(btn => {
       btn.addEventListener('mousemove', (e) => {
@@ -839,23 +737,19 @@
     const checkObserver = new IntersectionObserver((entries) => {
       if(entries[0].isIntersecting) {
         checkItems.forEach(item => item.classList.remove('checked'));
-        checkItems.forEach((item, index) => {
-          setTimeout(() => { item.classList.add('checked'); }, index * 1200 + 500);
-        });
+        checkItems.forEach((item, index) => { setTimeout(() => { item.classList.add('checked'); }, index * 1200 + 500); });
       }
     }, { threshold: 0.5 });
     checkObserver.observe(document.querySelector('.anim-checklist'));
 
-    // --- ROI Calculator with Animation ---
+    // ROI Calculator
     const hoursInput = document.getElementById('hoursInput');
     const rateInput = document.getElementById('rateInput');
     const staffInput = document.getElementById('staffInput');
     const contractInput = document.getElementById('contractInput');
-    
     const hoursVal = document.getElementById('hoursVal');
     const staffVal = document.getElementById('staffVal');
     const contractVal = document.getElementById('contractVal');
-    
     const totalSavings = document.getElementById('totalSavings');
     const rateLabel = document.getElementById('rateLabel');
     const btnHourly = document.getElementById('btnHourly');
@@ -867,27 +761,15 @@
     function setMode(newMode) {
       mode = newMode;
       if(mode === 'hourly') {
-        btnHourly.classList.add('active');
-        btnMonthly.classList.remove('active');
+        btnHourly.classList.add('active'); btnMonthly.classList.remove('active');
         rateLabel.innerHTML = 'Average hourly staff cost: $<span id="rateVal" style="color:var(--text-main)">25</span>';
         contractHoursGroup.classList.remove('visible');
-        
-        // Hourly Settings: $10 - $100, step 1
-        rateInput.min = 10;
-        rateInput.max = 100;
-        rateInput.step = 1;
-        rateInput.value = 25;
+        rateInput.min = 10; rateInput.max = 100; rateInput.step = 1; rateInput.value = 25;
       } else {
-        btnMonthly.classList.add('active');
-        btnHourly.classList.remove('active');
+        btnMonthly.classList.add('active'); btnHourly.classList.remove('active');
         rateLabel.innerHTML = 'Average monthly salary: $<span id="rateVal" style="color:var(--text-main)">4000</span>';
         contractHoursGroup.classList.add('visible');
-        
-        // Monthly Settings: $1000 - $20,000, step 500
-        rateInput.min = 1000;
-        rateInput.max = 20000; 
-        rateInput.step = 500;
-        rateInput.value = 4000;
+        rateInput.min = 1000; rateInput.max = 20000; rateInput.step = 500; rateInput.value = 4000;
       }
       calculateROI(); 
     }
@@ -903,37 +785,28 @@
       contractVal.innerText = contractHours;
       
       const rateValSpan = document.getElementById('rateVal');
-      if (rateValSpan) {
-        rateValSpan.innerText = parseInt(rate).toLocaleString();
-      }
+      if (rateValSpan) rateValSpan.innerText = parseInt(rate).toLocaleString();
 
       let hourlyRate = rate;
-      if(mode === 'monthly') {
-        hourlyRate = rate / (contractHours * 4);
-      }
+      if(mode === 'monthly') hourlyRate = rate / (contractHours * 4);
 
       const finalSavings = Math.round(hours * hourlyRate * 52 * staff);
-      
-      // Get current displayed value for smooth transition
       const currentText = totalSavings.innerText.replace(/,/g, '').replace('$', '');
       const startValue = parseInt(currentText) || 0;
-
       animateValue(totalSavings, startValue, finalSavings, 600);
     }
 
-    // Number Counter Animation
     function animateValue(element, start, end, duration) {
       if (start === end) return;
       const range = end - start;
       const startTime = new Date().getTime();
       const endTime = startTime + duration;
-  
       const timer = setInterval(() => {
         const now = new Date().getTime();
         const remaining = Math.max((endTime - now) / duration, 0);
         const value = Math.round(end - (remaining * range));
         element.innerText = value.toLocaleString();
-        if (value == end) { clearInterval(timer); }
+        if (value == end) clearInterval(timer);
       }, 16);
     }
 
@@ -942,27 +815,7 @@
     staffInput.addEventListener('input', calculateROI);
     contractInput.addEventListener('input', calculateROI);
 
-    // Slots Randomizer
     document.getElementById('slotsLeft').innerText = Math.floor(Math.random() * 3) + 1;
-
-    // Scroll Spy
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (pageYOffset >= sectionTop - 150) {
-          current = section.getAttribute('id');
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').includes(current)) {
-          link.classList.add('active');
-        }
-      });
-    });
   </script>
 </body>
 </html>
