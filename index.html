@@ -1,12 +1,49 @@
-this good?
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Randexa builds intelligent automation systems that scale your business."/>
-
+  
   <title>Randexa — Intelligent Business Systems</title>
+  <meta name="description" content="Randexa builds intelligent automation systems and autonomous agents to replace manual admin, scale revenue, and drive profit for high-growth businesses."/>
+  <meta name="keywords" content="AI automation agency, business process automation, autonomous agents, Randexa, lead capture AI, workflow automation"/>
+  <meta name="author" content="Randexa"/>
+  
+  <link rel="canonical" href="https://randexa.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://randexa.com/" />
+  <meta property="og:title" content="Randexa — Scale Your Revenue, Not Your Headcount" />
+  <meta property="og:description" content="We build the autonomous infrastructure that replaces manual admin. Re-engineer your operations for speed, reliability, and profit." />
+  <meta property="og:image" content="https://randexa.com/og-image.jpg" />
+
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://randexa.com/" />
+  <meta property="twitter:title" content="Randexa — AI Automation Infrastructure" />
+  <meta property="twitter:description" content="Stop losing money to manual admin. Randexa builds intelligent systems that scale your business." />
+  <meta property="twitter:image" content="https://randexa.com/og-image.jpg" />
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Randexa",
+    "image": "https://randexa.com/logo.jpeg",
+    "url": "https://randexa.com",
+    "email": "randexa.sg@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Singapore",
+      "addressCountry": "SG"
+    },
+    "description": "Randexa is an AI automation agency building autonomous agents and workflow infrastructure.",
+    "priceRange": "$$$"
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,6 +76,21 @@ this good?
       --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
+    /* --- LIGHT MODE OVERRIDE --- */
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #ffffff;
+        --text-main: #09090b;
+        --text-muted: #52525b;
+        --border: rgba(0, 0, 0, 0.08);
+        --glass: rgba(0, 0, 0, 0.03);
+        --glass-hover: rgba(0, 0, 0, 0.05);
+        --glass-menu: rgba(255, 255, 255, 0.9);
+      }
+      .grain { opacity: 0.03 !important; }
+      .logo img { filter: brightness(0.9); }
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { overflow-x: hidden; }
     
@@ -48,6 +100,7 @@ this good?
       color: var(--text-main);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     /* --- BACKGROUND ENGINE --- */
@@ -95,9 +148,13 @@ this good?
       z-index: 1000;
       transition: all 0.4s var(--ease);
     }
+    @media (prefers-color-scheme: light) {
+      header { background: rgba(255, 255, 255, 0.7); }
+      header.scrolled { background: rgba(255, 255, 255, 0.95); }
+    }
     header.scrolled {
       background: rgba(5, 5, 5, 0.95);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     .nav-container { height: 100%; display: flex; align-items: center; justify-content: space-between; }
@@ -111,7 +168,7 @@ this good?
     .nav-link { font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: 0.2s; position: relative; }
     .nav-link:hover, .nav-link.active { color: var(--text-main); }
 
-    /* Buttons */
+    /* Buttons (Base) */
     .btn-magnetic {
       display: inline-flex; align-items: center; justify-content: center;
       padding: 12px 28px; border-radius: 100px;
@@ -121,6 +178,7 @@ this good?
       position: relative; overflow: hidden;
     }
     .btn-magnetic:hover { box-shadow: 0 0 40px rgba(255,255,255,0.3); }
+    @media (prefers-color-scheme: light) { .btn-magnetic:hover { box-shadow: 0 0 40px rgba(0,0,0,0.15); } }
 
     .btn-secondary {
       padding: 12px 28px; border-radius: 100px; font-weight: 600; font-size: 14px;
@@ -142,21 +200,16 @@ this good?
 
     /* --- HERO --- */
     .hero { padding-top: 240px; padding-bottom: 120px; text-align: center; }
-    
     .hero h1 { margin-bottom: 32px; opacity: 0; animation: fadeUp 0.8s forwards 0.2s; }
-    
     .hero-statement {
-      font-size: 24px; font-weight: 700; color: #ffffff; max-width: 800px; margin: 0 auto 24px;
+      font-size: 24px; font-weight: 700; color: var(--text-main); max-width: 800px; margin: 0 auto 24px;
       opacity: 0; animation: fadeUp 0.8s forwards 0.4s;
     }
-    
     .hero-subtext {
       font-size: 18px; color: var(--text-muted); max-width: 600px; margin: 0 auto 48px;
       opacity: 0; animation: fadeUp 0.8s forwards 0.6s;
     }
-    
     .hero-btns { display: flex; gap: 16px; justify-content: center; margin-bottom: 80px; opacity: 0; animation: fadeUp 0.8s forwards 0.8s; }
-
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -171,21 +224,26 @@ this good?
     .stat-number { font-size: 32px; font-weight: 800; display: block; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .stat-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-top: 8px; }
 
-    /* --- CAPABILITIES (BENTO GRID) --- */
+    /* --- CAPABILITIES --- */
     .bento-grid {
       display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; margin-top: 60px;
     }
     .card {
       background: var(--glass); border: 1px solid var(--border);
       padding: 40px; border-radius: 32px;
-      transition: all 0.5s var(--ease);
       backdrop-filter: blur(12px); position: relative; overflow: hidden;
+      /* Physics Hover (Claude Edit) */
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .card:hover {
-      transform: translateY(-8px); background: var(--glass-hover);
-      border-color: rgba(255,255,255,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 30px 60px rgba(129, 140, 248, 0.15);
+      border-color: rgba(129, 140, 248, 0.3);
     }
-    
+    @media (prefers-color-scheme: light) {
+      .card:hover { border-color: rgba(0,0,0,0.1); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+    }
+
     .bento-large { grid-column: span 7; }
     .bento-medium { grid-column: span 5; }
     .bento-small { grid-column: span 4; }
@@ -194,14 +252,23 @@ this good?
       width: 48px; height: 48px; 
       background: rgba(255,255,255,0.05); border: 1px solid var(--border);
       border-radius: 12px; display: flex; align-items: center; justify-content: center;
-      color: var(--text-main); margin-bottom: 24px; transition: 0.3s;
+      color: var(--text-main); margin-bottom: 24px; 
+      /* Icon Rotation (Claude Edit) */
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .card:hover .icon-box { border-color: #818cf8; background: rgba(129, 140, 248, 0.1); }
+    @media (prefers-color-scheme: light) { .icon-box { background: rgba(0,0,0,0.05); } }
+    
+    .card:hover .icon-box {
+      transform: rotate(6deg) scale(1.1);
+      background: rgba(129, 140, 248, 0.15);
+      color: #818cf8;
+      border-color: #818cf8;
+    }
     .icon-box svg { width: 24px; height: 24px; }
 
-    /* 1. CODE TERMINAL */
+    /* CODE TERMINAL */
     .code-terminal {
-      margin-top: 32px; background: rgba(0,0,0,0.5); border-radius: 16px; border: 1px solid var(--border);
+      margin-top: 32px; background: rgba(0,0,0,0.8); border-radius: 16px; border: 1px solid var(--border);
       font-family: 'Monaco', monospace; font-size: 12px; overflow: hidden;
     }
     .terminal-header { padding: 10px 14px; background: rgba(255,255,255,0.05); display: flex; gap: 6px; }
@@ -212,36 +279,34 @@ this good?
     .code-line.active { opacity: 1; transform: translateY(0); }
     .hl-keyword { color: #c678dd; } .hl-string { color: #98c379; } .hl-func { color: #61afef; }
 
-    /* 2. SIMULTANEOUS DATA ANIMATION */
+    /* SIMULTANEOUS DATA ANIMATION */
     .anim-simultaneous-container {
       margin-top: 30px; display: flex; flex-direction: column; gap: 16px;
     }
     .anim-row {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 8px 12px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);
+      padding: 8px 12px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border);
     }
+    @media (prefers-color-scheme: light) { .anim-row { background: rgba(0,0,0,0.03); } }
+
     .anim-row-icon { 
-      width: 24px; height: 24px; min-width: 24px; /* Force consistent size */
-      display: flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; min-width: 24px; display: flex; align-items: center; justify-content: center;
     }
     .anim-row-icon svg { width: 100%; height: 100%; }
-    
     .anim-track { 
-      flex: 1; height: 2px; background: rgba(255,255,255,0.1); margin: 0 16px; position: relative; overflow: hidden; border-radius: 10px;
+      flex: 1; height: 2px; background: var(--border); margin: 0 16px; position: relative; overflow: hidden; border-radius: 10px;
     }
     .anim-dot {
       position: absolute; top: 0; left: 0; width: 30%; height: 100%;
-      background: var(--text-main); box-shadow: 0 0 8px white;
+      background: var(--text-main); box-shadow: 0 0 8px currentColor;
       animation: flow 2s infinite linear;
     }
     @keyframes flow { 0% { left: -30%; } 100% { left: 130%; } }
-    
-    /* Stagger the rows slightly for visual appeal */
     .anim-row:nth-child(1) .anim-dot { animation-delay: 0s; }
     .anim-row:nth-child(2) .anim-dot { animation-delay: 0.5s; }
     .anim-row:nth-child(3) .anim-dot { animation-delay: 1s; }
 
-    /* 3. PULSE GRAPH */
+    /* PULSE GRAPH & GRID */
     .anim-pulse-container {
       margin-top: 30px; width: 100%; height: 60px; display: flex; align-items: center; gap: 4px;
     }
@@ -253,19 +318,13 @@ this good?
       0%, 100% { height: 20%; background: rgba(99, 102, 241, 0.2); }
       50% { height: 80%; background: #818cf8; box-shadow: 0 0 10px #818cf8; }
     }
-    .pulse-bar:nth-child(1) { animation-delay: 0s; }
-    .pulse-bar:nth-child(2) { animation-delay: 0.1s; }
-    .pulse-bar:nth-child(3) { animation-delay: 0.2s; }
-    .pulse-bar:nth-child(4) { animation-delay: 0.3s; }
-    .pulse-bar:nth-child(5) { animation-delay: 0.4s; }
+    .pulse-bar:nth-child(1) { animation-delay: 0s; } .pulse-bar:nth-child(2) { animation-delay: 0.1s; } .pulse-bar:nth-child(3) { animation-delay: 0.2s; } .pulse-bar:nth-child(4) { animation-delay: 0.3s; } .pulse-bar:nth-child(5) { animation-delay: 0.4s; }
 
-    /* 4. SCANNING GRID */
     .anim-grid-scan {
       margin-top: 30px; width: 100%; height: 60px;
-      background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
-      background-size: 20px 20px;
-      position: relative; overflow: hidden; border-radius: 8px;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 20px 20px; position: relative; overflow: hidden; border-radius: 8px;
     }
     .scan-line {
       width: 100%; height: 2px; background: #ec4899; box-shadow: 0 0 10px #ec4899;
@@ -273,20 +332,11 @@ this good?
     }
     @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
 
-    /* 5. CHECKLIST ANIMATION (Automate Boring) */
-    .anim-checklist {
-      margin-top: 30px; display: flex; flex-direction: column; gap: 10px;
-    }
-    .check-item {
-      display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted);
-      opacity: 0.5;
-    }
-    .check-box {
-      width: 16px; height: 16px; border: 1.5px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center;
-    }
+    /* CHECKLIST */
+    .anim-checklist { margin-top: 30px; display: flex; flex-direction: column; gap: 10px; }
+    .check-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); opacity: 0.5; }
+    .check-box { width: 16px; height: 16px; border: 1.5px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; }
     .check-box svg { opacity: 0; transform: scale(0.5); transition: 0.3s; }
-    
-    /* Animation Loop Classes */
     .check-item.checked { opacity: 1; color: var(--text-main); }
     .check-item.checked .check-box { border-color: #28c840; background: rgba(40, 200, 64, 0.1); }
     .check-item.checked .check-box svg { opacity: 1; transform: scale(1); }
@@ -294,88 +344,105 @@ this good?
     /* --- ROI CALCULATOR --- */
     .calc-container {
       background: var(--glass); border: 1px solid var(--border); border-radius: 32px; padding: 48px;
-      margin-top: 40px; text-align: center;
+      margin-top: 40px; text-align: center; position: relative;
     }
+    .calc-toggle {
+      display: inline-flex; justify-content: center; gap: 4px; margin-bottom: 40px; 
+      background: rgba(255,255,255,0.05); padding: 4px; border-radius: 100px; border: 1px solid var(--border);
+    }
+    @media (prefers-color-scheme: light) { .calc-toggle { background: rgba(0,0,0,0.05); } }
+
+    .toggle-btn {
+      padding: 8px 24px; border-radius: 100px; font-size: 13px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: 0.3s;
+    }
+    .toggle-btn.active { background: var(--glass-hover); color: var(--text-main); border: 1px solid var(--border); }
+    
     .calc-inputs { display: flex; flex-direction: column; gap: 32px; margin-bottom: 40px; }
     .input-group label { display: block; margin-bottom: 12px; font-weight: 600; color: var(--text-muted); }
     .slider-container { display: flex; align-items: center; gap: 16px; }
+    
+    #contractHoursGroup { display: none; opacity: 0; transition: opacity 0.4s ease; }
+    #contractHoursGroup.visible { display: block; opacity: 1; }
+
     input[type=range] {
-      flex: 1; -webkit-appearance: none; background: rgba(255,255,255,0.1); height: 6px; border-radius: 4px; outline: none;
+      flex: 1; -webkit-appearance: none; background: var(--border); height: 6px; border-radius: 4px; outline: none;
     }
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none; width: 24px; height: 24px; background: #6366f1; border-radius: 50%; cursor: pointer; box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+    input[type=range]:focus { outline: none; }
+    input[type=range]::-webkit-slider-thumb { transition: transform 0.2s; -webkit-appearance: none; width: 24px; height: 24px; background: #6366f1; border-radius: 50%; cursor: pointer; box-shadow: 0 0 15px rgba(99, 102, 241, 0.5); }
+    /* Slider Glow (Claude Edit) */
+    input[type=range]:active::-webkit-slider-thumb {
+      transform: scale(1.3); box-shadow: 0 0 20px rgba(129, 140, 248, 0.6);
     }
-    .val-display { font-weight: 700; font-size: 18px; width: 60px; }
+    
+    .input-group span { color: var(--text-main) !important; }
+
     .savings-amount {
-      font-size: 48px; font-weight: 900; 
-      background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      font-size: clamp(32px, 5vw, 48px); 
+      font-weight: 900;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      width: 100%;
+      display: block;
+      overflow-wrap: break-word;
+      line-height: 1.2;
     }
     .savings-label { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
 
-    /* --- PROCESS --- */
+    /* --- PROCESS & INTEGRATIONS --- */
     .process-container { display: flex; justify-content: space-between; gap: 20px; margin-top: 60px; }
-    .process-card {
-      flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center;
-    }
+    .process-card { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
     .process-icon-circle {
-      width: 50px; height: 50px; border-radius: 50%; 
-      background: var(--glass); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px; color: var(--text-main); transition: 0.3s;
+      width: 50px; height: 50px; border-radius: 50%; background: var(--glass); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--text-main); transition: 0.3s;
     }
-    .process-card:hover .process-icon-circle {
-      background: rgba(99, 102, 241, 0.2); border-color: #6366f1; transform: scale(1.1);
-    }
+    .process-card:hover .process-icon-circle { background: rgba(99, 102, 241, 0.2); border-color: #6366f1; transform: scale(1.1); }
     .process-card h3 { font-size: 18px; margin-bottom: 8px; }
     .process-card p { font-size: 14px; color: var(--text-muted); }
 
-    /* --- INTEGRATIONS (NEW HOVER LABELS) --- */
-    .trusted-label { 
-      font-size: 11px; text-transform: uppercase; letter-spacing: 3px; 
-      color: var(--text-muted); margin-bottom: 60px; text-align: center; opacity: 0.8; 
-    }
-    .logos-grid { 
-      display: flex; justify-content: center; gap: 40px 80px; flex-wrap: wrap; align-items: center; 
-    }
+    .trusted-label { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 60px; text-align: center; opacity: 0.8; }
+    .logos-grid { display: flex; justify-content: center; gap: 40px 80px; flex-wrap: wrap; align-items: center; }
     
-    .logo-item-wrapper {
-      display: flex; flex-direction: column; align-items: center; gap: 12px;
-      transition: transform 0.4s var(--ease); cursor: default;
-    }
-
+    .logo-item-wrapper { display: flex; flex-direction: column; align-items: center; gap: 12px; transition: transform 0.4s var(--ease); cursor: default; }
     .logo-item { 
-      height: 32px; width: auto; fill: var(--text-muted); opacity: 0.5; transition: 0.4s;
+      height: 32px; width: auto; 
+      max-width: 32px; /* Force uniform constraint */
+      fill: var(--text-muted); opacity: 0.5; transition: 0.4s; 
     }
+    .logo-name { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; color: var(--text-main); opacity: 0; transform: translateY(10px); transition: 0.4s; }
+    .logo-item-wrapper:hover .logo-item { opacity: 1; fill: var(--text-main); transform: scale(1.1); }
+    .logo-item-wrapper:hover .logo-name { opacity: 1; transform: translateY(0); }
 
-    .logo-name {
-      font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;
-      color: var(--text-main); opacity: 0; transform: translateY(10px); transition: 0.4s;
-    }
-
-    /* Hover Effects */
-    .logo-item-wrapper:hover .logo-item {
-      opacity: 1; fill: var(--text-main); transform: scale(1.1);
-    }
-
-    .logo-item-wrapper:hover .logo-name {
-      opacity: 1; transform: translateY(0);
-    }
-
-    /* --- TESTIMONIALS --- */
     .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 60px; }
     .testimonial-text { font-size: 17px; font-style: italic; opacity: 0.9; margin-bottom: 24px; }
     .testimonial-author div:first-child { font-weight: 700; font-size: 14px; }
     .testimonial-author div:last-child { font-size: 12px; color: var(--text-muted); }
 
-    /* --- BOOKING --- */
     .booking-section { text-align: center; }
-    .calendly-wrapper {
-      margin-top: 60px; border: 1px solid var(--border); border-radius: 24px;
-      overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-      background: var(--bg); display: inline-block; width: 100%; max-width: 1000px;
+    .calendly-wrapper { margin-top: 60px; border: 1px solid var(--border); border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4); background: var(--bg); display: inline-block; width: 100%; max-width: 1000px; }
+
+    /* Button Shimmer (Claude Edit) */
+    .btn-magnetic::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    .btn-magnetic:hover::before { left: 100%; }
+
+    /* Scarcity Badge */
+    .scarcity-badge {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; 
+      background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); 
+      border-radius: 100px; margin-bottom: 24px; font-size: 13px; font-weight: 600; color: #f87171;
     }
 
-    /* --- RESPONSIVE --- */
+    /* Footer Stats */
+    .footer-stats {
+      display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 40px; padding-top: 40px; 
+      border-top: 1px solid var(--border); font-size: 13px; color: var(--text-muted);
+    }
+    .footer-stats strong { color: var(--text-main); font-weight: 700; }
+
     @media (max-width: 1024px) {
       .container { width: 90%; }
       .nav-links { display: none; } .hamburger { display: block; }
@@ -386,11 +453,9 @@ this good?
     }
     @media (max-width: 600px) {
       .hero-btns { flex-direction: column; }
+      .calc-container { padding: 32px 16px; } 
     }
-
     footer { padding: 80px 0; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-muted); }
-    
-    /* Scroll Reveal */
     .reveal { opacity: 0; transform: translateY(40px) scale(0.98); transition: all 1s var(--ease); }
     .reveal.active { opacity: 1; transform: translateY(0) scale(1); }
   </style>
@@ -410,7 +475,6 @@ this good?
         <img src="logo.jpeg" alt="Randexa"> 
         RANDEXA
       </a>
-      
       <div class="nav-links">
         <a href="#capabilities" class="nav-link">Capabilities</a>
         <a href="#calculator" class="nav-link">Calculator</a>
@@ -419,8 +483,7 @@ this good?
         <a href="mailto:randexa.sg@gmail.com" class="nav-link">Contact</a>
         <a href="#book" class="btn-magnetic">Book Call</a>
       </div>
-      
-      <button class="hamburger" onclick="toggleMenu()">
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle Menu">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
     </div>
@@ -440,9 +503,8 @@ this good?
       <div class="hero-statement">
         Randexa is a startup that builds autonomous agents to replace manual admin and drive profit.
       </div>
-
       <h1>You don't have a people problem.<br>
-      <span class="text-shine" style="text-transform: uppercase;">You have a systems problem.</span></h1>
+      <span class="text-shine" style="text-transform: uppercase;">YOU HAVE A SYSTEMS PROBLEM.</span></h1>
       
       <p class="hero-subtext">
         We re-engineer your business logic for speed and reliability. From AI agents to workflow architecture, we eliminate the bottlenecks holding you back.
@@ -455,18 +517,9 @@ this good?
     </div>
 
     <div class="stats-bar">
-      <div class="stat-item">
-        <div class="stat-number" data-target="20">0</div>
-        <div class="stat-label">Clients Served</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" data-target="1000">0</div>
-        <div class="stat-label">Hours Saved</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number" data-target="50">0</div>
-        <div class="stat-label">Workflows Built</div>
-      </div>
+      <div class="stat-item"><div class="stat-number" data-target="20">0</div><div class="stat-label">Clients Served</div></div>
+      <div class="stat-item"><div class="stat-number" data-target="1000">0</div><div class="stat-label">Hours Saved</div></div>
+      <div class="stat-item"><div class="stat-number" data-target="50">0</div><div class="stat-label">Workflows Built</div></div>
     </div>
   </section>
 
@@ -482,7 +535,6 @@ this good?
           </div>
           <h3>24/7 Lead Capture</h3>
           <p>Stop losing money to slow replies. Our agents handle inquiries, qualify leads, and book meetings instantly.</p>
-          
           <div class="code-terminal">
             <div class="terminal-header"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
             <div class="terminal-body">
@@ -502,82 +554,46 @@ this good?
           <p>When data enters one system, it updates everywhere.</p>
           
           <div class="anim-simultaneous-container">
-            
             <div class="anim-row">
-              <div class="anim-row-icon">
-                <svg viewBox="0 0 24 24" fill="#25D366"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.12.55 4.12 1.52 5.88L0 24l6.27-1.48C7.96 23.47 9.92 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
-              </div>
+              <div class="anim-row-icon"><svg viewBox="0 0 24 24" fill="#25D366"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.12.55 4.12 1.52 5.88L0 24l6.27-1.48C7.96 23.47 9.92 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></div>
               <div class="anim-track"><div class="anim-dot"></div></div>
-              <div class="anim-row-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-              </div>
+              <div class="anim-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div>
             </div>
-
             <div class="anim-row">
-              <div class="anim-row-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#635BFF" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-              </div>
+              <div class="anim-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#635BFF" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></div>
               <div class="anim-track"><div class="anim-dot"></div></div>
-              <div class="anim-row-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-              </div>
+              <div class="anim-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
             </div>
-
             <div class="anim-row">
-              <div class="anim-row-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#EA4335" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-              </div>
+              <div class="anim-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#EA4335" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
               <div class="anim-track"><div class="anim-dot"></div></div>
-              <div class="anim-row-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
-              </div>
+              <div class="anim-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></div>
             </div>
-
           </div>
         </div>
 
         <div class="card bento-small">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
-          </div>
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg></div>
           <h3>Ongoing Optimisation</h3>
           <p>We monitor your systems to ensure they run faster.</p>
-          <div class="anim-pulse-container">
-            <div class="pulse-bar"></div><div class="pulse-bar"></div><div class="pulse-bar"></div><div class="pulse-bar"></div><div class="pulse-bar"></div>
-          </div>
+          <div class="anim-pulse-container"><div class="pulse-bar"></div><div class="pulse-bar"></div><div class="pulse-bar"></div><div class="pulse-bar"></div><div class="pulse-bar"></div></div>
         </div>
 
         <div class="card bento-small">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-          </div>
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
           <h3>Operational Blueprints</h3>
           <p>We audit your process and identify inefficiencies.</p>
-          <div class="anim-grid-scan">
-            <div class="scan-line"></div>
-          </div>
+          <div class="anim-grid-scan"><div class="scan-line"></div></div>
         </div>
 
         <div class="card bento-small">
-          <div class="icon-box">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
-          </div>
+          <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
           <h3>Automate the Boring</h3>
           <p>Invoicing and scheduling happen without you.</p>
-          
           <div class="anim-checklist">
-            <div class="check-item">
-              <div class="check-box"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-              <span>Send Invoice #1024</span>
-            </div>
-            <div class="check-item">
-              <div class="check-box"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-              <span>Follow up Lead</span>
-            </div>
-            <div class="check-item">
-              <div class="check-box"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
-              <span>Update CRM</span>
-            </div>
+            <div class="check-item"><div class="check-box"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span>Send Invoice #1024</span></div>
+            <div class="check-item"><div class="check-box"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span>Follow up Lead</span></div>
+            <div class="check-item"><div class="check-box"><svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span>Update CRM</span></div>
           </div>
         </div>
       </div>
@@ -590,66 +606,36 @@ this good?
       <p style="margin-top:16px; margin-bottom:40px; color:var(--text-muted);">See how much manual admin is costing your business.</p>
       
       <div class="calc-container">
+        <div class="calc-toggle">
+          <div class="toggle-btn active" id="btnHourly" onclick="setMode('hourly')">Hourly</div>
+          <div class="toggle-btn" id="btnMonthly" onclick="setMode('monthly')">Monthly</div>
+        </div>
+
         <div class="calc-inputs">
           <div class="input-group">
-            <label>Hours spent on admin per week: <span id="hoursVal" style="color:white">20</span> hrs</label>
-            <div class="slider-container">
-              <input type="range" id="hoursInput" min="0" max="100" value="20">
-            </div>
+            <label>Staff Members: <span id="staffVal" style="color:var(--text-main)">1</span></label>
+            <div class="slider-container"><input type="range" id="staffInput" min="1" max="50" value="1"></div>
           </div>
+          
           <div class="input-group">
-            <label>Average hourly staff cost: $<span id="rateVal" style="color:white">25</span></label>
-            <div class="slider-container">
-              <input type="range" id="rateInput" min="10" max="200" value="25">
-            </div>
+            <label>Admin Hours Wasted (Per Staff/Week): <span id="hoursVal" style="color:var(--text-main)">20</span> hrs</label>
+            <div class="slider-container"><input type="range" id="hoursInput" min="0" max="60" value="20"></div>
           </div>
-        </div>
-        <div class="calc-result">
-          <div class="savings-label">Estimated Yearly Savings</div>
-          <div class="savings-amount">$<span id="totalSavings">26,000</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+          
+          <div class="input-group">
+            <label id="rateLabel">Average hourly staff cost: $<span id="rateVal" style="color:var(--text-main)">25</span></label>
+            <div class="slider-container"><input type="range" id="rateInput" min="10" max="100" value="25" step="1"></div>
+          </div>
 
-  <section id="process" class="section">
-    <div class="container">
-      <h2 class="reveal">How It Works</h2>
-      <div class="process-container reveal">
-        <div class="process-card">
-          <div class="process-icon-circle">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <div class="input-group" id="contractHoursGroup">
+            <label>Staff Contract Hours (Per Week): <span id="contractVal" style="color:var(--text-main)">40</span> hrs</label>
+            <div class="slider-container"><input type="range" id="contractInput" min="20" max="60" value="40" step="1"></div>
           </div>
-          <h3>Audit</h3>
-          <p>We analyze bottlenecks.</p>
         </div>
-        <div class="process-card">
-          <div class="process-icon-circle">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon></svg>
-          </div>
-          <h3>Blueprint</h3>
-          <p>We design architecture.</p>
-        </div>
-        <div class="process-card">
-          <div class="process-icon-circle">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-          </div>
-          <h3>Build</h3>
-          <p>Our engineers develop systems.</p>
-        </div>
-        <div class="process-card">
-          <div class="process-icon-circle">
-            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="M12 15l-3-3a22 22 0 0 1 2-9.5 22.15 22.15 0 0 1 9.5 2"></path></svg>
-          </div>
-          <h3>Deploy</h3>
-          <p>We launch and train.</p>
-        </div>
-        <div class="process-card">
-          <div class="process-icon-circle">
-             <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-          </div>
-          <h3>Optimise</h3>
-          <p>We iterate for efficiency.</p>
+        
+        <div class="calc-result">
+          <div class="savings-label">Total Estimated Yearly Savings</div>
+          <div class="savings-amount">$<span id="totalSavings">26,000</span></div>
         </div>
       </div>
     </div>
@@ -659,19 +645,18 @@ this good?
     <div class="container reveal">
       <div class="trusted-label">We integrate with modern ecosystems</div>
       <div class="logos-grid">
-        
         <div class="logo-item-wrapper">
-          <svg class="logo-item" viewBox="0 0 24 24"><title>Zapier</title><path d="M4.157 0A4.151 4.151 0 0 0 0 4.161v15.678A4.151 4.151 0 0 0 4.157 24h15.682A4.152 4.152 0 0 0 24 19.839V4.161A4.152 4.152 0 0 0 19.839 0H4.157Zm10.61 8.761h.03a.577.577 0 0 1 .23.038.585.585 0 0 1 .201.124.63.63 0 0 1 .162.431.612.612 0 0 1-.162.435.58.58 0 0 1-.201.128.58.58 0 0 1-.23.042.529.529 0 0 1-.235-.042.585.585 0 0 1-.332-.328.559.559 0 0 1-.038-.235.613.613 0 0 1 .17-.431.59.59 0 0 1 .405-.162Zm2.853 1.572c.03.004.061.004.095.004.325-.011.646.064.937.219.238.144.431.355.552.609.128.279.189.582.185.888v.193a2 2 0 0 1 0 .219h-2.498c.003.227.075.45.204.642a.78.78 0 0 0 .646.265.714.714 0 0 0 .484-.136.642.642 0 0 0 .23-.318l.915.257a1.398 1.398 0 0 1-.28.537c-.14.159-.321.284-.521.355a2.234 2.234 0 0 1-.836.136 1.923 1.923 0 0 1-1.001-.245 1.618 1.618 0 0 1-.665-.703 2.221 2.221 0 0 1-.227-1.036 1.95 1.95 0 0 1 .48-1.398 1.9 1.9 0 0 1 1.3-.488Zm-9.607.023c.162.004.325.026.48.079.207.065.4.174.563.314.26.302.393.692.366 1.088v2.276H8.53l-.109-.711h-.065c-.064.163-.155.31-.272.439a1.122 1.122 0 0 1-.374.264 1.023 1.023 0 0 1-.453.083 1.334 1.334 0 0 1-.866-.264.965.965 0 0 1-.329-.801.993.993 0 0 1 .076-.431 1.02 1.02 0 0 1 .242-.363 1.478 1.478 0 0 1 1.043-.303h.952v-.181a.696.696 0 0 0-.136-.454.553.553 0 0 0-.438-.154.695.695 0 0 0-.378.086.48.48 0 0 0-.193.254l-.99-.144a1.26 1.26 0 0 1 .257-.563c.14-.174.321-.302.533-.378.261-.091.54-.136.82-.129.053-.003.106-.007.163-.007Zm4.384.007c.174 0 .347.038.506.114.182.083.34.211.458.374.257.423.377.911.351 1.406a2.53 2.53 0 0 1-.355 1.448 1.148 1.148 0 0 1-1.009.517c-.204 0-.401-.045-.582-.136a1.052 1.052 0 0 1-.48-.457 1.298 1.298 0 0 1-.114-.234h-.045l.004 1.784h-1.059v-4.713h.904l.117.805h.057c.068-.208.177-.401.328-.56a1.129 1.129 0 0 1 .843-.344h.076v-.004Zm7.559.084h.903l.113.805h.053a1.37 1.37 0 0 1 .235-.484.813.813 0 0 1 .313-.242.82.82 0 0 1 .39-.076h.234v1.051h-.401a.662.662 0 0 0-.313.008.623.623 0 0 0-.272.155.663.663 0 0 0-.174.26.683.683 0 0 0-.027.314v1.875h-1.054v-3.666Zm-17.515.003h3.262v.896L3.73 13.104l.034.113h1.973l.042.9H2.4v-.9l1.931-1.754-.045-.117H2.441v-.896Zm11.815 0h1.055v3.659h-1.055V10.45Zm3.443.684.019.016a.69.69 0 0 0-.351.045.756.756 0 0 0-.287.204c-.11.155-.174.336-.189.522h1.545c-.034-.526-.257-.787-.74-.787h.003Zm-5.718.163c-.026 0-.057 0-.083.004a.78.78 0 0 0-.31.053.746.746 0 0 0-.257.189 1.016 1.016 0 0 0-.204.695v.064c-.015.257.057.507.204.711a.634.634 0 0 0 .253.196.638.638 0 0 0 .314.061.644.644 0 0 0 .578-.265c.14-.223.204-.48.189-.74a1.216 1.216 0 0 0-.181-.711.677.677 0 0 0-.503-.257Zm-4.509 1.266a.464.464 0 0 0-.268.102.373.373 0 0 0-.114.276c0 .053.008.106.027.155a.375.375 0 0 0 .087.132.576.576 0 0 0 .397.11v.004a.863.863 0 0 0 .563-.182.573.573 0 0 0 .211-.457v-.14h-.903Z"/></svg>
+          <svg class="logo-item" viewBox="0 0 24 24"><title>Zapier</title><path d="M4.157 0A4.151 4.151 0 0 0 0 4.161v15.678A4.151 4.151 0 0 0 4.157 24h15.682A4.152 4.152 0 0 0 24 19.839V4.161A4.152 4.152 0 0 0 19.839 0H4.157Zm10.61 8.761h.03a.577.577 0 0 1 .23.038.585.585 0 0 1 .201.124.63.63 0 0 1 .162.431.612.612 0 0 1-.162.435.58.58 0 0 1-.201.128.58.58 0 0 1-.23.042.529.529 0 0 1-.235-.042.585.585 0 0 1-.332-.328.559.559 0 0 1-.038-.235.613.613 0 0 1 .17-.431.59.59 0 0 1 .405-.162Zm2.853 1.572c.03.004.061.004.095.004.325-.011.646.064.937.219.238.144.431.355.552.609.128.279.189.582.185.888v.193a2 2 0 0 1 0 .219h-2.498c.003.227.075.45.204.642a.78.78 0 0 0 .646.265.714.714 0 0 0 .484-.136.642.642 0 0 0 .23-.318l.915.257a1.398 1.398 0 0 1-.28.537c-.14.159-.321.284-.521.355a2.234 2.234 0 0 1-.836.136 1.923 1.923 0 0 1-1.001-.245 1.618 1.618 0 0 1-.665-.703 2.221 2.221 0 0 1-.227-1.036 1.95 1.95 0 0 1 .48-1.398 1.9 1.9 0 0 1 1.3-.488Zm-9.607.023c.162.004.325.026.48.079.207.065.4.174.563.314.26.302.393.692.366 1.088v2.276H8.53l-.109-.711h-.065c-.064.163-.155.31-.272.439a1.122 1.122 0 0 1-.374.264 1.023 1.023 0 0 1-.453.083 1.334 1.334 0 0 1-.866-.264.965.965 0 0 1-.329-.801.993.993 0 0 1 .076-.431 1.02 1.02 0 0 1 .242-.363 1.478 1.478 0 0 1 1.043-.303h.952v-.181a.696.696 0 0 0-.136-.454.553.553 0 0 0-.438-.154.695.695 0 0 0-.378.086.48.48 0 0 0-.193.254l-.99-.144a1.26 1.26 0 0 1 .257-.563c.14-.174.321-.302.533-.378.261-.091.54-.136.82-.129.053-.003.106-.007.163-.007Zm4.384.007c.174 0 .347.038.506.114.182.083.34.211.458.374.257.423.377.911.351 1.406a2.53 2.53 0 0 1-.355 1.448 1.148 1.148 0 0 1-1.009.517c-.204 0-.401-.045-.582-.136a1.052 1.052 0 0 1-.48-.457 1.298 1.298 0 0 1-.114-.234h-.045l.004 1.784h-1.059v-4.713h.904l.117.805h.057c.068-.208.177-.401.328-.56a1.129 1.129 0 0 1 .843-.344h.076v-.004Zm7.559.084h.903l.113.805h.053a1.37 1.37 0 0 1 .235-.484.813.813 0 0 1 .313-.242.82.82 0 0 1 .39-.076h.234v1.051h-.401a.662.662 0 0 0-.313.008.623.623 0 0 0-.272.155.663.663 0 0 0-.174.26.683.683 0 0 0-.027.314v1.875h-1.054v-3.666Zm-17.515.003h3.262v.896L3.73 13.104l.034.113h1.973l.042.9H2.4v-.9l1.931-1.754-.045-.117H2.441v-.896Zm11.815 0h1.055v3.659h-1.055V10.45Zm3.443.684.019.016a.69.69 0 0 0-.351.045.756.756 0 0 0-.287.204c-.11.155-.174.336-.189.522h1.545c-.034-.526-.257-.787-.74-.787h.003Zm-5.718.163c-.026 0-.057 0-.083.004a.78.78 0 0 0-.31.053.746.746 0 0 0-.257.189 1.016 1.016 0 0 0-.204.695v.064c-.015.257.057.507.204.711a.634.634 0 0 0 .253.196.638.638 0 0 0 .314.061.644.644 0 0 0 .578-.265c.14-.223.204-.48.189-.74a1.216 1.216 0 0 0-.181-.711.677.677 0 0 0-.503-.257Zm-4.509 1.266a.464.464 0 0 0-.268.102.373.373 0 0 0-.114.276c0 .053.008.106.027.155a.375.375 0 0 0 .087.132.576.576 0 0 0 .397.11v.004a.863.863 0 0 0 .563-.182.573.573 0 0 0 .211-.457v-.14h-.903Z" fill="currentColor"/></svg>
           <span class="logo-name">Zapier</span>
         </div>
 
         <div class="logo-item-wrapper">
-          <svg class="logo-item" viewBox="0 0 24 24"><title>Make</title><path d="M13.38 3.498c-.27 0-.511.19-.566.465L9.85 18.986a.578.578 0 0 0 .453.678l4.095.826a.58.58 0 0 0 .682-.455l2.963-15.021a.578.578 0 0 0-.453-.678l-4.096-.826a.589.589 0 0 0-.113-.012zm-5.876.098a.576.576 0 0 0-.516.318L.062 17.697a.575.575 0 0 0 .256.774l3.733 1.877a.578.578 0 0 0 .775-.258l6.926-13.781a.577.577 0 0 0-.256-.776L7.762 3.658a.571.571 0 0 0-.258-.062zm11.74.115a.576.576 0 0 0-.576.576v15.426c0 .318.258.578.576.578h4.178a.58.58 0 0 0 .578-.578V4.287a.578.578 0 0 0-.578-.576Z"/></svg>
+          <svg class="logo-item" viewBox="0 0 24 24"><title>Make</title><path d="M13.38 3.498c-.27 0-.511.19-.566.465L9.85 18.986a.578.578 0 0 0 .453.678l4.095.826a.58.58 0 0 0 .682-.455l2.963-15.021a.578.578 0 0 0-.453-.678l-4.096-.826a.589.589 0 0 0-.113-.012zm-5.876.098a.576.576 0 0 0-.516.318L.062 17.697a.575.575 0 0 0 .256.774l3.733 1.877a.578.578 0 0 0 .775-.258l6.926-13.781a.577.577 0 0 0-.256-.776L7.762 3.658a.571.571 0 0 0-.258-.062zm11.74.115a.576.576 0 0 0-.576.576v15.426c0 .318.258.578.576.578h4.178a.58.58 0 0 0 .578-.578V4.287a.578.578 0 0 0-.578-.576Z" fill="currentColor"/></svg>
           <span class="logo-name">Make</span>
         </div>
 
         <div class="logo-item-wrapper">
-          <svg class="logo-item" viewBox="0 0 24 24"><title>n8n</title><path d="M21.4737 5.6842c-1.1772 0-2.1663.8051-2.4468 1.8947h-2.8955c-1.235 0-2.289.893-2.492 2.111l-.1038.623a1.263 1.263 0 0 1-1.246 1.0555H11.289c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947s-2.1663.8051-2.4467 1.8947H4.973c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947C1.1311 9.4737 0 10.6047 0 12s1.131 2.5263 2.5263 2.5263c1.1772 0 2.1663-.8051 2.4468-1.8947h1.4223c.2804 1.0896 1.2696 1.8947 2.4467 1.8947 1.1772 0 2.1663-.8051 2.4468-1.8947h1.0008a1.263 1.263 0 0 1 1.2459 1.0555l.1038.623c.203 1.218 1.257 2.111 2.492 2.111h.3692c.2804 1.0895 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263c-1.1772 0-2.1664.805-2.4468 1.8947h-.3692a1.263 1.263 0 0 1-1.246-1.0555l-.1037-.623A2.52 2.52 0 0 0 13.9607 12a2.52 2.52 0 0 0 .821-1.4794l.1038-.623a1.263 1.263 0 0 1 1.2459-1.0555h2.8955c.2805 1.0896 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263m0 1.2632a1.263 1.263 0 0 1 1.2631 1.2631 1.263 1.263 0 0 1-1.2631 1.2632 1.263 1.263 0 0 1-1.2632-1.2632 1.263 1.263 0 0 1 1.2632-1.2631M2.5263 10.7368A1.263 1.263 0 0 1 3.7895 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 1.2632 12a1.263 1.263 0 0 1 1.2631-1.2632m6.3158 0A1.263 1.263 0 0 1 10.1053 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 7.579 12a1.263 1.263 0 0 1 1.2632-1.2632m10.1053 3.7895a1.263 1.263 0 0 1 1.2631 1.2632 1.263 1.263 0 0 1-1.2631 1.2631 1.263 1.263 0 0 1-1.2632-1.2631 1.263 1.263 0 0 1 1.2632-1.2632"/></svg>
+          <svg class="logo-item" viewBox="0 0 24 24"><title>n8n</title><path d="M21.4737 5.6842c-1.1772 0-2.1663.8051-2.4468 1.8947h-2.8955c-1.235 0-2.289.893-2.492 2.111l-.1038.623a1.263 1.263 0 0 1-1.246 1.0555H11.289c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947s-2.1663.8051-2.4467 1.8947H4.973c-.2805-1.0896-1.2696-1.8947-2.4468-1.8947C1.1311 9.4737 0 10.6047 0 12s1.131 2.5263 2.5263 2.5263c1.1772 0 2.1663-.8051 2.4468-1.8947h1.4223c.2804 1.0896 1.2696 1.8947 2.4467 1.8947 1.1772 0 2.1663-.8051 2.4468-1.8947h1.0008a1.263 1.263 0 0 1 1.2459 1.0555l.1038.623c.203 1.218 1.257 2.111 2.492 2.111h.3692c.2804 1.0895 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263c-1.1772 0-2.1664.805-2.4468 1.8947h-.3692a1.263 1.263 0 0 1-1.246-1.0555l-.1037-.623A2.52 2.52 0 0 0 13.9607 12a2.52 2.52 0 0 0 .821-1.4794l.1038-.623a1.263 1.263 0 0 1 1.2459-1.0555h2.8955c.2805 1.0896 1.2696 1.8947 2.4468 1.8947 1.3952 0 2.5263-1.131 2.5263-2.5263s-1.131-2.5263-2.5263-2.5263m0 1.2632a1.263 1.263 0 0 1 1.2631 1.2631 1.263 1.263 0 0 1-1.2631 1.2632 1.263 1.263 0 0 1-1.2632-1.2632 1.263 1.263 0 0 1 1.2632-1.2631M2.5263 10.7368A1.263 1.263 0 0 1 3.7895 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 1.2632 12a1.263 1.263 0 0 1 1.2631-1.2632m6.3158 0A1.263 1.263 0 0 1 10.1053 12a1.263 1.263 0 0 1-1.2632 1.2632A1.263 1.263 0 0 1 7.579 12a1.263 1.263 0 0 1 1.2632-1.2632m10.1053 3.7895a1.263 1.263 0 0 1 1.2631 1.2632 1.263 1.263 0 0 1-1.2631 1.2631 1.263 1.263 0 0 1-1.2632-1.2631 1.263 1.263 0 0 1 1.2632-1.2632" fill="currentColor"/></svg>
           <span class="logo-name">n8n</span>
         </div>
 
@@ -681,22 +666,22 @@ this good?
         </div>
 
         <div class="logo-item-wrapper">
-          <svg class="logo-item" viewBox="0 0 24 24"><title>Meta</title><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg>
+          <svg class="logo-item" viewBox="0 0 24 24"><title>Meta</title><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z" fill="currentColor"/></svg>
           <span class="logo-name">Meta</span>
         </div>
 
         <div class="logo-item-wrapper">
-          <svg class="logo-item" viewBox="0 0 24 24"><title>Google</title><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.347.533 12S5.867 24 12.48 24c3.44 0 6.013-1.133 8.027-3.227 2.053-2.027 2.667-4.96 2.667-7.333 0-.76-.067-1.48-.173-2.52H12.48z"/></svg>
+          <svg class="logo-item" viewBox="0 0 24 24"><title>Google</title><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .533 5.347.533 12S5.867 24 12.48 24c3.44 0 6.013-1.133 8.027-3.227 2.053-2.027 2.667-4.96 2.667-7.333 0-.76-.067-1.48-.173-2.52H12.48z" fill="currentColor"/></svg>
           <span class="logo-name">Google</span>
         </div>
 
         <div class="logo-item-wrapper">
-          <svg class="logo-item" viewBox="0 0 24 24"><title>Apple</title><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24.02-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.78 1.18-.19 2.31-.89 3.51-.84 1.54.06 2.68.79 3.49 1.92-3.03 1.86-2.46 5.92.5 7.14-.58 1.42-1.38 2.83-2.58 3.97zm-3.5-13.7c.33-1.87 1.6-3.25 3.19-3.41.34 2.05-1.92 3.63-3.19 3.41z"/></svg>
+          <svg class="logo-item" viewBox="0 0 24 24"><title>Apple</title><path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24.02-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.78 1.18-.19 2.31-.89 3.51-.84 1.54.06 2.68.79 3.49 1.92-3.03 1.86-2.46 5.92.5 7.14-.58 1.42-1.38 2.83-2.58 3.97zm-3.5-13.7c.33-1.87 1.6-3.25 3.19-3.41.34 2.05-1.92 3.63-3.19 3.41z" fill="currentColor"/></svg>
           <span class="logo-name">Apple</span>
         </div>
 
         <div class="logo-item-wrapper">
-          <svg class="logo-item" viewBox="0 0 24 24"><title>GitHub</title><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.22 0 4.605-2.805 5.625-5.475 5.92.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <svg class="logo-item" viewBox="0 0 24 24"><title>GitHub</title><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.605-2.805 5.625-5.475 5.92.435.375.81 1.095.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12z" fill="currentColor"/></svg>
           <span class="logo-name">GitHub</span>
         </div>
 
@@ -727,28 +712,42 @@ this good?
   <section id="book" class="section booking-section">
     <div class="container reveal">
       <h2>Book a Free Discovery Call</h2>
+
+      <div class="scarcity-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <span>Limited Availability: <span id="slotsLeft">3</span> slots remaining for January</span>
+      </div>
+
       <p style="margin: 16px auto 32px; max-width:600px; color:var(--text-muted);">
-        Limited availability: We onboard 3 partners per month to ensure quality.
+        We onboard 3 partners per month to ensure quality.
       </p>
 
       <div class="calendly-wrapper">
-        <div class="calendly-inline-widget" data-url="https://calendly.com/randexa/discovery-call?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0f1115&text_color=ffffff&primary_color=8b5cf6" style="min-width:320px;height:700px;"></div>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/randexa/discovery-call?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0f1115&text_color=ffffff&primary_color=8b5cf6" style="min-width:320px;height:700px;width:100%;"></div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; padding: 60px 0;">
-      <div style="font-weight:700; display:flex; align-items:center; gap:12px; text-transform:uppercase; color: var(--text-main);">
-        <img src="logo.jpeg" style="width:24px; border-radius:4px;"> RANDEXA
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; padding-bottom: 40px;">
+        <div style="font-weight:700; display:flex; align-items:center; gap:12px; text-transform:uppercase; color: var(--text-main);">
+          <img src="logo.jpeg" style="width:24px; border-radius:4px;"> RANDEXA
+        </div>
+        
+        <a href="mailto:randexa.sg@gmail.com" style="color:var(--text-muted); text-decoration:none; font-size:16px; font-weight:500;">
+          randexa.sg@gmail.com
+        </a>
+        
+        <div style="font-size:13px; color:var(--text-muted);">&copy; 2026 Randexa.</div>
       </div>
       
-      <a href="mailto:randexa.sg@gmail.com" style="color:var(--text-muted); text-decoration:none; font-size:16px; font-weight:500;">
-        randexa.sg@gmail.com
-      </a>
-      
-      <div style="font-size:13px; color:var(--text-muted);">&copy; 2026 Randexa.</div>
+      <div class="footer-stats">
+        <div><strong>99.9%</strong> Uptime Guarantee</div>
+        <div><strong>&lt;1.2s</strong> Avg Response Time</div>
+        <div><strong>24/7</strong> System Monitoring</div>
+      </div>
     </div>
   </footer>
 
@@ -813,13 +812,11 @@ this good?
     }, { threshold: 0.5 });
     counters.forEach(counter => statsObserver.observe(counter));
 
-    // Code Terminal Typing (Repeats on Entry)
+    // Code Terminal Typing
     const lines = document.querySelectorAll('.code-line');
     const codeObserver = new IntersectionObserver((entries) => {
       if(entries[0].isIntersecting) {
-        // Reset classes
         lines.forEach(line => line.classList.remove('active'));
-        // Trigger animation
         setTimeout(() => {
           lines.forEach((line, index) => { setTimeout(() => { line.classList.add('active'); }, index * 600); });
         }, 100);
@@ -837,11 +834,11 @@ this good?
       btn.addEventListener('mouseleave', () => btn.style.transform = 'translate(0,0)');
     });
 
-    // Checklist Animation (Sequential Ticks)
+    // Checklist Animation
     const checkItems = document.querySelectorAll('.check-item');
     const checkObserver = new IntersectionObserver((entries) => {
       if(entries[0].isIntersecting) {
-        checkItems.forEach(item => item.classList.remove('checked')); // Reset
+        checkItems.forEach(item => item.classList.remove('checked'));
         checkItems.forEach((item, index) => {
           setTimeout(() => { item.classList.add('checked'); }, index * 1200 + 500);
         });
@@ -849,24 +846,104 @@ this good?
     }, { threshold: 0.5 });
     checkObserver.observe(document.querySelector('.anim-checklist'));
 
-    // ROI Calculator Logic
+    // --- ROI Calculator with Animation ---
     const hoursInput = document.getElementById('hoursInput');
     const rateInput = document.getElementById('rateInput');
+    const staffInput = document.getElementById('staffInput');
+    const contractInput = document.getElementById('contractInput');
+    
     const hoursVal = document.getElementById('hoursVal');
-    const rateVal = document.getElementById('rateVal');
+    const staffVal = document.getElementById('staffVal');
+    const contractVal = document.getElementById('contractVal');
+    
     const totalSavings = document.getElementById('totalSavings');
+    const rateLabel = document.getElementById('rateLabel');
+    const btnHourly = document.getElementById('btnHourly');
+    const btnMonthly = document.getElementById('btnMonthly');
+    const contractHoursGroup = document.getElementById('contractHoursGroup');
+
+    let mode = 'hourly';
+
+    function setMode(newMode) {
+      mode = newMode;
+      if(mode === 'hourly') {
+        btnHourly.classList.add('active');
+        btnMonthly.classList.remove('active');
+        rateLabel.innerHTML = 'Average hourly staff cost: $<span id="rateVal" style="color:var(--text-main)">25</span>';
+        contractHoursGroup.classList.remove('visible');
+        
+        // Hourly Settings: $10 - $100, step 1
+        rateInput.min = 10;
+        rateInput.max = 100;
+        rateInput.step = 1;
+        rateInput.value = 25;
+      } else {
+        btnMonthly.classList.add('active');
+        btnHourly.classList.remove('active');
+        rateLabel.innerHTML = 'Average monthly salary: $<span id="rateVal" style="color:var(--text-main)">4000</span>';
+        contractHoursGroup.classList.add('visible');
+        
+        // Monthly Settings: $1000 - $20,000, step 500
+        rateInput.min = 1000;
+        rateInput.max = 20000; 
+        rateInput.step = 500;
+        rateInput.value = 4000;
+      }
+      calculateROI(); 
+    }
 
     function calculateROI() {
       const hours = hoursInput.value;
       const rate = rateInput.value;
+      const staff = staffInput.value;
+      const contractHours = contractInput.value;
+      
       hoursVal.innerText = hours;
-      rateVal.innerText = rate;
-      const savings = (hours * rate * 52).toLocaleString();
-      totalSavings.innerText = savings;
+      staffVal.innerText = staff;
+      contractVal.innerText = contractHours;
+      
+      const rateValSpan = document.getElementById('rateVal');
+      if (rateValSpan) {
+        rateValSpan.innerText = parseInt(rate).toLocaleString();
+      }
+
+      let hourlyRate = rate;
+      if(mode === 'monthly') {
+        hourlyRate = rate / (contractHours * 4);
+      }
+
+      const finalSavings = Math.round(hours * hourlyRate * 52 * staff);
+      
+      // Get current displayed value for smooth transition
+      const currentText = totalSavings.innerText.replace(/,/g, '').replace('$', '');
+      const startValue = parseInt(currentText) || 0;
+
+      animateValue(totalSavings, startValue, finalSavings, 600);
+    }
+
+    // Number Counter Animation
+    function animateValue(element, start, end, duration) {
+      if (start === end) return;
+      const range = end - start;
+      const startTime = new Date().getTime();
+      const endTime = startTime + duration;
+  
+      const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const remaining = Math.max((endTime - now) / duration, 0);
+        const value = Math.round(end - (remaining * range));
+        element.innerText = value.toLocaleString();
+        if (value == end) { clearInterval(timer); }
+      }, 16);
     }
 
     hoursInput.addEventListener('input', calculateROI);
     rateInput.addEventListener('input', calculateROI);
+    staffInput.addEventListener('input', calculateROI);
+    contractInput.addEventListener('input', calculateROI);
+
+    // Slots Randomizer
+    document.getElementById('slotsLeft').innerText = Math.floor(Math.random() * 3) + 1;
 
     // Scroll Spy
     const sections = document.querySelectorAll('section');
