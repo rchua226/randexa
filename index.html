@@ -684,8 +684,8 @@
         rateLabel.innerHTML = 'Average hourly staff cost: $<span id="rateVal" style="color:white">25</span>';
         contractHoursGroup.classList.remove('visible');
         rateInput.min = 10;
-        rateInput.max = 200;
-        rateInput.step = 5;
+        rateInput.max = 100;
+        rateInput.step = 1;
         rateInput.value = 25;
       } else {
         btnMonthly.classList.add('active');
@@ -693,7 +693,7 @@
         rateLabel.innerHTML = 'Average monthly salary: $<span id="rateVal" style="color:white">4000</span>';
         contractHoursGroup.classList.add('visible');
         rateInput.min = 1000;
-        rateInput.max = 15000;
+        rateInput.max = 20000;
         rateInput.step = 500;
         rateInput.value = 4000;
       }
