@@ -9,41 +9,25 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
       /* --- MASTER LUXURY PALETTE --- */
-      --bg: #0f1115;
+      --bg: #0a0a0a; /* Vercel-like Deep Black */
       --text-main: #ffffff;
-      --text-muted: #9ca3af;
-      --border: rgba(255, 255, 255, 0.08);
+      --text-muted: #a1a1aa;
+      --border: rgba(255, 255, 255, 0.1);
       --glass: rgba(255, 255, 255, 0.03);
-      --glass-hover: rgba(255, 255, 255, 0.08);
-      --glass-menu: rgba(15, 17, 21, 0.98);
+      --glass-hover: rgba(255, 255, 255, 0.06);
+      --glass-menu: rgba(10, 10, 10, 0.95);
       
-      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      --accent-gradient: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #e879f9 100%);
       
       --container-width: 1200px;
       --header-height: 80px;
       
-      --ease: cubic-bezier(0.23, 1, 0.32, 1);
-      --shadow-glow: 0 0 100px rgba(99, 102, 241, 0.15);
-    }
-
-    /* Light Mode Override */
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg: #ffffff;
-        --text-main: #0f172a;
-        --text-muted: #64748b;
-        --border: rgba(0, 0, 0, 0.06);
-        --glass: rgba(255, 255, 255, 0.7);
-        --glass-hover: #ffffff;
-        --glass-menu: rgba(255, 255, 255, 0.98);
-        --shadow-glow: 0 20px 60px rgba(0, 0, 0, 0.08);
-      }
-      .grain { opacity: 0.02 !important; }
+      --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -64,27 +48,21 @@
       z-index: -2; overflow: hidden; pointer-events: none;
       background: var(--bg);
     }
-    .grain {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: -1;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
-      opacity: 0.05;
-    }
     .orb {
       position: absolute; border-radius: 50%;
-      filter: blur(120px); opacity: 0.4;
+      filter: blur(120px); opacity: 0.3;
       animation: float 25s infinite ease-in-out alternate;
     }
     .orb-1 { top: -10%; left: -10%; width: 60vw; height: 60vw; background: #4f46e5; animation-duration: 30s; }
     .orb-2 { bottom: -10%; right: -20%; width: 50vw; height: 50vw; background: #a855f7; animation-duration: 40s; animation-delay: -5s; }
-    .orb-3 { top: 40%; left: 40%; width: 40vw; height: 40vw; background: #06b6d4; opacity: 0.2; animation-duration: 45s; animation-delay: -10s; }
+    .orb-3 { top: 40%; left: 40%; width: 40vw; height: 40vw; background: #06b6d4; opacity: 0.15; animation-duration: 45s; animation-delay: -10s; }
     @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(40px, 80px); } }
 
     /* --- TYPOGRAPHY --- */
-    h1, h2, h3 { letter-spacing: -0.03em; line-height: 1.1; font-weight: 800; color: var(--text-main); }
-    h1 { font-size: clamp(48px, 6vw, 88px); letter-spacing: -0.04em; }
-    h2 { font-size: clamp(36px, 5vw, 56px); }
-    p { font-size: 16px; color: var(--text-muted); font-weight: 400; }
+    h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.1; font-weight: 700; color: var(--text-main); }
+    h1 { font-size: clamp(48px, 6vw, 82px); letter-spacing: -0.04em; }
+    h2 { font-size: clamp(32px, 5vw, 48px); }
+    p { font-size: 17px; color: var(--text-muted); font-weight: 400; line-height: 1.6; }
 
     .text-shine {
       background: var(--accent-gradient);
@@ -103,31 +81,29 @@
     header {
       position: fixed; top: 0; left: 0; right: 0;
       height: var(--header-height);
-      background: rgba(15, 17, 21, 0.7); 
+      background: rgba(10, 10, 10, 0.6); 
       backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       z-index: 1000;
       transition: all 0.4s var(--ease);
     }
     header.scrolled {
-      background: rgba(15,17,21,0.95);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      background: rgba(10, 10, 10, 0.95);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
-    @media (prefers-color-scheme: light) { header { background: rgba(255,255,255,0.7); } header.scrolled { background: rgba(255,255,255,0.95); } }
 
     .nav-container { height: 100%; display: flex; align-items: center; justify-content: space-between; }
     .logo {
-      font-weight: 800; font-size: 16px; display: flex; align-items: center; gap: 12px;
-      text-decoration: none; color: var(--text-main); text-transform: uppercase; letter-spacing: 1.5px;
+      font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--text-main); text-transform: uppercase; letter-spacing: 1px;
     }
-    .logo img { width: 32px; height: 32px; border-radius: 6px; }
+    .logo img { width: 28px; height: 28px; border-radius: 6px; }
 
     .nav-links { display: flex; gap: 32px; align-items: center; }
     .nav-link { font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: 0.2s; position: relative; }
     .nav-link:hover, .nav-link.active { color: var(--text-main); }
-    .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent-gradient); transition: width 0.3s; }
-    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
 
+    /* Buttons */
     .btn-magnetic {
       display: inline-flex; align-items: center; justify-content: center;
       padding: 12px 28px; border-radius: 100px;
@@ -136,7 +112,7 @@
       text-decoration: none; transition: transform 0.1s;
       position: relative; overflow: hidden;
     }
-    .btn-magnetic:hover { box-shadow: 0 0 25px rgba(255,255,255,0.3); }
+    .btn-magnetic:hover { box-shadow: 0 0 30px rgba(255,255,255,0.25); }
 
     .btn-secondary {
       padding: 12px 28px; border-radius: 100px; font-weight: 600; font-size: 14px;
@@ -145,6 +121,7 @@
     }
     .btn-secondary:hover { border-color: var(--text-main); background: var(--glass); }
 
+    /* Mobile Menu */
     .hamburger { display: none; cursor: pointer; color: var(--text-main); background:none; border:none; padding: 10px; }
     .mobile-menu {
       position: fixed; top: 80px; left: 0; width: 100%; height: calc(100vh - 80px);
@@ -155,26 +132,26 @@
     .mobile-menu.active { transform: translateY(0); }
     .mobile-link { font-size: 20px; font-weight: 600; color: var(--text-main); text-decoration: none; }
 
-    /* --- HERO ANIMATIONS --- */
-    .hero { padding-top: 220px; padding-bottom: 120px; text-align: center; }
-    .hero-badge {
-      display: inline-block; padding: 8px 16px; background: var(--glass); border: 1px solid var(--border);
-      border-radius: 100px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px;
-      margin-bottom: 32px; color: var(--text-muted);
-      opacity: 0; animation: fadeUp 0.8s forwards 0.2s;
-    }
-    .hero h1 { opacity: 0; animation: fadeUp 0.8s forwards 0.4s; }
-    .hero p { 
-      font-size: 20px; max-width: 680px; margin: 32px auto 48px; line-height: 1.5; font-weight: 300; 
-      opacity: 0; animation: fadeUp 0.8s forwards 0.6s;
-    }
-    .hero-btns { 
-      display: flex; gap: 16px; justify-content: center; margin-bottom: 80px; 
-      opacity: 0; animation: fadeUp 0.8s forwards 0.8s;
+    /* --- HERO --- */
+    .hero { padding-top: 240px; padding-bottom: 120px; text-align: center; }
+    
+    .hero-intro-pill {
+      display: inline-block; padding: 6px 16px; 
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      border-radius: 100px; font-size: 14px; color: var(--text-muted); margin-bottom: 24px;
+      font-weight: 400; opacity: 0; animation: fadeUp 0.8s forwards 0.2s;
     }
     
+    .hero h1 { margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s forwards 0.4s; }
+    
+    .hero p { 
+      font-size: 20px; max-width: 700px; margin: 0 auto 48px; line-height: 1.5; font-weight: 300; 
+      opacity: 0; animation: fadeUp 0.8s forwards 0.6s;
+    }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; margin-bottom: 80px; opacity: 0; animation: fadeUp 0.8s forwards 0.8s; }
+
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -199,7 +176,7 @@
     }
     .card:hover {
       transform: translateY(-8px); background: var(--glass-hover);
-      border-color: rgba(255,255,255,0.2); box-shadow: var(--shadow-glow);
+      border-color: rgba(255,255,255,0.2); box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     }
     
     .bento-large { grid-column: span 7; }
@@ -207,26 +184,78 @@
     .bento-small { grid-column: span 4; }
     
     .icon-box {
-      width: 56px; height: 56px; 
+      width: 48px; height: 48px; 
       background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-      border-radius: 16px; display: flex; align-items: center; justify-content: center;
+      border-radius: 12px; display: flex; align-items: center; justify-content: center;
       color: var(--text-main); margin-bottom: 24px; transition: 0.3s;
     }
-    .card:hover .icon-box { color: #818cf8; border-color: #818cf8; background: rgba(129, 140, 248, 0.1); }
-    .icon-box svg { width: 28px; height: 28px; }
+    .card:hover .icon-box { border-color: #818cf8; background: rgba(129, 140, 248, 0.1); }
+    .icon-box svg { width: 24px; height: 24px; }
 
-    /* CODE TERMINAL */
+    /* --- CUSTOM ANIMATIONS FOR CARDS --- */
+    
+    /* 1. Code Terminal (Lead Capture) */
     .code-terminal {
       margin-top: 32px; background: rgba(0,0,0,0.5); border-radius: 16px; border: 1px solid var(--border);
-      font-family: 'Monaco', monospace; font-size: 13px; overflow: hidden;
+      font-family: 'Monaco', monospace; font-size: 12px; overflow: hidden;
     }
-    .terminal-header { padding: 12px 16px; background: rgba(255,255,255,0.05); display: flex; gap: 8px; }
-    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .terminal-header { padding: 10px 14px; background: rgba(255,255,255,0.05); display: flex; gap: 6px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
     .dot-red { background: #ff5f57; } .dot-yellow { background: #febc2e; } .dot-green { background: #28c840; }
-    .terminal-body { padding: 20px; line-height: 1.6; color: #a5b3ce; text-align: left; }
-    .code-line { opacity: 0; transform: translateY(10px); transition: 0.5s; }
+    .terminal-body { padding: 16px; line-height: 1.6; color: #a5b3ce; text-align: left; }
+    .code-line { opacity: 0; transform: translateY(5px); transition: 0.3s; }
     .code-line.active { opacity: 1; transform: translateY(0); }
     .hl-keyword { color: #c678dd; } .hl-string { color: #98c379; } .hl-func { color: #61afef; }
+
+    /* 2. Transfer Animation (WhatsApp -> Calendar) */
+    .anim-transfer-container {
+      margin-top: 40px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 20px; position: relative;
+    }
+    .anim-icon { width: 40px; height: 40px; opacity: 0.8; }
+    .anim-dot {
+      width: 12px; height: 12px; border-radius: 50%; background: #28c840; /* WA Green */
+      position: absolute; left: 60px; top: 50%; transform: translateY(-50%);
+      animation: transfer 2s infinite ease-in-out;
+    }
+    @keyframes transfer {
+      0% { left: 60px; background: #28c840; opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { left: calc(100% - 70px); background: #4285F4; opacity: 0; }
+    }
+
+    /* 3. Pulse Graph (Optimization) */
+    .anim-pulse-container {
+      margin-top: 30px; width: 100%; height: 60px; display: flex; align-items: center; gap: 4px;
+    }
+    .pulse-bar {
+      flex: 1; background: rgba(99, 102, 241, 0.2); border-radius: 2px;
+      animation: pulseGraph 1.5s infinite ease-in-out;
+    }
+    @keyframes pulseGraph {
+      0%, 100% { height: 20%; background: rgba(99, 102, 241, 0.2); }
+      50% { height: 80%; background: #818cf8; box-shadow: 0 0 10px #818cf8; }
+    }
+    .pulse-bar:nth-child(1) { animation-delay: 0s; }
+    .pulse-bar:nth-child(2) { animation-delay: 0.1s; }
+    .pulse-bar:nth-child(3) { animation-delay: 0.2s; }
+    .pulse-bar:nth-child(4) { animation-delay: 0.3s; }
+    .pulse-bar:nth-child(5) { animation-delay: 0.4s; }
+
+    /* 4. Scanning Grid (Blueprints) */
+    .anim-grid-scan {
+      margin-top: 30px; width: 100%; height: 60px;
+      background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+      position: relative; overflow: hidden; border-radius: 8px;
+    }
+    .scan-line {
+      width: 100%; height: 2px; background: #ec4899; box-shadow: 0 0 10px #ec4899;
+      position: absolute; top: 0; animation: scan 3s infinite linear;
+    }
+    @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
 
     /* --- ROI CALCULATOR --- */
     .calc-container {
@@ -243,16 +272,13 @@
       -webkit-appearance: none; width: 24px; height: 24px; background: #6366f1; border-radius: 50%; cursor: pointer; box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
     }
     .val-display { font-weight: 700; font-size: 18px; width: 60px; }
-    .calc-result { 
-      padding-top: 32px; border-top: 1px solid var(--border);
-    }
     .savings-amount {
       font-size: 48px; font-weight: 900; 
       background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
     .savings-label { text-transform: uppercase; letter-spacing: 2px; font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
 
-    /* --- PROCESS (HOSTINGER STYLE ICONS) --- */
+    /* --- PROCESS (HOSTINGER STYLE) --- */
     .process-container { display: flex; justify-content: space-between; gap: 20px; margin-top: 60px; }
     .process-card {
       flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center;
@@ -269,11 +295,11 @@
     .process-card h3 { font-size: 18px; margin-bottom: 8px; }
     .process-card p { font-size: 14px; color: var(--text-muted); }
 
-    /* --- INTEGRATIONS (SVG LOGOS) --- */
+    /* --- INTEGRATIONS --- */
     .trusted-label { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 50px; text-align: center; opacity: 0.8; }
     .logos-grid { display: flex; justify-content: center; gap: 40px 60px; flex-wrap: wrap; align-items: center; }
     .logo-item { 
-      height: 30px; width: auto; fill: var(--text-muted); opacity: 0.5; transition: 0.4s;
+      height: 28px; width: auto; fill: var(--text-muted); opacity: 0.5; transition: 0.4s;
     }
     .logo-item:hover { opacity: 1; fill: var(--text-main); transform: scale(1.05); }
 
@@ -287,7 +313,7 @@
     .booking-section { text-align: center; }
     .calendly-wrapper {
       margin-top: 60px; border: 1px solid var(--border); border-radius: 24px;
-      overflow: hidden; box-shadow: var(--shadow-glow);
+      overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4);
       background: var(--bg); display: inline-block; width: 100%; max-width: 1000px;
     }
 
@@ -305,8 +331,15 @@
     }
 
     footer { padding: 80px 0; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-muted); }
-    .reveal { opacity: 0; transform: translateY(40px); transition: all 1s var(--ease); }
-    .reveal.active { opacity: 1; transform: translateY(0); }
+    
+    /* Smooth Scroll Reveal Effect */
+    .reveal { 
+      opacity: 0; transform: translateY(40px) scale(0.98); 
+      transition: all 1s var(--ease); 
+    }
+    .reveal.active { 
+      opacity: 1; transform: translateY(0) scale(1); 
+    }
   </style>
 </head>
 <body>
@@ -351,7 +384,8 @@
 
   <section class="hero container">
     <div class="hero-content">
-      <div class="hero-badge">Intelligent Infrastructure</div>
+      <div class="hero-intro-pill">Randexa is an intelligent automation infrastructure for high-growth businesses.</div>
+      
       <h1>Scale Your Revenue,<br><span class="text-shine">Not Your Headcount.</span></h1>
       <p>
         You don't have a people problem; you have a systems problem. Randexa builds the autonomous agents that replace manual admin and drive profit.
@@ -408,7 +442,15 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
           <h3>Eliminate Data Entry</h3>
-          <p>Connect your tools (CRM, Email, ERP). When data enters one system, it updates everywhere instantly.</p>
+          <p>When data enters one system, it updates everywhere.</p>
+          
+          <div class="anim-transfer-container">
+            <svg class="anim-icon" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            
+            <div class="anim-dot"></div>
+            
+            <svg class="anim-icon" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          </div>
         </div>
 
         <div class="card bento-small">
@@ -416,21 +458,29 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
           </div>
           <h3>Ongoing Optimisation</h3>
-          <p>We monitor your systems to ensure they run faster as you scale.</p>
+          <p>We monitor your systems to ensure they run faster.</p>
+          <div class="anim-pulse-container">
+            <div class="pulse-bar"></div><div class="pulse-bar"></div><div class="pulse-bar"></div><div class="pulse-bar"></div><div class="pulse-bar"></div>
+          </div>
         </div>
+
         <div class="card bento-small">
           <div class="icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
           </div>
           <h3>Operational Blueprints</h3>
-          <p>We audit your process and identify exactly where you are burning cash.</p>
+          <p>We audit your process and identify inefficiencies.</p>
+          <div class="anim-grid-scan">
+            <div class="scan-line"></div>
+          </div>
         </div>
+
         <div class="card bento-small">
           <div class="icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
           </div>
-          <h3>Automate the Boring Stuff</h3>
-          <p>Invoicing, scheduling, and follow-ups happen without you lifting a finger.</p>
+          <h3>Automate the Boring</h3>
+          <p>Invoicing and scheduling happen without you.</p>
         </div>
       </div>
     </div>
@@ -571,7 +621,7 @@
   </footer>
 
   <script>
-    // Reveal Animation
+    // Reveal Animation (Global Scroll Reveal)
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
     }, { threshold: 0.1 });
@@ -587,7 +637,7 @@
       else header.classList.remove('scrolled');
     });
 
-    // Stats Counter Animation (No Flicker)
+    // Stats Counter Animation
     const counters = document.querySelectorAll('.stat-number');
     const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -611,13 +661,16 @@
     }, { threshold: 0.5 });
     counters.forEach(counter => statsObserver.observe(counter));
 
-    // Code Terminal Typing (Runs Once)
+    // Code Terminal Typing (Repeats on Entry)
     const lines = document.querySelectorAll('.code-line');
-    let hasRun = false;
     const codeObserver = new IntersectionObserver((entries) => {
-      if(entries[0].isIntersecting && !hasRun) {
-        hasRun = true;
-        lines.forEach((line, index) => { setTimeout(() => { line.classList.add('active'); }, index * 600); });
+      if(entries[0].isIntersecting) {
+        // Reset classes
+        lines.forEach(line => line.classList.remove('active'));
+        // Trigger animation
+        setTimeout(() => {
+          lines.forEach((line, index) => { setTimeout(() => { line.classList.add('active'); }, index * 600); });
+        }, 100);
       }
     }, { threshold: 0.5 });
     codeObserver.observe(document.querySelector('.code-terminal'));
